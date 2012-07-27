@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paranothing", "paranothing\paranothing\paranothing.csproj", "{2A1471D5-D205-4A54-A81B-21B58E31C60A}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "paranothingContent", "paranothing\paranothingContent\paranothingContent.contentproj", "{AB4B9ABE-BD2B-45A3-ADD9-85B5D61F67D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paranothingContent", "paranothing\paranothingContent\paranothingContent.contentproj", "{AB4B9ABE-BD2B-45A3-ADD9-85B5D61F67D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
