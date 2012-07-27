@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace paranothing
 {
@@ -19,7 +20,8 @@ namespace paranothing
             get { return animName; }
             set
             {
-                if (sheet.hasAnimation(value))
+               
+                if (sheet.hasAnimation(value) && animName != value)
                 {
                     animName = value;
                     animFrames = sheet.getAnimation(animName);
@@ -42,10 +44,11 @@ namespace paranothing
             this.sheet = sheet;
             frame = 0;
             frameTime = 0;
-            frameLength = 70;
+            frameLength = 80;
             position = new Vector2(X, Y);
-            Animation = "walkright";
-            moveSpeed = 3;
+            
+            Animation = "standright";
+            moveSpeed = 0;
             state = BoyState.Idle;
             direction = GameController.Direction.Right;
         }
@@ -61,14 +64,43 @@ namespace paranothing
             renderer.Draw(sheet.image, position, sprite, Color.White);
         }
 
+        public void updateMovement(GameController control)
+        {
+
+            if (control.keyState.IsKeyDown(Keys.Right))
+            {
+                Animation = "walkright";
+                direction = GameController.Direction.Right;
+                state = BoyState.Walk;
+            }
+            else if (control.keyState.IsKeyDown(Keys.Left))
+            {
+                Animation = "walkleft";
+                direction = GameController.Direction.Left;
+                state = BoyState.Walk;
+            }
+            if (control.keyState.GetPressedKeys().Length == 0 && direction == GameController.Direction.Right)
+            {
+                Animation = "standright";
+                state = BoyState.Idle;
+            }
+            else if (control.keyState.GetPressedKeys().Length == 0 && direction == GameController.Direction.Left)
+            {
+                Animation = "standleft";
+                state = BoyState.Idle;
+            }
+
+        }
+
         public void update(GameTime time, GameController control)
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
-
+            updateMovement(control);
             switch (state)
             {
                 case BoyState.Idle:
+                    moveSpeed = 0;
                     break;
                 case BoyState.Walk:
                     moveSpeed = 3;

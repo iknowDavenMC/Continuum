@@ -130,9 +130,15 @@ namespace paranothing
             kidSheet.splitSheet(5, 9);
 
             kidSheet.addAnimation("standright", new int[] { 8 });
+            //control = new GameController();
             kidSheet.addAnimation("walkright", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+
             kidSheet.addAnimation("standleft", new int[] { 17 });
+            kidSheet.addAnimation("standright", new int[] { 8 });
             kidSheet.addAnimation("walkleft", new int[] { 9, 10, 11, 12, 13, 14, 15, 16 });
+            kidSheet.addAnimation("standleft", new int[] { 17 });
+            kidSheet.addAnimation("walkright", new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8});
+            kidSheet.addAnimation("walkleft", new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17});
 
             player = new Boy(100f, 100f, kidSheet);
             control = new GameController(player);

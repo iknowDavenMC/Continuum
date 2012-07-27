@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
-      <Time>2012-07-27T10:52:23.8744612-04:00</Time>
+      <Output>C:\Users\sa_assaf\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
+      <Time>2012-07-27T11:24:22.6442046-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -16,10 +16,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\sa_assaf\Desktop\proj\paranothing\paranothing\paranothingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\sa_assaf\Desktop\proj\paranothing\paranothing\paranothing\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\sa_assaf\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\sa_assaf\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
