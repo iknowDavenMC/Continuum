@@ -1,0 +1,7 @@
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.pdb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
