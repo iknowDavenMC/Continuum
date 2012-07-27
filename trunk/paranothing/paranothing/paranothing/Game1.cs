@@ -24,6 +24,8 @@ namespace paranothing
 
         SpriteSheet kidSheet;
         Texture2D kid;
+        SpriteSheet stairSheet;
+        Texture2D stair;
 
         GameController control;
         float scale = 2.0f;
@@ -31,6 +33,7 @@ namespace paranothing
         int Height = 600;
 
         Boy player;
+        Stairs stairs;
 
         //Fonts
         private SpriteFont gameFont;
@@ -38,7 +41,7 @@ namespace paranothing
         //Title
         private GameTitle title;
         private Vector2 startPosition;
-        private GameLevel gameState = GameLevel.Title;
+        private GameLevel gameState = GameLevel.Level;
         //Description
         private GameBackground description;
 
@@ -126,7 +129,10 @@ namespace paranothing
             // TODO: Add your initialization logic here
 
             kid = Content.Load<Texture2D>("Sprites/sprite");
+            stair = Content.Load<Texture2D>("Sprites/stairs_intact");
             kidSheet = new SpriteSheet(kid);
+            stairSheet = new SpriteSheet(stair);
+            
             kidSheet.splitSheet(5, 9);
 
             kidSheet.addAnimation("standright", new int[] { 8 });
@@ -141,7 +147,9 @@ namespace paranothing
             kidSheet.addAnimation("walkleft", new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17});
 
             player = new Boy(100f, 100f, kidSheet);
+            stairs = new Stairs(100f, 68f, stairSheet);
             control = new GameController(player);
+            
             base.Initialize();
         }
 
@@ -223,6 +231,7 @@ namespace paranothing
                 case GameLevel.Level:
                     spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
                     control.drawObjs(spriteBatch);
+                    stairs.draw(spriteBatch);
                     spriteBatch.End();
                     break;
             }
