@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace paranothing
 {
+    public enum GameLevel { Title, Description, Level }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -18,6 +19,8 @@ namespace paranothing
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        # region Attributes
 
         SpriteSheet kidSheet;
         Texture2D kid;
@@ -28,6 +31,81 @@ namespace paranothing
         int Height = 600;
 
         Boy player;
+
+        //Fonts
+        private SpriteFont gameFont;
+        private SpriteFont titleFont;
+        //Title
+        private GameTitle title;
+        private Vector2 startPosition;
+        private GameLevel gameState = GameLevel.Title;
+        //Description
+        private GameBackground description;
+
+        # endregion
+
+        # region Methods
+
+        public GameLevel GameState
+        {
+            get
+            {
+                return gameState;
+            }
+            set
+            {
+                gameState = value;
+            }
+        }
+
+        /// <summary>
+        /// Draws text on the screen
+        /// </summary>
+        /// <param name="text">text to write</param>
+        /// <param name="textColor">color of text</param>
+        /// <param name="x">left hand edge of text</param>
+        /// <param name="y">top of text</param>
+        private void drawText(string text, SpriteFont font, Color textColor, float x, float y)
+        {
+            int layer;
+            Vector2 vectorText = new Vector2(x, y);
+
+            //solid
+            Color backColor = new Color(190, 190, 190);
+            for (layer = 0; layer < 3; layer++)
+            {
+                spriteBatch.DrawString(font, text, vectorText, backColor);
+                vectorText.X++;
+                vectorText.Y++;
+            }
+
+            //top of character
+            spriteBatch.DrawString(font, text, vectorText, textColor);
+        }
+
+        //Title
+        private void loadTitleContents()
+        {
+            titleFont = Content.Load<SpriteFont>("TitleFont");
+            gameFont = Content.Load<SpriteFont>("GameFont");
+            title = new GameTitle(Content.Load<Texture2D>("screenshot"), new Rectangle(0, 0, Width, Height));
+            title.setBottomTextRectangle(gameFont.MeasureString("Press 'Enter' to start"));
+            startPosition = new Vector2(title.BottomTextRectangle.X, title.BottomTextRectangle.Y);
+        }
+        private void drawTitleText()
+        {
+            title.setTopTextRectangle(titleFont.MeasureString("Welcome to Paranothing"));
+            drawText("Welcome to Paranothing", titleFont, Color.WhiteSmoke, title.TopTextRectangle.X, title.TopTextRectangle.Y);
+            spriteBatch.DrawString(gameFont, "Press 'Enter' to start", startPosition, Color.DarkMagenta);
+        }
+
+        //Description
+        private void drawDescriptionText()
+        {
+            spriteBatch.DrawString(gameFont, "Press 'Space Bar' to continue", startPosition, Color.Black);
+        }
+
+        # endregion
 
         public Game1()
         {
@@ -71,6 +149,8 @@ namespace paranothing
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            loadTitleContents();
+            description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, Width, Height));
         }
 
         /// <summary>
@@ -90,11 +170,22 @@ namespace paranothing
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
             // TODO: Add your update logic here
-            control.updateObjs(gameTime);
+            switch (gameState)
+            {
+                case GameLevel.Title:
+                    title.Update(this, Keyboard.GetState());
+                    break;
+                case GameLevel.Description:
+                    description.Update(this, Keyboard.GetState());
+                    break;
+                case GameLevel.Level:
+                    control.updateObjs(gameTime);
+                    break;
+            }
 
             base.Update(gameTime);
         }
@@ -106,10 +197,29 @@ namespace paranothing
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
-            control.drawObjs(spriteBatch);
-            spriteBatch.End();
+
             // TODO: Add your drawing code here
+
+            switch (gameState)
+            {
+                case GameLevel.Title:
+                    spriteBatch.Begin();
+                    title.Draw(spriteBatch);
+                    drawTitleText();
+                    spriteBatch.End();
+                    break;
+                case GameLevel.Description:
+                    spriteBatch.Begin();
+                    description.Draw(spriteBatch);
+                    drawDescriptionText();
+                    spriteBatch.End();
+                    break;
+                case GameLevel.Level:
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
+                    control.drawObjs(spriteBatch);
+                    spriteBatch.End();
+                    break;
+            }
 
             base.Draw(gameTime);
         }

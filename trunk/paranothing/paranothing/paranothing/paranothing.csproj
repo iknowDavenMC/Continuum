@@ -111,7 +111,9 @@
     <Compile Include="Boy.cs" />
     <Compile Include="Collideable.cs" />
     <Compile Include="Drawable.cs" />
+    <Compile Include="GameBackground.cs" />
     <Compile Include="GameController.cs" />
+    <Compile Include="GameTitle.cs" />
     <Compile Include="Interactive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
