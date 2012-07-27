@@ -124,7 +124,7 @@
     <Compile Include="Table.cs" />
     <Compile Include="Updatable.cs" />
     <Compile Include="Updates.cs" />
-    <Compile Include="WardRobe.cs" />
+    <Compile Include="Wardrobe.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
