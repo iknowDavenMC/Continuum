@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class WardRobe// : Collideable, Audible, Updatable, Drawable
+    class Wardrobe// : Collideable, Audible, Updatable, Drawable
     {
         # region Attributes
 
@@ -19,12 +19,13 @@ namespace paranothing
         private Cue wrCue;
         //Drawable
         private Texture2D wrTexture;
+        private Wardrobe linkedWR;
 
         # endregion
 
         # region Constructor
 
-        public WardRobe(Texture2D inTexture, Rectangle inRect, bool inSolid)
+        public Wardrobe(Texture2D inTexture, Rectangle inRect, bool inSolid)
         {
             wrTexture = inTexture;
             wrBound = inRect;
@@ -89,6 +90,16 @@ namespace paranothing
         public void update(GameTime time, GameController control)
         {
 
+        }
+
+        public void setLinkedWR(Wardrobe linkedWR)
+        {
+            this.linkedWR = linkedWR;
+        }
+
+        public Wardrobe getLinkedWR()
+        {
+            return linkedWR;
         }
 
         # endregion
