@@ -14,7 +14,7 @@ namespace paranothing
     {
         private Dictionary<String, List<int>> animList;
         private List<Rectangle> sprites;
-        public Texture2D image { get; set; }
+        public Texture2D image;
 
         public SpriteSheet(Texture2D image)
         {
@@ -71,6 +71,7 @@ namespace paranothing
         /// <returns>True if adding was successful, false otherwise.</returns>
         public bool addAnimation(String name, List<int> spriteIndices)
         {
+            name.ToLower();
             if (animList.ContainsKey(name))
                 return false;
             animList.Add(name, spriteIndices);
@@ -85,6 +86,7 @@ namespace paranothing
         /// <returns>True if adding was successful, false otherwise.</returns>
         public bool addAnimation(String name, int[] spriteIndices)
         {
+            name.ToLower();
             List<int> indexList = new List<int>();
             foreach (int i in spriteIndices)
             {
@@ -100,6 +102,7 @@ namespace paranothing
         /// <returns>A list containing the indices of the sprites in the animation. If the animation does not exist, the list will be empty.</returns>
         public List<int> getAnimation(String name)
         {
+            name.ToLower();
             List<int> animation = new List<int>();
             if (animList.ContainsKey(name))
                 animList.TryGetValue(name, out animation);
@@ -113,6 +116,7 @@ namespace paranothing
         /// <returns>True if the animation exists, false otherwise.</returns>
         public bool hasAnimation(String name)
         {
+            name.ToLower();
             return animList.ContainsKey(name);
         }
 
