@@ -17,3 +17,15 @@ C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\obj\x86
 C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
 C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
 C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.pdb

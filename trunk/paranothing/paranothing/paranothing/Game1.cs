@@ -22,19 +22,22 @@ namespace paranothing
 
         # region Attributes
 
-        SpriteSheet kidSheet;
-        Texture2D kid;
+        SpriteSheet boySheet;
+        Texture2D boyTex;
+        Texture2D floorTex;
         SpriteSheet stairSheet;
         Texture2D stair;
 
         GameController control;
         float scale = 2.0f;
-        int Width = 800;
-        int Height = 600;
+        int Width = 400;
+        int Height = 300;
 
         Boy player;
         Stairs stairs;
 
+        Floor f1;
+        Floor f2;
         //Fonts
         private SpriteFont gameFont;
         private SpriteFont titleFont;
@@ -44,6 +47,7 @@ namespace paranothing
         private GameLevel gameState = GameLevel.Level;
         //Description
         private GameBackground description;
+
 
         # endregion
 
@@ -128,28 +132,6 @@ namespace paranothing
         {
             // TODO: Add your initialization logic here
 
-            kid = Content.Load<Texture2D>("Sprites/sprite");
-            stair = Content.Load<Texture2D>("Sprites/stairs_intact");
-            kidSheet = new SpriteSheet(kid);
-            stairSheet = new SpriteSheet(stair);
-            
-            kidSheet.splitSheet(5, 9);
-
-            kidSheet.addAnimation("standright", new int[] { 8 });
-            //control = new GameController();
-            kidSheet.addAnimation("walkright", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
-
-            kidSheet.addAnimation("standleft", new int[] { 17 });
-            kidSheet.addAnimation("standright", new int[] { 8 });
-            kidSheet.addAnimation("walkleft", new int[] { 9, 10, 11, 12, 13, 14, 15, 16 });
-            kidSheet.addAnimation("standleft", new int[] { 17 });
-            kidSheet.addAnimation("walkright", new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8});
-            kidSheet.addAnimation("walkleft", new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17});
-
-            player = new Boy(100f, 100f, kidSheet);
-            stairs = new Stairs(100f, 68f, stairSheet);
-            control = new GameController(player);
-            
             base.Initialize();
         }
 
@@ -162,6 +144,29 @@ namespace paranothing
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            boyTex = Content.Load<Texture2D>("Sprites/sprite");
+            boySheet = new SpriteSheet(boyTex);
+            boySheet.splitSheet(5, 9);
+            boySheet.addAnimation("standright", new int[] { 8 });
+            boySheet.addAnimation("walkright", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            boySheet.addAnimation("standleft", new int[] { 17 });
+            boySheet.addAnimation("walkleft", new int[] { 9, 10, 11, 12, 13, 14, 15, 16 });
+
+            player = new Boy(254f, 100f, boySheet);
+
+            floorTex = Content.Load<Texture2D>("Sprites/floor");
+            f1 = new Floor(0, 68, 100, 8, floorTex);
+            f2 = new Floor(100, 164, 400, 8, floorTex);
+
+            stair = Content.Load<Texture2D>("Sprites/stairs_intact");
+            stairSheet = new SpriteSheet(stair);
+            stairs = new Stairs(100f, 68f, stairSheet);
+
+            control = new GameController(player);
+            control.addObject(f1);
+            control.addObject(f2);
+            control.addObject(stairs);
+            
             // TODO: use this.Content to load your game content here
             loadTitleContents();
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, Width, Height));
@@ -187,6 +192,10 @@ namespace paranothing
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            graphics.PreferredBackBufferWidth = (int)(Width * scale);
+            graphics.PreferredBackBufferHeight = (int)(Height * scale);
+            graphics.ApplyChanges();
+
             // TODO: Add your update logic here
             switch (gameState)
             {
@@ -210,9 +219,7 @@ namespace paranothing
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
+            GraphicsDevice.Clear(Color.Black);
 
             switch (gameState)
             {
@@ -229,9 +236,8 @@ namespace paranothing
                     spriteBatch.End();
                     break;
                 case GameLevel.Level:
-                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
+                    spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
                     control.drawObjs(spriteBatch);
-                    stairs.draw(spriteBatch);
                     spriteBatch.End();
                     break;
             }

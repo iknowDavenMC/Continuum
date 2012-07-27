@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class WardRobe : Collideable, Audible, Updatable, Drawable
+    class WardRobe// : Collideable, Audible, Updatable, Drawable
     {
         # region Attributes
 
