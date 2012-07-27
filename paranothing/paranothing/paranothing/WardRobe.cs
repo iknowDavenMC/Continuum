@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class WardRobe : Collideable, Drawable, Updatable
+    class WardRobe : Collideable, Audible, Updatable, Drawable
     {
         # region Attributes
 
         //Collidable
         private Rectangle wrBound;
         private bool wrSolid;
+        //Audible
+        private Cue wrCue;
         //Drawable
         private Texture2D wrTexture;
 
@@ -21,9 +24,10 @@ namespace paranothing
 
         # region Constructor
 
-        public WardRobe(Texture2D inTexture, bool inSolid)
+        public WardRobe(Texture2D inTexture, Rectangle inRect, bool inSolid)
         {
             wrTexture = inTexture;
+            wrBound = inRect;
             wrSolid = inSolid;
         }
 
@@ -45,6 +49,23 @@ namespace paranothing
             {
                 return wrSolid;
             }
+        }
+
+        //Audible
+        public Cue WardRobeCue
+        {
+            get
+            {
+                return wrCue;
+            }
+            set
+            {
+                wrCue = value;
+            }
+        }
+        public void Play()
+        {
+
         }
 
         //Drawable
