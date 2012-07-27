@@ -4,10 +4,11 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Boy : Drawable, Updatable
+    class Boy : Drawable, Updatable, Collideable, Audible
     {
         private SpriteSheet sheet;
         private int frame;
@@ -30,26 +31,34 @@ namespace paranothing
                 }
             }
         }
-        private float moveSpeed; // Pixels per animation frame
+        private float moveSpeedX, moveSpeedY; // Pixels per animation frame
         private Vector2 position;
-        public float X { get { return position.X; } set { position.X = value; } }
-        public float Y { get { return position.Y; } set { position.Y = value; } }
+        public int Width, Height;
+        private Vector2 positionOff;
+        private bool solid;
 
-        public enum BoyState { Idle, Walk }
+        public float X { get { return position.X + positionOff.X; } set { position.X = value - positionOff.X; } }
+        public float Y { get { return position.Y + positionOff.Y; } set { position.Y = value - positionOff.Y; } }
+
+        public enum BoyState { Idle, Walk, Stairs }
         public BoyState state;
         public GameController.Direction direction;
+
+        private Cue soundCue;
 
         public Boy(float X, float Y, SpriteSheet sheet)
         {
             this.sheet = sheet;
             frame = 0;
             frameTime = 0;
-            frameLength = 80;
+            frameLength = 70;
             position = new Vector2(X, Y);
-            
-            Animation = "standright";
-            moveSpeed = 0;
+            Width = 25;
+            Height = 52;
+            positionOff = new Vector2(20, 15);
+            solid = true;
             state = BoyState.Idle;
+            Animation = "standright";
             direction = GameController.Direction.Right;
         }
 
@@ -58,36 +67,44 @@ namespace paranothing
             return sheet.image;
         }
 
-        public void draw(SpriteBatch renderer)
+        public void draw(SpriteBatch renderer, Color tint)
         {
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, Color.White);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.25f);
         }
 
-        public void updateMovement(GameController control)
+        public void checkInput(GameController control)
         {
 
-            if (control.keyState.IsKeyDown(Keys.Right))
+            if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right))
             {
-                Animation = "walkright";
-                direction = GameController.Direction.Right;
-                state = BoyState.Walk;
+                if (direction == GameController.Direction.Right)
+                {
+                    Animation = "standright";
+                    state = BoyState.Idle;
+                }
+                else
+                {
+                    Animation = "standleft";
+                    state = BoyState.Idle;
+                }
             }
-            else if (control.keyState.IsKeyDown(Keys.Left))
+            else
             {
-                Animation = "walkleft";
-                direction = GameController.Direction.Left;
-                state = BoyState.Walk;
-            }
-            if (control.keyState.GetPressedKeys().Length == 0 && direction == GameController.Direction.Right)
-            {
-                Animation = "standright";
-                state = BoyState.Idle;
-            }
-            else if (control.keyState.GetPressedKeys().Length == 0 && direction == GameController.Direction.Left)
-            {
-                Animation = "standleft";
-                state = BoyState.Idle;
+                if (control.keyState.IsKeyDown(Keys.Right))
+                {
+                    Animation = "walkright";
+                    direction = GameController.Direction.Right;
+                    if (state != BoyState.Stairs)
+                        state = BoyState.Walk;
+                }
+                else if (control.keyState.IsKeyDown(Keys.Left))
+                {
+                    Animation = "walkleft";
+                    direction = GameController.Direction.Left;
+                    if (state != BoyState.Stairs)
+                        state = BoyState.Walk;
+                }
             }
 
         }
@@ -96,25 +113,58 @@ namespace paranothing
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
-            updateMovement(control);
+            checkInput(control);
             switch (state)
             {
                 case BoyState.Idle:
-                    moveSpeed = 0;
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
                     break;
                 case BoyState.Walk:
-                    moveSpeed = 3;
+                    moveSpeedX = 3;
+                    moveSpeedY = 0;
+                    break;
+                case BoyState.Stairs:
+                    moveSpeedX = 3;
+                    moveSpeedY = 2;
                     break;
             }
             if (frameTime >= frameLength)
             {
                 int flip = 1;
                 if (direction == GameController.Direction.Left)
-                    flip = -1; 
-                X += moveSpeed * flip;
+                    flip = -1;
+                X += moveSpeedX * flip;
+                Y += moveSpeedY * flip;
                 frameTime = 0;
                 frame = (frame + 1) % animFrames.Count;
             }
+        }
+
+        public Rectangle getBounds()
+        {
+            return new Rectangle((int)(position.X + positionOff.X), (int)(position.Y + positionOff.Y), Width, Height);
+        }
+
+        public bool isSolid()
+        {
+            return solid;
+        }
+
+        public void Play()
+        {
+            if (soundCue.IsPrepared)
+                soundCue.Play();
+        }
+
+        public void setCue(Cue cue)
+        {
+            soundCue = cue;
+        }
+
+        public Cue getCue()
+        {
+            return soundCue;
         }
     }
 }

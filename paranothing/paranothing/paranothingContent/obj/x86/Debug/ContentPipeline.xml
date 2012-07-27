@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
-      <Time>2012-07-27T14:22:22.4549818-04:00</Time>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
+      <Time>2012-07-27T10:52:23.8744612-04:00</Time>
     </Item>
     <Item>
       <Source>GameThumbnail.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
-      <Time>2012-07-27T14:22:22.6539818-04:00</Time>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
+      <Time>2012-07-27T13:29:06.4194408-04:00</Time>
     </Item>
     <Item>
       <Source>screenshot.png</Source>
@@ -25,26 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
-      <Time>2012-07-27T14:22:22.6579818-04:00</Time>
-    </Item>
-    <Item>
-      <Source>GameFont.spritefont</Source>
-      <Name>GameFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2012-07-27T14:22:22.6639818-04:00</Time>
-    </Item>
-    <Item>
-      <Source>TitleFont.spritefont</Source>
-      <Name>TitleFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
-      <Time>2012-07-27T14:22:22.6599818-04:00</Time>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
+      <Time>2012-07-27T11:23:24.8625658-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stairs_intact.png</Source>
@@ -52,8 +34,26 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
-      <Time>2012-07-27T15:02:00.9249818-04:00</Time>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
+      <Time>2012-07-27T15:56:39.683992-04:00</Time>
+    </Item>
+    <Item>
+      <Source>GameFont.spritefont</Source>
+      <Name>GameFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Time>2012-07-27T13:24:40.3574408-04:00</Time>
+    </Item>
+    <Item>
+      <Source>TitleFont.spritefont</Source>
+      <Name>TitleFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
+      <Time>2012-07-27T13:24:40.3514408-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -61,10 +61,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\sa_assaf\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

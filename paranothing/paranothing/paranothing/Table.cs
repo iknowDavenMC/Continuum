@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Table : Collideable, Audible, Updatable, Drawable
+    class Table //: Collideable, Audible, Updatable, Drawable
     {
         # region Attributes
 

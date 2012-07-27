@@ -24,6 +24,6 @@ namespace paranothing
         /// </summary>
         /// <param name="renderer">The spritebatch with which to draw</param>
         /// <param name="tint">A colour to use as a tint</param>
-        void draw(SpriteBatch renderer);
+        void draw(SpriteBatch renderer, Color tint);
     }
 }

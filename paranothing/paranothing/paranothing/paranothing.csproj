@@ -111,6 +111,7 @@
     <Compile Include="Boy.cs" />
     <Compile Include="Collideable.cs" />
     <Compile Include="Drawable.cs" />
+    <Compile Include="Floor.cs" />
     <Compile Include="GameBackground.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameTitle.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="SpriteSheet.cs" />
+    <Compile Include="Stairs.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Updatable.cs" />
     <Compile Include="Updates.cs" />
