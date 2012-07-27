@@ -19,6 +19,13 @@ namespace paranothing
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        SpriteSheet kidSheet;
+        Texture2D kid;
+
+        GameController control;
+
+        Boy player;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,6 +41,15 @@ namespace paranothing
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            kid = Content.Load<Texture2D>("Sprites/sprite");
+            kidSheet = new SpriteSheet(kid);
+            kidSheet.splitSheet(5, 9);
+
+            kidSheet.addAnimation("walkright", new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8});
+            kidSheet.addAnimation("walkleft", new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17});
+
+            player = new Boy(100f, 100f, kidSheet);
 
             base.Initialize();
         }
@@ -71,7 +87,7 @@ namespace paranothing
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            player.update(gameTime, control);
             base.Update(gameTime);
         }
 
@@ -82,7 +98,9 @@ namespace paranothing
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            player.draw(spriteBatch);
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
