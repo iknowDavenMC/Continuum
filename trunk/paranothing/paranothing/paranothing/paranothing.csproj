@@ -119,8 +119,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="SpriteSheet.cs" />
+    <Compile Include="Table.cs" />
     <Compile Include="Updatable.cs" />
     <Compile Include="Updates.cs" />
+    <Compile Include="WardRobe.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
