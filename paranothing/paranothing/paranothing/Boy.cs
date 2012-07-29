@@ -34,32 +34,37 @@ namespace paranothing
         private float moveSpeedX, moveSpeedY; // Pixels per animation frame
         private Vector2 position;
         public int Width, Height;
-        private Vector2 positionOff;
         private bool solid;
 
-        public float X { get { return position.X + positionOff.X; } set { position.X = value - positionOff.X; } }
-        public float Y { get { return position.Y + positionOff.Y; } set { position.Y = value - positionOff.Y; } }
+        public float X { get { return position.X; } set { position.X = value; } }
+        public float Y { get { return position.Y; } set { position.Y = value; } }
 
-        public enum BoyState { Idle, Walk, Stairs }
+        public enum BoyState { Idle, Walk, StairsLeft, StairsRight, PushWalk, PushingStill, Teleport, TimeTravel }
         public BoyState state;
-        public GameController.Direction direction;
-
+        public Direction direction;
+        public ActionBubble actionBubble;
+        private Vector2 teleportTo;
         private Cue soundCue;
 
-        public Boy(float X, float Y, SpriteSheet sheet)
+        public Interactive interactor;
+
+        public Boy(float X, float Y, ActionBubble actionBubble, SpriteSheet sheet)
         {
             this.sheet = sheet;
             frame = 0;
             frameTime = 0;
             frameLength = 70;
             position = new Vector2(X, Y);
-            Width = 25;
-            Height = 52;
-            positionOff = new Vector2(20, 15);
+            Width = 38;
+            Height = 58;
             solid = true;
             state = BoyState.Idle;
-            Animation = "standright";
-            direction = GameController.Direction.Right;
+            Animation = "stand";
+            direction = Direction.Right;
+            this.actionBubble = actionBubble;
+            actionBubble.Player = this;
+            actionBubble.show();
+            teleportTo = new Vector2();
         }
 
         public Texture2D getImage()
@@ -69,23 +74,31 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
+            SpriteEffects flip = SpriteEffects.None;
+            if (direction == Direction.Left)
+                flip = SpriteEffects.FlipHorizontally;
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.25f);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, 0.25f);
         }
 
         public void checkInput(GameController control)
         {
 
-            if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right))
+            if (control.keyState.IsKeyDown(Keys.Up))
             {
-                if (direction == GameController.Direction.Right)
+                if ((state == BoyState.Walk || state == BoyState.Idle) && null != interactor)
                 {
-                    Animation = "standright";
+                    interactor.Interact(this);
+                }
+            }
+            else if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right) && state != BoyState.Teleport && state != BoyState.TimeTravel)
+            {
+                if (direction == Direction.Right)
+                {
                     state = BoyState.Idle;
                 }
                 else
                 {
-                    Animation = "standleft";
                     state = BoyState.Idle;
                 }
             }
@@ -93,16 +106,14 @@ namespace paranothing
             {
                 if (control.keyState.IsKeyDown(Keys.Right))
                 {
-                    Animation = "walkright";
-                    direction = GameController.Direction.Right;
-                    if (state != BoyState.Stairs)
+                    direction = Direction.Right;
+                    if (state == BoyState.Idle)
                         state = BoyState.Walk;
                 }
                 else if (control.keyState.IsKeyDown(Keys.Left))
                 {
-                    Animation = "walkleft";
-                    direction = GameController.Direction.Left;
-                    if (state != BoyState.Stairs)
+                    direction = Direction.Left;
+                    if (state == BoyState.Idle)
                         state = BoyState.Walk;
                 }
             }
@@ -117,22 +128,84 @@ namespace paranothing
             switch (state)
             {
                 case BoyState.Idle:
+                    if (Animation == "pushstill")
+                        Animation = "endpush";
+                    if (Animation == "endpush" && frame == 2 || Animation == "walk")
+                        Animation = "stand";
                     moveSpeedX = 0;
                     moveSpeedY = 0;
                     break;
                 case BoyState.Walk:
+                    Animation = "walk";
                     moveSpeedX = 3;
                     moveSpeedY = 0;
                     break;
-                case BoyState.Stairs:
+                case BoyState.StairsLeft:
+                    Animation = "walk";
                     moveSpeedX = 3;
                     moveSpeedY = 2;
+                    break;
+                case BoyState.StairsRight:
+                    Animation = "walk";
+                    moveSpeedX = 3;
+                    moveSpeedY = 2;
+                    break;
+                case BoyState.PushingStill:
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
+                    if (Animation == "walk")
+                        Animation = "startpush";
+                    if (Animation == "startpush" && frame == 3)
+                        Animation = "pushstill";
+                    break;
+                case BoyState.Teleport:
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
+                    if (Animation == "walk" || Animation == "stand")
+                    {
+                        Animation = "enterwardrobe";
+                        Rectangle target = ((Wardrobe)interactor).getLinkedWR().getBounds();
+                        teleportTo = new Vector2(target.X + 25, target.Y+24);
+                        interactor = null;
+                    }
+                    if (Animation == "enterwardrobe" && frame == 6)
+                    {
+                        position = new Vector2(teleportTo.X, teleportTo.Y);
+                        Animation = "leavewardrobe";
+                    }
+                    if (Animation == "leavewardrobe" && frame == 7)
+                    {
+                        Animation = "stand";
+                        state = BoyState.Idle;
+                    }
+                    break;
+                case BoyState.TimeTravel:
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
+                    if (Animation == "walk" || Animation == "stand")
+                    {
+                        Animation = "enterportrait";
+                        interactor = null;
+                    }
+                    if (Animation == "enterportrait" && frame == 7)
+                    {
+                        if (control.timePeriod == TimePeriod.Past)
+                            control.timePeriod = TimePeriod.Present;
+                        else
+                            control.timePeriod = TimePeriod.Past;
+                        Animation = "leaveportrait";
+                    }
+                    if (Animation == "leaveportrait" && frame == 7)
+                    {
+                        Animation = "stand";
+                        state = BoyState.Idle;
+                    }
                     break;
             }
             if (frameTime >= frameLength)
             {
                 int flip = 1;
-                if (direction == GameController.Direction.Left)
+                if (direction == Direction.Left)
                     flip = -1;
                 X += moveSpeedX * flip;
                 Y += moveSpeedY * flip;
@@ -143,7 +216,7 @@ namespace paranothing
 
         public Rectangle getBounds()
         {
-            return new Rectangle((int)(position.X + positionOff.X), (int)(position.Y + positionOff.Y), Width, Height);
+            return new Rectangle((int)(position.X), (int)(position.Y), Width, Height);
         }
 
         public bool isSolid()

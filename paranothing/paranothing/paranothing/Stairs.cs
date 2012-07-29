@@ -7,31 +7,50 @@ using Microsoft.Xna.Framework;
 
 namespace paranothing
 {
-    class Stairs : Drawable, Collideable
+    class Stairs : Drawable, Collideable, Updatable
     {
 
         private SpriteSheet sheet;
-        private Vector2 position;
+        public Vector2 position;
+        public float X { get { return position.X; } set { position.X = value; } }
+        public float Y { get { return position.Y; } set { position.Y = value; } }
+        private bool startIntact;
         private bool intact;
-        
+        public Direction direction;
+
         public Texture2D getImage()
         {
             return sheet.image;
         }
 
-        public Stairs(float X, float Y,SpriteSheet sheet)
+        public Stairs(float X, float Y, Direction direction, SpriteSheet sheet, bool startIntact = true)
         {
-
             this.sheet = sheet;
             position = new Vector2(X, Y);
             intact = true;
+            this.direction = direction;
+            this.startIntact = startIntact;
+        }
 
+        public void update(GameTime time, GameController control)
+        {
+            if (control.timePeriod == TimePeriod.Past)
+                intact = true;
+            else
+                intact = startIntact;
         }
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            Rectangle sprite = new Rectangle(0, 0, 146, 96);
-            renderer.Draw(sheet.image, position, sprite, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, 0f);
+            SpriteEffects flip = SpriteEffects.None;
+            if (direction == Direction.Left)
+                flip = SpriteEffects.FlipHorizontally;
+            Rectangle sprite;
+            if (intact)
+                sprite = sheet.getSprite(0);
+            else
+                sprite = sheet.getSprite(1);
+            renderer.Draw(sheet.image, position, sprite, Color.White, 0f, new Vector2(), 1f, flip, 0f);
         }
 
         public bool isSolid()
@@ -41,9 +60,7 @@ namespace paranothing
 
         public Rectangle getBounds()
         {
-
-            return new Rectangle((int)position.X, (int)position.Y, 120, 96);
-
+            return new Rectangle((int)position.X, (int)position.Y, 124, 86);
         }
 
     }

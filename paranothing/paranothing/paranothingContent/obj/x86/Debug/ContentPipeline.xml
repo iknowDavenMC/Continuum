@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
-      <Time>2012-07-27T10:52:23.8744612-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
+      <Time>2012-07-28T22:12:12.598375-04:00</Time>
     </Item>
     <Item>
       <Source>GameThumbnail.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
-      <Time>2012-07-27T13:29:06.4194408-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
+      <Time>2012-07-28T22:12:12.489-04:00</Time>
     </Item>
     <Item>
       <Source>screenshot.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
-      <Time>2012-07-27T11:23:24.8625658-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
+      <Time>2012-07-28T22:12:12.567125-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stairs_intact.png</Source>
@@ -34,8 +34,80 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
-      <Time>2012-07-27T15:56:39.683992-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
+      <Time>2012-07-28T22:12:12.598375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\actions.png</Source>
+      <Name>Sprites\actions</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb</Output>
+      <Time>2012-07-29T01:45:17.3164064-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Bruce.png</Source>
+      <Name>Sprites\Bruce</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb</Output>
+      <Time>2012-07-27T22:59:00-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Portrait.png</Source>
+      <Name>Sprites\Portrait</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb</Output>
+      <Time>2012-07-27T22:57:00-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Rubble.png</Source>
+      <Name>Sprites\Rubble</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb</Output>
+      <Time>2012-07-28T00:01:00-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\StaircasePast.png</Source>
+      <Name>Sprites\StaircasePast</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb</Output>
+      <Time>2012-07-28T00:00:00-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\StaircasePresent.png</Source>
+      <Name>Sprites\StaircasePresent</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb</Output>
+      <Time>2012-07-27T23:43:00-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Wallpaper.png</Source>
+      <Name>Sprites\Wallpaper</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb</Output>
+      <Time>2012-07-28T22:37:49.817125-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Wardrobe.png</Source>
+      <Name>Sprites\Wardrobe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb</Output>
+      <Time>2012-07-27T22:40:00-04:00</Time>
     </Item>
     <Item>
       <Source>GameFont.spritefont</Source>
@@ -43,8 +115,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2012-07-27T13:24:40.3574408-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Time>2012-07-29T04:07:57.361221-04:00</Time>
     </Item>
     <Item>
       <Source>TitleFont.spritefont</Source>
@@ -52,8 +124,44 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
-      <Time>2012-07-27T13:24:40.3514408-04:00</Time>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
+      <Time>2012-07-29T04:15:59.5226491-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\floor.png</Source>
+      <Name>Sprites\floor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb</Output>
+      <Time>2012-07-28T22:12:12.58275-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Staircase.png</Source>
+      <Name>Sprites\Staircase</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb</Output>
+      <Time>2012-07-28T23:36:52.7382816-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\BruceSheet.png</Source>
+      <Name>Sprites\BruceSheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb</Output>
+      <Time>2012-07-28T23:41:29.864-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\wall.png</Source>
+      <Name>Sprites\wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb</Output>
+      <Time>2012-07-29T02:19:46.8961124-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -61,39 +169,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T13:41:18-04:00</Value>
+        <Value>2010-08-23T12:41:18-04:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2010-12-02T15:13:24.6585231-05:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2012-07-04T11:17:19.828125-04:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

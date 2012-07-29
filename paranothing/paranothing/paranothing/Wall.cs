@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Floor : Drawable, Collideable
+    class Wall : Drawable, Collideable, Updatable
     {
         private Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
@@ -16,15 +16,18 @@ namespace paranothing
         {
             get { return new Rectangle(X, Y, Width, Height); }
         }
-        private Texture2D image;
+        private SpriteSheet sheet;
+        private bool intact;
+        private bool startIntact;
 
-        public Floor(int X, int Y, int Width, int Height, Texture2D image)
+        public Wall(int X, int Y, int Width, int Height, SpriteSheet sheet, bool startIntact = true)
         {
             this.X = X;
             this.Y = Y;
             this.Width = Width;
             this.Height = Height;
-            this.image = image;
+            this.sheet = sheet;
+            this.startIntact = startIntact;
         }
 
         public Rectangle getBounds()
@@ -34,17 +37,25 @@ namespace paranothing
 
         public bool isSolid()
         {
-            return true;
+            return intact;
         }
 
         public Texture2D getImage()
         {
-            return image;
+            return sheet.image;
         }
 
+        public void update(GameTime time, GameController control)
+        {
+            if (control.timePeriod == TimePeriod.Past)
+                intact = true;
+            else
+                intact = startIntact;
+        }
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(image, Box, image.Bounds, Color.White, 0f, new Vector2(), SpriteEffects.None, 0.3f);
+            if (intact)
+                renderer.Draw(sheet.image, Box, sheet.getSprite(0), Color.White, 0f, new Vector2(), SpriteEffects.None, 0.31f);
         }
     }
 }

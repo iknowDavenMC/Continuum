@@ -35,6 +35,19 @@ namespace paranothing
         }
 
         /// <summary>
+        /// Define a sprite within the spritesheet.
+        /// </summary>
+        /// <param name="x">X position of the sprite</param>
+        /// <param name="y">Y position of the sprite</param>
+        /// <param name="width">Width of the sprite</param>
+        /// <param name="height">Height of the sprite</param>
+        /// <returns></returns>
+        public int addSprite(int x, int y, int width, int height)
+        {
+            return addSprite(new Rectangle(x, y, width, height));
+        }
+
+        /// <summary>
         /// Divides the sprite sheet into a grid with cells of equal size. Good for uniform sheets.
         /// </summary>
         /// <param name="rows">The number of rows in the sprite sheet</param>

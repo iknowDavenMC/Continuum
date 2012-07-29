@@ -11,7 +11,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace paranothing
 {
-    public enum GameLevel { Title, Description, Level }
+    public enum GameState { Title, Description, Game }
+    public enum Direction { Left, Right, Up, Down }
+    public enum TimePeriod { Past, Present };
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -22,29 +24,60 @@ namespace paranothing
 
         # region Attributes
 
-        SpriteSheet boySheet;
         Texture2D boyTex;
+        SpriteSheet boySheet;
+
+        Texture2D actionTex;
+        SpriteSheet actionSheet;
+
         Texture2D floorTex;
+        SpriteSheet floorSheet;
+
+        Texture2D wallTex;
+        SpriteSheet wallSheet;
+
+        Texture2D wallpaperTex;
+        SpriteSheet wallpaperSheet;
+
+        Texture2D wardrobeTex;
+        SpriteSheet wardrobeSheet;
+
+        Texture2D portraitTex;
+        SpriteSheet portraitSheet;
+
+        Texture2D stairTex;
         SpriteSheet stairSheet;
-        Texture2D stair;
 
         GameController control;
         float scale = 2.0f;
-        int Width = 400;
-        int Height = 300;
+        int ScreenWidth = 400;
+        int ScreenHeight = 300;
 
         Boy player;
-        Stairs stairs;
+        ActionBubble actionBubble;
 
+        Wardrobe leftWR;
+        Wardrobe rightWR;
+
+        Portrait lowerPortrait;
+        Portrait upperPortrait;
+
+        Stairs stairs;
         Floor f1;
         Floor f2;
+
+        Wall leftWall;
+        Wall rightWallTop;
+        Wall rightWallBottom;
+        Wall exitWall;
+        Wall obstacleWall;
+
         //Fonts
         private SpriteFont gameFont;
         private SpriteFont titleFont;
         //Title
         private GameTitle title;
         private Vector2 startPosition;
-        private GameLevel gameState = GameLevel.Level;
         //Description
         private GameBackground description;
 
@@ -53,15 +86,15 @@ namespace paranothing
 
         # region Methods
 
-        public GameLevel GameState
+        public GameState GameState
         {
             get
             {
-                return gameState;
+                return control.state;
             }
             set
             {
-                gameState = value;
+                control.state = value;
             }
         }
 
@@ -95,7 +128,7 @@ namespace paranothing
         {
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
-            title = new GameTitle(Content.Load<Texture2D>("screenshot"), new Rectangle(0, 0, Width, Height));
+            title = new GameTitle(Content.Load<Texture2D>("screenshot"), new Rectangle(0, 0, (int)(ScreenWidth * scale), (int)(ScreenHeight * scale)));
             title.setBottomTextRectangle(gameFont.MeasureString("Press 'Enter' to start"));
             startPosition = new Vector2(title.BottomTextRectangle.X, title.BottomTextRectangle.Y);
         }
@@ -117,8 +150,8 @@ namespace paranothing
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = Width;
-            graphics.PreferredBackBufferHeight = Height;
+            graphics.PreferredBackBufferWidth = ScreenWidth;
+            graphics.PreferredBackBufferHeight = ScreenHeight;
             Content.RootDirectory = "Content";
         }
 
@@ -144,32 +177,94 @@ namespace paranothing
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            boyTex = Content.Load<Texture2D>("Sprites/sprite");
-            boySheet = new SpriteSheet(boyTex);
-            boySheet.splitSheet(5, 9);
-            boySheet.addAnimation("standright", new int[] { 8 });
-            boySheet.addAnimation("walkright", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
-            boySheet.addAnimation("standleft", new int[] { 17 });
-            boySheet.addAnimation("walkleft", new int[] { 9, 10, 11, 12, 13, 14, 15, 16 });
+            wallpaperTex = Content.Load<Texture2D>("Sprites/Wallpaper");
+            wallpaperSheet = new SpriteSheet(wallpaperTex);
+            wallpaperSheet.addSprite(0, 0, wallpaperTex.Width / 2, wallpaperTex.Height);
+            wallpaperSheet.addSprite(wallpaperTex.Width / 2, 0, wallpaperTex.Width / 2, wallpaperTex.Height);
 
-            player = new Boy(254f, 100f, boySheet);
+            wardrobeTex = Content.Load<Texture2D>("Sprites/wardrobe");
+            wardrobeSheet = new SpriteSheet(wardrobeTex);
+            wardrobeSheet.splitSheet(1, 5);
+            wardrobeSheet.addAnimation("wardrobeclosed", new int[] { 0 });
+            wardrobeSheet.addAnimation("wardrobeopening", new int[] { 1, 2, 3 });
+            wardrobeSheet.addAnimation("wardrobeopen", new int[] { 4 });
+
+            portraitTex = Content.Load<Texture2D>("Sprites/portrait");
+            portraitSheet = new SpriteSheet(portraitTex);
+            portraitSheet.addSprite(0, 0, 35, 30);
+
+            actionTex = Content.Load<Texture2D>("Sprites/actions");
+            actionSheet = new SpriteSheet(actionTex);
+            actionSheet.splitSheet(2, 2);
+
+            boyTex = Content.Load<Texture2D>("Sprites/BruceSheet");
+            boySheet = new SpriteSheet(boyTex);
+            boySheet.splitSheet(7, 9, 0, 0, 58);
+            boySheet.addAnimation("walk", new int[] { 0, 1, 2, 3, 4, 5, 6, 7 });
+            boySheet.addAnimation("stand", new int[] { 8 });
+            boySheet.addAnimation("leavewardrobe", new int[] { 9, 10, 11, 12, 13, 14, 15, 16 });
+            boySheet.addAnimation("enterwardrobe", new int[] { 18, 19, 20, 21, 22, 23, 24, 25 });
+            boySheet.addAnimation("enterportrait", new int[] { 27, 28, 29, 30, 31, 32, 33, 34 });
+            boySheet.addAnimation("leaveportrait", new int[] { 34, 33, 32, 31, 30, 29, 28, 27 });
+            boySheet.addAnimation("startpush", new int[] { 36, 37, 38, 39 });
+            boySheet.addAnimation("endpush", new int[] { 39, 38, 37, 36 });
+            boySheet.addAnimation("push", new int[] { 41, 42, 43, 44, 45, 46, 47, 48 });
+            boySheet.addAnimation("pushstill", new int[] { 49 });
+            boySheet.addAnimation("disappear", new int[] { 50, 51, 52, 53, 54, 55, 56, 57 });
+
+            actionBubble = new ActionBubble(actionSheet);
+            player = new Boy(254, 240, actionBubble, boySheet);
+
+            leftWR = new Wardrobe(12, 126, wardrobeSheet);
+            rightWR = new Wardrobe(210, 126, wardrobeSheet);
+            leftWR.setLinkedWR(rightWR);
+            rightWR.setLinkedWR(leftWR);
 
             floorTex = Content.Load<Texture2D>("Sprites/floor");
-            f1 = new Floor(0, 68, 100, 8, floorTex);
-            f2 = new Floor(100, 164, 400, 8, floorTex);
+            floorSheet = new SpriteSheet(floorTex);
+            floorSheet.addSprite(0, 0, floorTex.Width, floorTex.Height);
 
-            stair = Content.Load<Texture2D>("Sprites/stairs_intact");
-            stairSheet = new SpriteSheet(stair);
-            stairs = new Stairs(100f, 68f, stairSheet);
+            f1 = new Floor(0, 208, 400, 8, floorTex);
+            f2 = new Floor(0, 298, 400, 8, floorTex);
+
+            wallTex = Content.Load<Texture2D>("Sprites/wall");
+            wallSheet = new SpriteSheet(wallTex);
+            wallSheet.addSprite(0, 0, 16, 32);
+
+            leftWall = new Wall(-8, 0, 16, 300, wallSheet);
+            rightWallTop = new Wall(392, 0, 16, 126, wallSheet);
+            rightWallBottom = new Wall(392, 216, 16, 84, wallSheet);
+            exitWall = new Wall(392, 126, 16, 84, wallSheet, false);
+            obstacleWall = new Wall(170, 0, 16, 208, wallSheet);
+
+            lowerPortrait = new Portrait(256, 233, portraitSheet);
+            upperPortrait = new Portrait(310, 143, portraitSheet);
+
+            stairTex = Content.Load<Texture2D>("Sprites/Staircase");
+            stairSheet = new SpriteSheet(stairTex);
+            stairSheet.addSprite(0, 0, 146, 112);
+            stairSheet.addSprite(146, 0, 146, 112);
+
+            stairs = new Stairs(100, 186, Direction.Left, stairSheet, false);
 
             control = new GameController(player);
+            control.addObject(actionBubble);
+            control.addObject(leftWR);
+            control.addObject(rightWR);
+            control.addObject(lowerPortrait);
+            control.addObject(upperPortrait);
             control.addObject(f1);
             control.addObject(f2);
+            control.addObject(leftWall);
+            control.addObject(rightWallTop);
+            control.addObject(exitWall);
+            control.addObject(rightWallBottom);
+            control.addObject(obstacleWall);
             control.addObject(stairs);
             
             // TODO: use this.Content to load your game content here
             loadTitleContents();
-            description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, Width, Height));
+            description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, ScreenWidth, ScreenHeight));
         }
 
         /// <summary>
@@ -192,20 +287,20 @@ namespace paranothing
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            graphics.PreferredBackBufferWidth = (int)(Width * scale);
-            graphics.PreferredBackBufferHeight = (int)(Height * scale);
+            graphics.PreferredBackBufferWidth = (int)(ScreenWidth * scale);
+            graphics.PreferredBackBufferHeight = (int)(ScreenHeight * scale);
             graphics.ApplyChanges();
 
             // TODO: Add your update logic here
-            switch (gameState)
+            switch (control.state)
             {
-                case GameLevel.Title:
+                case GameState.Title:
                     title.Update(this, Keyboard.GetState());
                     break;
-                case GameLevel.Description:
+                case GameState.Description:
                     description.Update(this, Keyboard.GetState());
                     break;
-                case GameLevel.Level:
+                case GameState.Game:
                     control.updateObjs(gameTime);
                     break;
             }
@@ -221,21 +316,22 @@ namespace paranothing
         {
             GraphicsDevice.Clear(Color.Black);
 
-            switch (gameState)
+            switch (control.state)
             {
-                case GameLevel.Title:
+                case GameState.Title:
                     spriteBatch.Begin();
                     title.Draw(spriteBatch);
                     drawTitleText();
                     spriteBatch.End();
                     break;
-                case GameLevel.Description:
+                case GameState.Description:
                     spriteBatch.Begin();
                     description.Draw(spriteBatch);
                     drawDescriptionText();
                     spriteBatch.End();
                     break;
-                case GameLevel.Level:
+                case GameState.Game:
+                    drawWallpaper(spriteBatch, wallpaperSheet);
                     spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
                     control.drawObjs(spriteBatch);
                     spriteBatch.End();
@@ -243,6 +339,26 @@ namespace paranothing
             }
 
             base.Draw(gameTime);
+        }
+        protected void drawWallpaper(SpriteBatch spriteBatch, SpriteSheet wallpaper)
+        {
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
+
+            Rectangle paperBounds;
+            if (control.timePeriod == TimePeriod.Past)
+                paperBounds = wallpaper.getSprite(0);
+            else
+                paperBounds = wallpaper.getSprite(1);
+            Rectangle dest = new Rectangle(0,0, ScreenWidth/2, ScreenHeight/2);
+            for (int drawX = 0; drawX < ScreenWidth; drawX += paperBounds.Width)
+            {
+                for (int drawY = 0; drawY < ScreenHeight; drawY += paperBounds.Height)
+                {
+                    spriteBatch.Draw(wallpaper.image, new Vector2(drawX, drawY), paperBounds, Color.White);
+                }
+            }
+            spriteBatch.End();
         }
     }
 }

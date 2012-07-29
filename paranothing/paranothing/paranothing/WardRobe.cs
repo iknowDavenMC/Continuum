@@ -8,28 +8,72 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Wardrobe// : Collideable, Audible, Updatable, Drawable
+    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive
     {
         # region Attributes
 
         //Collidable
-        private Rectangle wrBound;
-        private bool wrSolid;
+        private Vector2 position;
+        public int X
+        {
+            get { return (int)position.X; }
+            set { position.X = value; }
+        }
+        public int Y
+        {
+            get { return (int)position.Y; }
+            set { position.Y = value; }
+        }
         //Audible
         private Cue wrCue;
         //Drawable
-        private Texture2D wrTexture;
+        private SpriteSheet sheet;
         private Wardrobe linkedWR;
+        private bool locked;
+        private int frameTime;
+        private int frameLength;
+        private int frame;
+        private string animName;
+        private List<int> animFrames;
+        private enum WardrobeState { Closed, Opening, Open }
+        private WardrobeState state;
+        public string Animation
+        {
+            get { return animName; }
+            set
+            {
+
+                if (sheet.hasAnimation(value) && animName != value)
+                {
+                    animName = value;
+                    animFrames = sheet.getAnimation(animName);
+                    frame = 0;
+                    frameTime = 0;
+                }
+            }
+        }
 
         # endregion
 
         # region Constructor
 
-        public Wardrobe(Texture2D inTexture, Rectangle inRect, bool inSolid)
+        public Wardrobe(int x, int y, SpriteSheet sheet, bool startLocked = false)
         {
-            wrTexture = inTexture;
-            wrBound = inRect;
-            wrSolid = inSolid;
+            this.sheet = sheet;
+            position = new Vector2(x, y);
+            locked = startLocked;
+            if (locked)
+            {
+                Animation = "wardrobeclosed";
+                state = WardrobeState.Closed;
+            }
+            else
+            {
+                Animation = "wardrobeopening";
+                state = WardrobeState.Open;
+            }
+            frameLength = 80;
+
         }
 
         # endregion
@@ -37,59 +81,69 @@ namespace paranothing
         # region Methods
 
         //Collideable
-        public Rectangle getBound
+        public Rectangle getBounds()
         {
-            get
-            {
-                return wrBound;
-            }
+            return new Rectangle((int)position.X, (int)position.Y, 69, 82);
         }
-        public bool isSolid
+        public bool isSolid()
         {
-            get
-            {
-                return wrSolid;
-            }
+            return false;
         }
 
         //Audible
-        public Cue WardRobeCue
+        public Cue getCue()
         {
-            get
-            {
-                return wrCue;
-            }
-            set
-            {
-                wrCue = value;
-            }
+            return wrCue;
         }
+
+        public void setCue(Cue cue)
+        {
+            wrCue = cue;
+        }
+
         public void Play()
         {
 
         }
 
         //Drawable
-        public Texture2D getImage
+        public Texture2D getImage()
         {
-            get
-            {
-                return wrTexture;
-            }
+            return sheet.image;
         }
-        public void draw(SpriteBatch reneder)
-        {
 
-        }
-        public void draw(SpriteBatch reneder, Color tint)
+        public void draw(SpriteBatch renderer, Color tint)
         {
-
+            Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);            
         }
 
         //Updatable
         public void update(GameTime time, GameController control)
         {
-
+            switch (state)
+            {
+                case WardrobeState.Open:
+                    Animation = "wardrobeopen";
+                    break;
+                case WardrobeState.Opening:
+                    if (frame == 2)
+                    {
+                        Animation = "wardrobeopen";
+                        state = WardrobeState.Open;
+                    }
+                    else
+                        Animation = "wardrobeopening";
+                    break;
+                case WardrobeState.Closed:
+                    Animation = "wardrobeclosed";
+                    break;
+            }
+            if (frameTime >= frameLength)
+            {
+                frameTime = 0;
+                frame = (frame + 1) % animFrames.Count;
+            }
         }
 
         public void setLinkedWR(Wardrobe linkedWR)
@@ -102,6 +156,28 @@ namespace paranothing
             return linkedWR;
         }
 
+        public void lockWardrobe()
+        {
+            locked = true;
+        }
+
+        public void unlockWardrobe()
+        {
+            locked = false;
+            state = WardrobeState.Opening;
+        }
+
+        public bool isLocked()
+        {
+            return locked;
+        }
+
         # endregion
+
+        public void Interact(Boy player)
+        {
+            player.state = Boy.BoyState.Teleport;
+            player.X = X + 25;
+        }
     }
 }
