@@ -44,7 +44,7 @@ namespace paranothing
             //Presss enter to continue
             if (keys.IsKeyDown(Keys.Space))
             {
-                game.GameState = GameLevel.Level;
+                game.GameState = GameState.Game;
            }
         }
 

@@ -7,6 +7,6 @@ namespace paranothing
 {
     interface Interactive
     {
-        void Interact();
+        void Interact(Boy player);
     }
 }

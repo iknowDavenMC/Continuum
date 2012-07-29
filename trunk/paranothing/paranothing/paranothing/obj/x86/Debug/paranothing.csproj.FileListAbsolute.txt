@@ -29,3 +29,27 @@ C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.pdb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.pdb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb

@@ -2,5 +2,17 @@ Content\Sprites\sprite.xnb
 Content\GameThumbnail.xnb
 Content\screenshot.xnb
 Content\Sprites\stairs_intact.xnb
+Content\Sprites\actions.xnb
+Content\Sprites\Bruce.xnb
+Content\Sprites\Portrait.xnb
+Content\Sprites\Rubble.xnb
+Content\Sprites\StaircasePast.xnb
+Content\Sprites\StaircasePresent.xnb
+Content\Sprites\Wallpaper.xnb
+Content\Sprites\Wardrobe.xnb
 Content\GameFont.xnb
 Content\TitleFont.xnb
+Content\Sprites\floor.xnb
+Content\Sprites\Staircase.xnb
+Content\Sprites\BruceSheet.xnb
+Content\Sprites\wall.xnb

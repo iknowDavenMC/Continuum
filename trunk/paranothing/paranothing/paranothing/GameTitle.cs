@@ -66,7 +66,7 @@ namespace paranothing
             //Presss enter to start
             if (keys.IsKeyDown(Keys.Enter))
             {
-                game.GameState = GameLevel.Description;
+                game.GameState = GameState.Game;
             }
         }
 
