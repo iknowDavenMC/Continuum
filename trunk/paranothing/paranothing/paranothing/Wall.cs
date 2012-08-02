@@ -55,7 +55,7 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             if (intact)
-                renderer.Draw(sheet.image, Box, sheet.getSprite(0), Color.White, 0f, new Vector2(), SpriteEffects.None, 0.31f);
+                renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, 0.31f);
         }
     }
 }

@@ -12,8 +12,8 @@ namespace paranothing
 
         private SpriteSheet sheet;
         public Vector2 position;
-        public float X { get { return position.X; } set { position.X = value; } }
-        public float Y { get { return position.Y; } set { position.Y = value; } }
+        public int X { get { return (int)position.X; } set { position.X = value; } }
+        public int Y { get { return (int)position.Y; } set { position.Y = value; } }
         private bool startIntact;
         private bool intact;
         public Direction direction;
@@ -50,7 +50,7 @@ namespace paranothing
                 sprite = sheet.getSprite(0);
             else
                 sprite = sheet.getSprite(1);
-            renderer.Draw(sheet.image, position, sprite, Color.White, 0f, new Vector2(), 1f, flip, 0f);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, 0f);
         }
 
         public bool isSolid()

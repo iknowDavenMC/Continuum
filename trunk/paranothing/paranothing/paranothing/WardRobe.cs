@@ -140,7 +140,7 @@ namespace paranothing
                     break;
             }
             if (frameTime >= frameLength)
-            {
+            {   
                 frameTime = 0;
                 frame = (frame + 1) % animFrames.Count;
             }
@@ -172,12 +172,12 @@ namespace paranothing
             return locked;
         }
 
-        # endregion
-
         public void Interact(Boy player)
         {
             player.state = Boy.BoyState.Teleport;
             player.X = X + 25;
         }
+
+        # endregion
     }
 }

@@ -53,3 +53,16 @@ C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376pro
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb
+C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb

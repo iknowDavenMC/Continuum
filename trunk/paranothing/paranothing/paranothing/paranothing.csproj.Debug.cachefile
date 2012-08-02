@@ -10,9 +10,10 @@ Content\Sprites\StaircasePast.xnb
 Content\Sprites\StaircasePresent.xnb
 Content\Sprites\Wallpaper.xnb
 Content\Sprites\Wardrobe.xnb
-Content\GameFont.xnb
-Content\TitleFont.xnb
 Content\Sprites\floor.xnb
 Content\Sprites\Staircase.xnb
 Content\Sprites\BruceSheet.xnb
 Content\Sprites\wall.xnb
+Content\GameFont.xnb
+Content\TitleFont.xnb
+Content\Greyscale.xnb
