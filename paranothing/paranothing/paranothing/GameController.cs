@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -17,6 +17,8 @@ namespace paranothing
         public Boy player;
         public GameState state;
         public TimePeriod timePeriod;
+
+        public Effect pastEffect;
 
         public GameController(Boy player)
         {
@@ -102,7 +104,7 @@ namespace paranothing
                 }
                 else if (obj is Floor)
                 {
-                    if (player.state == Boy.BoyState.Walk || player.state == Boy.BoyState.Walk)
+                    if (player.state != Boy.BoyState.StairsLeft && player.state != Boy.BoyState.StairsRight)
                     {
                         Floor floor = (Floor)obj;
                         while (collides(player.getBounds(), floor.getBounds()))
@@ -127,6 +129,11 @@ namespace paranothing
         public void drawObjs(SpriteBatch renderer)
         {
             Color tint = Color.White;
+            if (timePeriod == TimePeriod.Past)
+            {
+                tint = Color.White;
+                tint.A = 16;
+            }
             foreach (Drawable obj in drawableObjs)
             {
                 obj.draw(renderer, tint);

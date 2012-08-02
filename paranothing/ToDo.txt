@@ -1,0 +1,34 @@
+Programming:
+Pushing wardrobes
+Shadow
+  Still
+  Patrol
+  Chase sound
+Furniture
+Doors
+Keys
+  Wardrobes
+  Doors
+Levels
+  Level editor
+  Saving/Loading files
+Dialogue
+
+Art:
+Doors
+Keys
+Shadow
+Furniture
+Walls
+Floors
+
+Sound: 
+Everything...
+Music
+Footsteps
+Using a wardrobe
+Using a portrait
+Finding a key
+Unlocking a wardrobe/door
+Shadow notices you
+Throwing furniture

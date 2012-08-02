@@ -24,6 +24,8 @@ namespace paranothing
 
         # region Attributes
 
+        Effect greyScale;
+
         Texture2D boyTex;
         SpriteSheet boySheet;
 
@@ -177,6 +179,8 @@ namespace paranothing
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            greyScale = Content.Load<Effect>("Greyscale");
+
             wallpaperTex = Content.Load<Texture2D>("Sprites/Wallpaper");
             wallpaperSheet = new SpriteSheet(wallpaperTex);
             wallpaperSheet.addSprite(0, 0, wallpaperTex.Width / 2, wallpaperTex.Height);
@@ -224,8 +228,8 @@ namespace paranothing
             floorSheet = new SpriteSheet(floorTex);
             floorSheet.addSprite(0, 0, floorTex.Width, floorTex.Height);
 
-            f1 = new Floor(0, 208, 400, 8, floorTex);
-            f2 = new Floor(0, 298, 400, 8, floorTex);
+            f1 = new Floor(0, 208, 400, 8, floorSheet);
+            f2 = new Floor(0, 298, 400, 8, floorSheet);
 
             wallTex = Content.Load<Texture2D>("Sprites/wall");
             wallSheet = new SpriteSheet(wallTex);
@@ -332,7 +336,10 @@ namespace paranothing
                     break;
                 case GameState.Game:
                     drawWallpaper(spriteBatch, wallpaperSheet);
-                    spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
+                    Effect pastEffect = null;
+                    if (control.timePeriod == TimePeriod.Past)
+                        pastEffect = greyScale;
+                    spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, pastEffect, Matrix.CreateScale(scale));
                     control.drawObjs(spriteBatch);
                     spriteBatch.End();
                     break;
@@ -343,19 +350,33 @@ namespace paranothing
         protected void drawWallpaper(SpriteBatch spriteBatch, SpriteSheet wallpaper)
         {
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null, null, null, Matrix.CreateScale(scale));
-
-            Rectangle paperBounds;
+            Effect paperEffect = null;
             if (control.timePeriod == TimePeriod.Past)
-                paperBounds = wallpaper.getSprite(0);
-            else
-                paperBounds = wallpaper.getSprite(1);
+                paperEffect = greyScale;
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, null, null, paperEffect, Matrix.CreateScale(scale));
+
+            Rectangle paperBounds = wallpaper.getSprite(0);
             Rectangle dest = new Rectangle(0,0, ScreenWidth/2, ScreenHeight/2);
+            Color paperColor = Color.Orange;
+            if (control.timePeriod == TimePeriod.Past)
+                paperColor.A = 16;
             for (int drawX = 0; drawX < ScreenWidth; drawX += paperBounds.Width)
             {
                 for (int drawY = 0; drawY < ScreenHeight; drawY += paperBounds.Height)
                 {
-                    spriteBatch.Draw(wallpaper.image, new Vector2(drawX, drawY), paperBounds, Color.White);
+                    spriteBatch.Draw(wallpaper.image, new Vector2(drawX, drawY), paperBounds, paperColor);
+                }
+            }
+            if (control.timePeriod == TimePeriod.Present)
+            {
+                paperBounds = wallpaper.getSprite(1);
+                dest = new Rectangle(0, 0, ScreenWidth / 2, ScreenHeight / 2);
+                for (int drawX = 0; drawX < ScreenWidth; drawX += paperBounds.Width)
+                {
+                    for (int drawY = 0; drawY < ScreenHeight; drawY += paperBounds.Height)
+                    {
+                        spriteBatch.Draw(wallpaper.image, new Vector2(drawX, drawY), paperBounds, Color.White);
+                    }
                 }
             }
             spriteBatch.End();

@@ -16,15 +16,15 @@ namespace paranothing
         {
             get { return new Rectangle(X, Y, Width, Height); }
         }
-        private Texture2D image;
+        private SpriteSheet sheet;
 
-        public Floor(int X, int Y, int Width, int Height, Texture2D image)
+        public Floor(int X, int Y, int Width, int Height, SpriteSheet sheet)
         {
             this.X = X;
             this.Y = Y;
             this.Width = Width;
             this.Height = Height;
-            this.image = image;
+            this.sheet = sheet;
         }
 
         public Rectangle getBounds()
@@ -39,12 +39,12 @@ namespace paranothing
 
         public Texture2D getImage()
         {
-            return image;
+            return sheet.image;
         }
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(image, Box, image.Bounds, Color.White, 0f, new Vector2(), SpriteEffects.None, 0.3f);
+            renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, 0.3f);
         }
     }
 }

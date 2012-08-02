@@ -34,7 +34,6 @@ namespace paranothing
         private float moveSpeedX, moveSpeedY; // Pixels per animation frame
         private Vector2 position;
         public int Width, Height;
-        private bool solid;
 
         public float X { get { return position.X; } set { position.X = value; } }
         public float Y { get { return position.Y; } set { position.Y = value; } }
@@ -57,7 +56,6 @@ namespace paranothing
             position = new Vector2(X, Y);
             Width = 38;
             Height = 58;
-            solid = true;
             state = BoyState.Idle;
             Animation = "stand";
             direction = Direction.Right;
@@ -81,7 +79,7 @@ namespace paranothing
             renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, 0.25f);
         }
 
-        public void checkInput(GameController control)
+        private void checkInput(GameController control)
         {
 
             if (control.keyState.IsKeyDown(Keys.Up))
@@ -208,6 +206,11 @@ namespace paranothing
                 if (direction == Direction.Left)
                     flip = -1;
                 X += moveSpeedX * flip;
+                if (moveSpeedY == 0)
+                {
+                    moveSpeedY = 1;
+                    flip = 1;
+                }
                 Y += moveSpeedY * flip;
                 frameTime = 0;
                 frame = (frame + 1) % animFrames.Count;
@@ -221,7 +224,7 @@ namespace paranothing
 
         public bool isSolid()
         {
-            return solid;
+            return true;
         }
 
         public void Play()

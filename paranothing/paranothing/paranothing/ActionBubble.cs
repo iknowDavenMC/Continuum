@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class ActionBubble : Drawable, Updatable
+    class ActionBubble : Drawable//, Updatable
     {
         public enum BubbleAction { None, Wardrobe, Portrait };
         private BubbleAction action;
@@ -76,9 +76,9 @@ namespace paranothing
             }
         }
 
-        public void update(GameTime time, GameController control)
-        {
+        //public void update(GameTime time, GameController control)
+        //{
 
-        }
+        //}
     }
 }
