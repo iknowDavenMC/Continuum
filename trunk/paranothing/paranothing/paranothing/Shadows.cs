@@ -37,6 +37,7 @@ namespace paranothing
         //Collideable
         private float moveSpeedX, moveSpeedY; // Pixels per animation frame
         private Vector2 position;
+        private float patrolDisatnce;
         private Rectangle bounds;
         public int Width, Height;
         public enum ShadowState { Idle, Walk }
@@ -49,7 +50,7 @@ namespace paranothing
 
         # region Constructor
 
-        public Shadows(float X, float Y, ActionBubble actionBubble, SpriteSheet sheet)
+        public Shadows(float X, float Y, float distance, SpriteSheet sheet)
         {
             this.sheet = sheet;
             frame = 0;
@@ -58,6 +59,7 @@ namespace paranothing
             position = new Vector2(X, Y);
             Width = 38;
             Height = 58;
+            patrolDisatnce = distance;
             state = ShadowState.Idle;
             Animation = "stand";
             direction = Direction.Right;
@@ -71,6 +73,7 @@ namespace paranothing
         //Accessors & Mutators
         public float X { get { return position.X; } set { position.X = value; } }
         public float Y { get { return position.Y; } set { position.Y = value; } }
+        public float PatrolDistance { get { return patrolDisatnce; } set { patrolDisatnce = value; } }
 
         //Updatable
         public void update(GameTime time)
