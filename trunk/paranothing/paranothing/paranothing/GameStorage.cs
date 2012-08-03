@@ -40,6 +40,14 @@ namespace paranothing
                     //save game state
                     int stateInt = (int)game.GameState;
                     writer.WriteLine(stateInt.ToString());
+                    /*
+                    int levelDim = (int)game.GameLevel;
+                    writer.WriteLine(levelDim.ToString());
+                    string wallpaperColor = "Value";
+                    writer.WriteLine(wallpaperColor);
+                    int playerStartPosition
+                    writer
+                     * */
                     //close
                     writer.Close();
                 }
