@@ -8,10 +8,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Doors : Collideable, Audible, Updatable, Drawable, Interactive
+    class Doors : Collideable, Audible, Updatable, Drawable, Interactive, Lockable
     {
         # region Attributes
 
+        private GameController control = GameController.getInstance();
         //Collidable
         private Vector2 position;
         private Rectangle bounds;
@@ -81,6 +82,18 @@ namespace paranothing
                 }
             }
         }
+
+        //Lockable
+        public void lockObj()
+        {
+            locked = true;
+        }
+
+        public void unlockObj()
+        {
+            locked = false;
+        }
+
         public bool isLocked()
         {
             return locked;
@@ -125,7 +138,7 @@ namespace paranothing
         }
 
         //Updatable
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             switch (state)
             {

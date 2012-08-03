@@ -12,6 +12,7 @@ namespace paranothing
     {
         # region Attributes
 
+        private GameController control = GameController.getInstance();
         //Collidable
         private Vector2 position;
         private Rectangle bounds;
@@ -109,7 +110,7 @@ namespace paranothing
         }
 
         //Updatable
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             switch (state)
             {

@@ -8,21 +8,83 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive
+    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive, Lockable
     {
         # region Attributes
 
+        private GameController control = GameController.getInstance();
+
         //Collidable
-        private Vector2 position;
+        private Vector2 positionPres;
+        private Vector2 positionPast1;
+        private Vector2 positionPast2;
         public int X
         {
-            get { return (int)position.X; }
-            set { position.X = value; }
+            get
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        return (int)positionPast2.X;
+                    case TimePeriod.Past:
+                        return (int)positionPast1.X;
+                    case TimePeriod.Present:
+                        return (int)positionPres.X;
+                    default:
+                        return 0;
+                }
+            }
+            set
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        positionPast2.X = value;
+                        break;
+                    case TimePeriod.Past:
+                        positionPast1.X = value;
+                        break;
+                    case TimePeriod.Present:
+                        positionPres.X = value;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         public int Y
         {
-            get { return (int)position.Y; }
-            set { position.Y = value; }
+            get
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        return (int)positionPast2.Y;
+                    case TimePeriod.Past:
+                        return (int)positionPast1.Y;
+                    case TimePeriod.Present:
+                        return (int)positionPres.Y;
+                    default:
+                        return 0;
+                }
+            }
+            set
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        positionPast2.Y = value;
+                        break;
+                    case TimePeriod.Past:
+                        positionPast1.Y = value;
+                        break;
+                    case TimePeriod.Present:
+                        positionPres.Y = value;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         //Audible
         private Cue wrCue;
@@ -60,7 +122,9 @@ namespace paranothing
         public Wardrobe(int x, int y, SpriteSheet sheet, bool startLocked = false)
         {
             this.sheet = sheet;
-            position = new Vector2(x, y);
+            positionPres = new Vector2(x, y);
+            positionPast1 = new Vector2(x, y);
+            positionPast2 = new Vector2(x, y);
             locked = startLocked;
             if (locked)
             {
@@ -83,7 +147,7 @@ namespace paranothing
         //Collideable
         public Rectangle getBounds()
         {
-            return new Rectangle((int)position.X, (int)position.Y, 69, 82);
+            return new Rectangle(X, Y, 69, 82);
         }
         public bool isSolid()
         {
@@ -115,11 +179,11 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);            
+            renderer.Draw(sheet.image, new Vector2(X, Y), sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);            
         }
 
         //Updatable
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             switch (state)
             {
@@ -156,12 +220,12 @@ namespace paranothing
             return linkedWR;
         }
 
-        public void lockWardrobe()
+        public void lockObj()
         {
             locked = true;
         }
 
-        public void unlockWardrobe()
+        public void unlockObj()
         {
             locked = false;
             state = WardrobeState.Opening;

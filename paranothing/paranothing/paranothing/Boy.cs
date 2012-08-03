@@ -10,6 +10,7 @@ namespace paranothing
 {
     class Boy : Drawable, Updatable, Collideable, Audible
     {
+        private GameController control = GameController.getInstance();
         private SpriteSheet sheet;
         private int frame;
         private int frameLength;
@@ -93,11 +94,13 @@ namespace paranothing
             {
                 if (direction == Direction.Right)
                 {
-                    state = BoyState.Idle;
+                    if (state == BoyState.Walk)
+                        state = BoyState.Idle;
                 }
                 else
                 {
-                    state = BoyState.Idle;
+                    if (state == BoyState.Walk) 
+                        state = BoyState.Idle;
                 }
             }
             else
@@ -118,7 +121,7 @@ namespace paranothing
 
         }
 
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;

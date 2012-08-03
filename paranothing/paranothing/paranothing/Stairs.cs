@@ -9,7 +9,7 @@ namespace paranothing
 {
     class Stairs : Drawable, Collideable, Updatable
     {
-
+        private GameController control = GameController.getInstance();
         private SpriteSheet sheet;
         public Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
@@ -32,7 +32,7 @@ namespace paranothing
             this.startIntact = startIntact;
         }
 
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             if (control.timePeriod == TimePeriod.Past)
                 intact = true;

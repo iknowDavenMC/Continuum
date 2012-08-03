@@ -7,6 +7,6 @@ namespace paranothing
 {
     interface Updatable
     {
-        void update(GameTime time, GameController control);
+        void update(GameTime time);
     }
 }
