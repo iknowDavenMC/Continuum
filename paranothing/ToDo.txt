@@ -5,13 +5,14 @@ Shadow
   Patrol
   Chase sound
 Furniture
-Doors
-Keys
+//Chairs
+//Doors
+//Keys
   Wardrobes
   Doors
 Levels
   Level editor
-  Saving/Loading files
+  //Saving/Loading files
 Dialogue
 
 Art:
