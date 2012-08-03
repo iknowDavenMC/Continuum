@@ -36,32 +36,23 @@ namespace paranothing
         # region Methods
 
         //Collideable
-        public Rectangle getBound
+        public Rectangle getBound()
         {
-            get
-            {
-                return tableBound;
-            }
+            return tableBound;
         }
-        public bool isSolid
+        public bool isSolid()
         {
-            get
-            {
-                return tableSolid;
-            }
+           return tableSolid;
         }
 
         //Audible
-        public Cue WardRobeCue
+        public Cue getCue()
         {
-            get
-            {
-                return tableCue;
-            }
-            set
-            {
-                tableCue = value;
-            }
+            return tableCue;
+        }
+        public void setCue(Cue cue)
+        {
+            tableCue = cue;
         }
         public void Play()
         {
@@ -69,16 +60,9 @@ namespace paranothing
         }
 
         //Drawable
-        public Texture2D getImage
+        public Texture2D getImage()
         {
-            get
-            {
-                return tableTexture;
-            }
-        }
-        public void draw(SpriteBatch reneder)
-        {
-
+            return tableTexture;
         }
         public void draw(SpriteBatch reneder, Color tint)
         {
