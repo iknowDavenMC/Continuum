@@ -86,6 +86,17 @@ namespace paranothing
                 }
             }
         }
+
+        public Rectangle enterBox
+        {
+            get { return new Rectangle(X + 24, Y + 9, 23, 73); }
+        }
+
+        public Rectangle pushBox
+        {
+            get { return new Rectangle(X, Y, 69, 82); }
+        }
+
         //Audible
         private Cue wrCue;
         //Drawable
@@ -147,7 +158,7 @@ namespace paranothing
         //Collideable
         public Rectangle getBounds()
         {
-            return new Rectangle(X, Y, 69, 82);
+            return pushBox;
         }
         public bool isSolid()
         {
@@ -185,6 +196,8 @@ namespace paranothing
         //Updatable
         public void update(GameTime time)
         {
+            int elapsed = time.ElapsedGameTime.Milliseconds;
+            frameTime += elapsed;
             switch (state)
             {
                 case WardrobeState.Open:

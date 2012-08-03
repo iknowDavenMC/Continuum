@@ -92,16 +92,19 @@ namespace paranothing
                     Wardrobe wardrobe = (Wardrobe) obj;
                     if (colliding && player.X + 8 > wardrobe.X)
                     {
-                        bool negated;
-                        if (wardrobe.isLocked() || wardrobe.getLinkedWR() == null || wardrobe.getLinkedWR().isLocked())
-                            negated = true;
-                        else
-                            negated = false;
-                        if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
+                        if (collides(wardrobe.enterBox, player.getBounds()))
                         {
-                            player.actionBubble.setAction(ActionBubble.BubbleAction.Wardrobe, negated);
-                            player.actionBubble.show();
-                            player.interactor = (Interactive)obj;
+                            bool negated;
+                            if (wardrobe.isLocked() || wardrobe.getLinkedWR() == null || wardrobe.getLinkedWR().isLocked())
+                                negated = true;
+                            else
+                                negated = false;
+                            if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
+                            {
+                                player.actionBubble.setAction(ActionBubble.BubbleAction.Wardrobe, negated);
+                                player.actionBubble.show();
+                                player.interactor = (Interactive)obj;
+                            }
                         }
                     }
                 }
