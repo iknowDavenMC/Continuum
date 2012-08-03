@@ -83,7 +83,7 @@ namespace paranothing
         private void checkInput(GameController control)
         {
 
-            if (control.keyState.IsKeyDown(Keys.Up))
+            if (control.keyState.IsKeyDown(Keys.Space))
             {
                 if ((state == BoyState.Walk || state == BoyState.Idle) && null != interactor)
                 {
@@ -94,12 +94,12 @@ namespace paranothing
             {
                 if (direction == Direction.Right)
                 {
-                    if (state == BoyState.Walk)
+                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
                         state = BoyState.Idle;
                 }
                 else
                 {
-                    if (state == BoyState.Walk) 
+                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft) 
                         state = BoyState.Idle;
                 }
             }
