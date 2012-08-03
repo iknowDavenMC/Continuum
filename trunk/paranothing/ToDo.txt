@@ -14,7 +14,8 @@ Furniture
 Levels
   Level editor
   //Saving/Loading files
-//Dialogue
+Dialogue
+Rubble
 
 Art:
 Doors
