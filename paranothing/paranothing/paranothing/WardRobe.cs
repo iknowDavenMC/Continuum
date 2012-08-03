@@ -40,9 +40,12 @@ namespace paranothing
                 {
                     case TimePeriod.FarPast:
                         positionPast2.X = value;
+                        positionPast1.X = value;
+                        positionPres.X = value;
                         break;
                     case TimePeriod.Past:
                         positionPast1.X = value;
+                        positionPres.X = value;
                         break;
                     case TimePeriod.Present:
                         positionPres.X = value;
@@ -74,9 +77,12 @@ namespace paranothing
                 {
                     case TimePeriod.FarPast:
                         positionPast2.Y = value;
+                        positionPast1.Y = value;
+                        positionPres.Y = value;
                         break;
                     case TimePeriod.Past:
                         positionPast1.Y = value;
+                        positionPres.Y = value;
                         break;
                     case TimePeriod.Present:
                         positionPres.Y = value;
@@ -94,7 +100,7 @@ namespace paranothing
 
         public Rectangle pushBox
         {
-            get { return new Rectangle(X, Y, 69, 82); }
+            get { return new Rectangle(X+2, Y+2, 65, 78); }
         }
 
         //Audible
@@ -249,10 +255,31 @@ namespace paranothing
             return locked;
         }
 
-        public void Interact(Boy player)
+        public void Interact()
         {
-            player.state = Boy.BoyState.Teleport;
-            player.X = X + 25;
+            Boy player = control.player;
+            if (Rectangle.Intersect(player.getBounds(), enterBox).Width != 0)
+            {
+                player.state = Boy.BoyState.Teleport;
+                player.X = X + 16;
+            }
+            else
+            {
+                if (control.collidingWithSolid(pushBox, false))
+                    player.state = Boy.BoyState.PushingStill;
+                else
+                player.state = Boy.BoyState.PushWalk;
+                if (player.X > X)
+                {
+                    player.X = X + 67;
+                    player.direction = Direction.Left;
+                }
+                else
+                {
+                    player.X = X - 36;
+                    player.direction = Direction.Right;
+                }
+            }
         }
 
         # endregion

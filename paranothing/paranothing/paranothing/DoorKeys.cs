@@ -16,6 +16,7 @@ namespace paranothing
         private Rectangle bounds;
         //Drawable
         private SpriteSheet sheet;
+        private Lockable lockedObj;
 
         # endregion
 
@@ -59,10 +60,8 @@ namespace paranothing
         }
 
         //Interactive
-        public void Interact(Boy player)
+        public void Interact()
         {
-            //player.state = Boy.BoyState.Picking;
-            //player.X = X + 25;
         }
 
         #endregion

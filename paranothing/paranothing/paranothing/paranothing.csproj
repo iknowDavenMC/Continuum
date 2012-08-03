@@ -121,18 +121,22 @@
     <Compile Include="GameController.cs" />
     <Compile Include="GameStorage.cs" />
     <Compile Include="GameTitle.cs" />
+    <Compile Include="HappyEnd.cs" />
     <Compile Include="Interactive.cs" />
     <Compile Include="Lockable.cs" />
     <Compile Include="Painting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Rubble.cs" />
+    <Compile Include="Shadows.cs" />
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="Stairs.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Updatable.cs" />
     <Compile Include="Wall.cs" />
     <Compile Include="Wardrobe.cs" />
+    <Compile Include="XboxController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

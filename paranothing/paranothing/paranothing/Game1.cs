@@ -52,8 +52,8 @@ namespace paranothing
 
         GameController control;
         float scale = 2.0f;
-        int ScreenWidth = 400;
-        int ScreenHeight = 300;
+        int ScreenWidth = 640;
+        int ScreenHeight = 360;
 
         Boy player;
         ActionBubble actionBubble;
@@ -199,7 +199,12 @@ namespace paranothing
 
             actionTex = Content.Load<Texture2D>("Sprites/actions");
             actionSheet = new SpriteSheet(actionTex);
-            actionSheet.splitSheet(2, 2);
+            actionSheet.splitSheet(2, 3);
+            actionSheet.addAnimation("bubble", new int[] { 0 });
+            actionSheet.addAnimation("wardrobe", new int[] { 1 });
+            actionSheet.addAnimation("push", new int[] { 2 });
+            actionSheet.addAnimation("portrait", new int[] { 3 });
+            actionSheet.addAnimation("negate", new int[] { 4 });
 
             boyTex = Content.Load<Texture2D>("Sprites/BruceSheet");
             boySheet = new SpriteSheet(boyTex);
@@ -254,10 +259,10 @@ namespace paranothing
             control = GameController.getInstance();
             control.setPlayer(player);
             control.addObject(actionBubble);
-            control.addObject(leftWR);
-            control.addObject(rightWR);
             control.addObject(lowerPortrait);
             control.addObject(upperPortrait);
+            control.addObject(leftWR);
+            control.addObject(rightWR);
             control.addObject(f1);
             control.addObject(f2);
             control.addObject(leftWall);

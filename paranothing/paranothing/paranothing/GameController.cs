@@ -18,7 +18,6 @@ namespace paranothing
         public GameState state;
         public TimePeriod timePeriod;
 
-        public Effect pastEffect;
         private static GameController instance;
 
         public static GameController getInstance()
@@ -53,7 +52,6 @@ namespace paranothing
                 obj.update(time);
             }
             player.actionBubble.hide();
-            player.interactor = null;
             foreach (Collideable obj in collideableObjs)
             {
                 Boy.BoyState currState = player.state;
@@ -65,7 +63,7 @@ namespace paranothing
                     {
                         if (stair.direction == Direction.Left)
                         {
-                            if (colliding && player.X > stair.X - 14 && player.Y >= (player.X - stair.X) * 2 / 3 + stair.X)
+                            if (colliding && player.X > stair.X - 14 && player.Y + 58 >= (player.X - stair.X) * 2 / 3 + stair.Y)
                             {
                                 player.state = Boy.BoyState.StairsLeft;
                             }
@@ -90,18 +88,26 @@ namespace paranothing
                 else if (obj is Wardrobe)
                 {
                     Wardrobe wardrobe = (Wardrobe) obj;
-                    if (colliding && player.X + 8 > wardrobe.X)
+                    if (colliding && player.X + (player.direction == Direction.Left ? 8 : 32) > wardrobe.X)
                     {
+                        bool negated = false;
                         if (collides(wardrobe.enterBox, player.getBounds()))
                         {
-                            bool negated;
                             if (wardrobe.isLocked() || wardrobe.getLinkedWR() == null || wardrobe.getLinkedWR().isLocked())
                                 negated = true;
-                            else
-                                negated = false;
                             if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
                             {
                                 player.actionBubble.setAction(ActionBubble.BubbleAction.Wardrobe, negated);
+                                player.actionBubble.show();
+                                player.interactor = (Interactive)obj;
+                            }
+                        }
+                        else
+                        {
+                            negated = collidingWithSolid(wardrobe.getBounds(), false);
+                            if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
+                            {
+                                player.actionBubble.setAction(ActionBubble.BubbleAction.Push, negated);
                                 player.actionBubble.show();
                                 player.interactor = (Interactive)obj;
                             }
@@ -181,5 +187,20 @@ namespace paranothing
 
         }
 
+        public bool collidingWithSolid(Rectangle box, bool includePlayer = true)
+        {
+            foreach (Collideable col in collideableObjs)
+            {
+                if (!includePlayer && col is Boy)
+                    continue;
+                if (col is Stairs)
+                    continue;
+                if (col.isSolid() && collides(box, col.getBounds()))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
