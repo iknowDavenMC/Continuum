@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class DoorKeys : Drawable, Collideable
+    class DoorKeys : Drawable, Collideable, Interactive
     {
         # region Attributes
 
@@ -56,6 +56,13 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, position, SpriteEffects.None, 0.3f);
+        }
+
+        //Interactive
+        public void Interact(Boy player)
+        {
+            //player.state = Boy.BoyState.Picking;
+            //player.X = X + 25;
         }
 
         #endregion

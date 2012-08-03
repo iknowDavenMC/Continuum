@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Doors : Collideable, Audible, Updatable, Drawable, Interactive
+    class Chairs : Collideable, Audible, Updatable, Drawable, Interactive
     {
         # region Attributes
 
@@ -16,39 +16,27 @@ namespace paranothing
         private Vector2 position;
         private Rectangle bounds;
         //Audible
-        private Cue drCue;
+        private Cue crCue;
         //Drawable
         private SpriteSheet sheet;
-        private bool locked;
         private int frameTime;
         private int frameLength;
         private int frame;
         private string animName;
         private List<int> animFrames;
-        private enum DoorsState { Closed, Opening, Open }
-        private DoorsState state;
+        private enum ChairsState { Down, Lifting, Up, Moving, Falling }
+        private ChairsState state;
 
         # endregion
 
         # region Constructor
 
-        public Doors(int x, int y, int width, int height, SpriteSheet sheet, int frameLength, bool startLocked)
+        public Chairs(int x, int y, int width, int height, int frameLength, SpriteSheet sheet, bool startLocked)
         {
             this.sheet = sheet;
             position = new Vector2(x, y);
             bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
-            locked = startLocked;
             this.frameLength = frameLength;
-            if (locked)
-            {
-                Animation = "doorsclosed";
-                state = DoorsState.Closed;
-            }
-            else
-            {
-                Animation = "doorsopening";
-                state = DoorsState.Open;
-            }
         }
 
         # endregion
@@ -81,10 +69,6 @@ namespace paranothing
                 }
             }
         }
-        public bool isLocked()
-        {
-            return locked;
-        }
 
         //Collideable
         public Rectangle getBounds()
@@ -93,18 +77,18 @@ namespace paranothing
         }
         public bool isSolid()
         {
-            return false;
+            return true;
         }
 
         //Audible
         public Cue getCue()
         {
-            return drCue;
+            return crCue;
         }
 
         public void setCue(Cue cue)
         {
-            drCue = cue;
+            crCue = cue;
         }
 
         public void Play()
@@ -129,20 +113,32 @@ namespace paranothing
         {
             switch (state)
             {
-                case DoorsState.Open:
-                    Animation = "doorsopen";
+                case ChairsState.Down:
+                    Animation = "chairdown";
                     break;
-                case DoorsState.Opening:
+                case ChairsState.Lifting:
                     if (frame == 2)
                     {
-                        Animation = "doorsopen";
-                        state = DoorsState.Open;
+                        Animation = "chairup";
+                        state = ChairsState.Up;
                     }
                     else
-                        Animation = "doorsopening";
+                        Animation = "chairlifting";
                     break;
-                case DoorsState.Closed:
-                    Animation = "doorsclosed";
+                case ChairsState.Up:
+                    Animation = "chairup";
+                    break;
+                case ChairsState.Moving:
+                    Animation = "chairmoving";
+                    break;
+                case ChairsState.Falling:
+                    if (frame == 4)
+                    {
+                        Animation = "chairdown";
+                        state = ChairsState.Down;
+                    }
+                    else
+                        Animation = "chairmoving";
                     break;
             }
             if (frameTime >= frameLength)
@@ -155,7 +151,7 @@ namespace paranothing
         //Interactive
         public void Interact(Boy player)
         {
-            //player.state = Boy.BoyState.Teleport;
+            //player.state = Boy.BoyState.Picking;
             //player.X = X + 25;
         }
 
