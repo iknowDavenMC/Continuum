@@ -13,7 +13,7 @@ namespace paranothing
 {
     public enum GameState { Title, Description, Game }
     public enum Direction { Left, Right, Up, Down }
-    public enum TimePeriod { Past, Present };
+    public enum TimePeriod { FarPast, Past, Present };
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -251,7 +251,8 @@ namespace paranothing
 
             stairs = new Stairs(100, 186, Direction.Left, stairSheet, false);
 
-            control = new GameController(player);
+            control = GameController.getInstance();
+            control.setPlayer(player);
             control.addObject(actionBubble);
             control.addObject(leftWR);
             control.addObject(rightWR);
@@ -357,7 +358,7 @@ namespace paranothing
 
             Rectangle paperBounds = wallpaper.getSprite(0);
             Rectangle dest = new Rectangle(0,0, ScreenWidth/2, ScreenHeight/2);
-            Color paperColor = Color.Orange;
+            Color paperColor = Color.White;
             if (control.timePeriod == TimePeriod.Past)
                 paperColor.A = 16;
             for (int drawX = 0; drawX < ScreenWidth; drawX += paperBounds.Width)

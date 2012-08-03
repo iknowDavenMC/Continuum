@@ -8,6 +8,7 @@ namespace paranothing
 {
     class Wall : Drawable, Collideable, Updatable
     {
+        private GameController control = GameController.getInstance();
         private Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
         public int Y { get { return (int)position.Y; } set { position.Y = value; } }
@@ -45,7 +46,7 @@ namespace paranothing
             return sheet.image;
         }
 
-        public void update(GameTime time, GameController control)
+        public void update(GameTime time)
         {
             if (control.timePeriod == TimePeriod.Past)
                 intact = true;

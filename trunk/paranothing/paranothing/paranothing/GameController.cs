@@ -19,16 +19,30 @@ namespace paranothing
         public TimePeriod timePeriod;
 
         public Effect pastEffect;
+        private static GameController instance;
 
-        public GameController(Boy player)
+        public static GameController getInstance()
         {
-            this.player = player;
+            if (null == instance)
+            {
+                instance = new GameController();
+            }
+            return instance;
+        }
+
+        protected GameController()
+        {
             updatableObjs = new List<Updatable>();
             drawableObjs = new List<Drawable>();
             collideableObjs = new List<Collideable>();
-            updatableObjs.Add(player);
             state = GameState.Title;
             timePeriod = TimePeriod.Present;
+        }
+
+        public void setPlayer(Boy player)
+        {
+            this.player = player;
+            addObject(player);
         }
 
         public void updateObjs(GameTime time)
@@ -36,7 +50,7 @@ namespace paranothing
             keyState = Keyboard.GetState();
             foreach (Updatable obj in updatableObjs)
             {
-                obj.update(time, this);
+                obj.update(time);
             }
             player.actionBubble.hide();
             player.interactor = null;
