@@ -39,14 +39,13 @@ namespace paranothing
 
         public void Play()
         {
-
+            if (dialogCue.IsPrepared)
+                dialogCue.Play();
         }
 
         //Interactive
-        public void Interact(Boy player)
+        public void Interact()
         {
-            //player.state = Boy.BoyState.Dialog;
-            //player.X = X + 25;
         }
 
         # endregion

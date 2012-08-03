@@ -166,10 +166,8 @@ namespace paranothing
         }
 
         //Interactive
-        public void Interact(Boy player)
+        public void Interact()
         {
-            //player.state = Boy.BoyState.Teleport;
-            //player.X = X + 25;
         }
 
         # endregion

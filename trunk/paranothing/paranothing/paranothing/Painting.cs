@@ -6,6 +6,7 @@ namespace paranothing
 {
     class Portrait : Drawable, Collideable, Interactive
     {
+        private GameController control = GameController.getInstance();
         private Vector2 position;
         public int X
         {
@@ -32,7 +33,7 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);       
+            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.31f);       
         }
 
         public Rectangle getBounds()
@@ -45,8 +46,9 @@ namespace paranothing
             return false;
         }
 
-        public void Interact(Boy player)
+        public void Interact()
         {
+            Boy player = control.player;
             player.state = Boy.BoyState.TimeTravel;
             player.X = X;
         }

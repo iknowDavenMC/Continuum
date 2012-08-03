@@ -150,10 +150,8 @@ namespace paranothing
         }
 
         //Interactive
-        public void Interact(Boy player)
+        public void Interact()
         {
-            //player.state = Boy.BoyState.Picking;
-            //player.X = X + 25;
         }
 
         # endregion

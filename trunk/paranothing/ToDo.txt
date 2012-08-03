@@ -1,11 +1,12 @@
 Programming:
-Pushing wardrobes
+//Pushing wardrobes
 Shadow
   Still
   Patrol
   Chase sound
 Furniture
 //Chairs
+  Controlling
 //Doors
 //Keys
   Wardrobes

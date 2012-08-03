@@ -85,10 +85,11 @@ namespace paranothing
 
             if (control.keyState.IsKeyDown(Keys.Space))
             {
-                if ((state == BoyState.Walk || state == BoyState.Idle) && null != interactor)
+                if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
                 {
-                    interactor.Interact(this);
+                    interactor.Interact();
                 }
+
             }
             else if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right) && state != BoyState.Teleport && state != BoyState.TimeTravel)
             {
@@ -159,6 +160,21 @@ namespace paranothing
                     if (Animation == "startpush" && frame == 3)
                         Animation = "pushstill";
                     break;
+                case BoyState.PushWalk:
+                    moveSpeedY = 0;
+                    if (Animation == "walk" || Animation == "stand")
+                    {
+                        moveSpeedX = 0;
+                        Animation = "startpush";
+                    }
+                    if (Animation == "startpush" && frame == 3)
+                    {
+                        Animation = "push";
+                    }
+                    if (Animation == "push")
+                        moveSpeedX = 3;
+                    break;
+
                 case BoyState.Teleport:
                     moveSpeedX = 0;
                     moveSpeedY = 0;
@@ -166,7 +182,7 @@ namespace paranothing
                     {
                         Animation = "enterwardrobe";
                         Rectangle target = ((Wardrobe)interactor).getLinkedWR().getBounds();
-                        teleportTo = new Vector2(target.X + 25, target.Y+24);
+                        teleportTo = new Vector2(target.X + 16, target.Y+24);
                         interactor = null;
                     }
                     if (Animation == "enterwardrobe" && frame == 6)
@@ -209,6 +225,8 @@ namespace paranothing
                 if (direction == Direction.Left)
                     flip = -1;
                 X += moveSpeedX * flip;
+                if (state == BoyState.PushWalk && Animation == "push")
+                    ((Wardrobe)interactor).X += (int)(moveSpeedX * flip);
                 if (moveSpeedY == 0)
                 {
                     moveSpeedY = 1;

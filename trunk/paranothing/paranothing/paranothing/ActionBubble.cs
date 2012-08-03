@@ -9,7 +9,7 @@ namespace paranothing
 {
     class ActionBubble : Drawable//, Updatable
     {
-        public enum BubbleAction { None, Wardrobe, Portrait };
+        public enum BubbleAction { None, Wardrobe, Push, Portrait };
         private BubbleAction action;
         private bool negated;
         private bool visible;
@@ -18,6 +18,22 @@ namespace paranothing
         public Boy Player
         {
             set { player = value; }
+        }
+        
+        private string animName;
+        private int animIndex;
+        public string Animation
+        {
+            get { return animName; }
+            set
+            {
+               
+                if (sheet.hasAnimation(value) && animName != value)
+                {
+                    animName = value;
+                    animIndex = sheet.getAnimation(animName).First();
+                }
+            }
         }
 
         public ActionBubble(SpriteSheet sheet)
@@ -47,6 +63,21 @@ namespace paranothing
         {
             this.action = action;
             this.negated = negated;
+            switch (action)
+            {
+                case BubbleAction.Wardrobe:
+                    Animation = "wardrobe";
+                    break;
+                case BubbleAction.Portrait:
+                    Animation = "portrait";
+                    break;
+                case BubbleAction.Push:
+                    Animation = "push";
+                    break;
+                default:
+                    Animation = "negate";
+                    break;
+            }
         }
 
         public Texture2D getImage()
@@ -60,19 +91,9 @@ namespace paranothing
             {
                 Vector2 drawPos = new Vector2(player.X + 8, player.Y - 30);
                 renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint);
-                switch (action)
-                {
-                    case BubbleAction.Wardrobe:
-                        renderer.Draw(sheet.image, drawPos, sheet.getSprite(1), tint);
-                        break;
-                    case BubbleAction.Portrait:
-                        renderer.Draw(sheet.image, drawPos, sheet.getSprite(2), tint);
-                        break;
-                    default:
-                        break;
-                }
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint);
                 if (negated)
-                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(3), tint);
+                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(4), tint);
             }
         }
 
