@@ -9,7 +9,8 @@ namespace paranothing
 {
     class ActionBubble : Drawable//, Updatable
     {
-        public enum BubbleAction { None, Wardrobe, Push, Portrait };
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        public enum BubbleAction { None, Wardrobe, Push, Portrait, Stair };
         private BubbleAction action;
         private bool negated;
         private bool visible;
@@ -35,13 +36,18 @@ namespace paranothing
                 }
             }
         }
+        private int negateInd;
 
-        public ActionBubble(SpriteSheet sheet)
+        public ActionBubble()
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("action");
             this.action = BubbleAction.None;
             visible = false;
             negated = false;
+            if (sheet.hasAnimation("negate"))
+            {
+                negateInd = sheet.getAnimation("negate").First();
+            }
         }
 
         public bool isVisible()
@@ -74,6 +80,9 @@ namespace paranothing
                 case BubbleAction.Push:
                     Animation = "push";
                     break;
+                case BubbleAction.Stair:
+                    Animation = "stair";
+                    break;
                 default:
                     Animation = "negate";
                     break;
@@ -90,10 +99,10 @@ namespace paranothing
             if (visible)
             {
                 Vector2 drawPos = new Vector2(player.X + 8, player.Y - 30);
-                renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint);
-                renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint);
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble);
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.01f);
                 if (negated)
-                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(4), tint);
+                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(negateInd), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.02f);
             }
         }
 

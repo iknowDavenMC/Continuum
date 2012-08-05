@@ -4,9 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Portrait : Drawable, Collideable, Interactive
+    class Portrait : Drawable, Collideable, Interactive, Saveable
     {
         private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         private Vector2 position;
         public int X
         {
@@ -20,10 +21,10 @@ namespace paranothing
         }
         private SpriteSheet sheet;
 
-        public Portrait(int x, int y, SpriteSheet sheet)
+        public Portrait(int x, int y)
         {
             position = new Vector2(x, y);
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("portrait");
         }
 
         public Texture2D getImage()
@@ -33,7 +34,7 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.31f);       
+            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);       
         }
 
         public Rectangle getBounds()
@@ -51,6 +52,11 @@ namespace paranothing
             Boy player = control.player;
             player.state = Boy.BoyState.TimeTravel;
             player.X = X;
+        }
+
+        public string saveData()
+        {
+            return "StartPortrait\nx:" + X + "\ny:" + Y + "\nEndPortrait";
         }
     }
 }

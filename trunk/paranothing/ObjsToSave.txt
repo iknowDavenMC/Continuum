@@ -1,30 +1,30 @@
-Level
-  - Dimensions
-  - Wallpaper colour
+// Level
+  // - Dimensions
+  // - Wallpaper colour
 
-Player
-  - start position
+// Player
+  // - start position
 
 Shadows
   - start position
   - patrol distance
 
-Walls
-  - position
-  - length
-  - broken?
+// Walls
+  // - position
+  // - length
+  // - broken?
 
-Floors
-  - position
-  - length
+// Floors
+  // - position
+  // - length
 
-Stairs
-  - position
-  - left or right?
-  - broken?
+// Stairs
+  // - position
+  // - left or right?
+  // - broken?
 
-Rubble
-  - position
+// Rubble
+  // - position
 
 Chairs
   - position
@@ -32,18 +32,19 @@ Chairs
 Doors
   - position
 
-Wardrobes
-  - position
-  - start locked?
-  - linked Wardrobe
+// Wardrobes
+  // - position
+  // - start locked?
+  // - name
+  // - linked Wardrobe
 
 Keys
   - position
   - time period
   - Obj to unlock
 
-Paintings
-  - position
+// Paintings
+  // - position
 
 Older Paintings
   - position

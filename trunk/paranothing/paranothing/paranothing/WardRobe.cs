@@ -8,16 +8,17 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive, Lockable
+    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive, Lockable, Saveable
     {
         # region Attributes
-
+        private static Dictionary<string, Wardrobe> wardrobeDict = new Dictionary<string, Wardrobe>();
         private GameController control = GameController.getInstance();
-
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 positionPres;
         private Vector2 positionPast1;
         private Vector2 positionPast2;
+        private string name;
         public int X
         {
             get
@@ -107,8 +108,9 @@ namespace paranothing
         private Cue wrCue;
         //Drawable
         private SpriteSheet sheet;
-        private Wardrobe linkedWR;
+        private string linkedName;
         private bool locked;
+        private bool startLocked;
         private int frameTime;
         private int frameLength;
         private int frame;
@@ -136,14 +138,15 @@ namespace paranothing
 
         # region Constructor
 
-        public Wardrobe(int x, int y, SpriteSheet sheet, bool startLocked = false)
+        public Wardrobe(int x, int y, string name, bool startLocked = false)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("wardrobe");
             positionPres = new Vector2(x, y);
             positionPast1 = new Vector2(x, y);
             positionPast2 = new Vector2(x, y);
+            this.startLocked = startLocked;
             locked = startLocked;
-            if (locked)
+            if (startLocked)
             {
                 Animation = "wardrobeclosed";
                 state = WardrobeState.Closed;
@@ -154,7 +157,9 @@ namespace paranothing
                 state = WardrobeState.Open;
             }
             frameLength = 80;
-
+            if (wardrobeDict.ContainsKey(name))
+                wardrobeDict.Remove(name);
+            wardrobeDict.Add(name, this);
         }
 
         # endregion
@@ -196,7 +201,7 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, new Vector2(X, Y), sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);            
+            renderer.Draw(sheet.image, new Vector2(X, Y), sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Wardrobe);            
         }
 
         //Updatable
@@ -229,14 +234,19 @@ namespace paranothing
             }
         }
 
-        public void setLinkedWR(Wardrobe linkedWR)
+        public void setLinkedWR(string linkedName)
         {
-            this.linkedWR = linkedWR;
+            this.linkedName = linkedName;
         }
 
         public Wardrobe getLinkedWR()
         {
-            return linkedWR;
+            Wardrobe w;
+            if (wardrobeDict.ContainsKey(linkedName))
+                wardrobeDict.TryGetValue(linkedName, out w);
+            else
+                w = null;
+            return w;
         }
 
         public void lockObj()
@@ -260,15 +270,19 @@ namespace paranothing
             Boy player = control.player;
             if (Rectangle.Intersect(player.getBounds(), enterBox).Width != 0)
             {
-                player.state = Boy.BoyState.Teleport;
-                player.X = X + 16;
+                Wardrobe linkedWR = getLinkedWR();
+                if (!locked && linkedWR != null && !linkedWR.isLocked() && !control.collidingWithSolid(linkedWR.enterBox))
+                {
+                    player.state = Boy.BoyState.Teleport;
+                    player.X = X + 16;
+                }
             }
             else
             {
                 if (control.collidingWithSolid(pushBox, false))
                     player.state = Boy.BoyState.PushingStill;
                 else
-                player.state = Boy.BoyState.PushWalk;
+                    player.state = Boy.BoyState.PushWalk;
                 if (player.X > X)
                 {
                     player.X = X + 67;
@@ -280,6 +294,11 @@ namespace paranothing
                     player.direction = Direction.Right;
                 }
             }
+        }
+
+        public string saveData()
+        {
+            return "StartWardrobe\nx:" + X + "\ny:" + Y + "\nname:" + name + "\nlocked:" + startLocked + "\nlink:" + linkedName + "\nEndWardrobe";
         }
 
         # endregion

@@ -6,8 +6,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Floor : Drawable, Collideable
+    class Floor : Drawable, Collideable, Saveable
     {
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         private Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
         public int Y { get { return (int)position.Y; } set { position.Y = value; } }
@@ -18,13 +19,13 @@ namespace paranothing
         }
         private SpriteSheet sheet;
 
-        public Floor(int X, int Y, int Width, int Height, SpriteSheet sheet)
+        public Floor(int X, int Y, int Width, int Height)
         {
             this.X = X;
             this.Y = Y;
             this.Width = Width;
             this.Height = Height;
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("floor");
         }
 
         public Rectangle getBounds()
@@ -44,7 +45,12 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, 0.3f);
+            renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Floor);
+        }
+
+        public string saveData()
+        {
+            return "StartFloor\nx:" + X + "\ny:" + Y + "\nwidth:" + Width + "\nheight:" + Height + "\nEndFloor";
         }
     }
 }

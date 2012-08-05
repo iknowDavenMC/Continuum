@@ -66,3 +66,5 @@ C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\
 C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb
 C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb
 C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level1.lvl

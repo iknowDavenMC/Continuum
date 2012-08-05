@@ -11,6 +11,7 @@ namespace paranothing
     class Boy : Drawable, Updatable, Collideable, Audible
     {
         private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         private SpriteSheet sheet;
         private int frame;
         private int frameLength;
@@ -32,6 +33,7 @@ namespace paranothing
                 }
             }
         }
+        public float drawLayer;
         private float moveSpeedX, moveSpeedY; // Pixels per animation frame
         private Vector2 position;
         public int Width, Height;
@@ -48,9 +50,9 @@ namespace paranothing
 
         public Interactive interactor;
 
-        public Boy(float X, float Y, ActionBubble actionBubble, SpriteSheet sheet)
+        public Boy(float X, float Y, ActionBubble actionBubble)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("boy");
             frame = 0;
             frameTime = 0;
             frameLength = 70;
@@ -64,6 +66,7 @@ namespace paranothing
             actionBubble.Player = this;
             actionBubble.show();
             teleportTo = new Vector2();
+            drawLayer = DrawLayer.Player;
         }
 
         public Texture2D getImage()
@@ -77,21 +80,20 @@ namespace paranothing
             if (direction == Direction.Left)
                 flip = SpriteEffects.FlipHorizontally;
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, 0.25f);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, drawLayer);
         }
 
         private void checkInput(GameController control)
         {
-
             if (control.keyState.IsKeyDown(Keys.Space))
             {
                 if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
                 {
                     interactor.Interact();
                 }
-
             }
-            else if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right) && state != BoyState.Teleport && state != BoyState.TimeTravel)
+            else if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right)
+                && state != BoyState.Teleport && state != BoyState.TimeTravel)
             {
                 if (direction == Direction.Right)
                 {
@@ -100,7 +102,7 @@ namespace paranothing
                 }
                 else
                 {
-                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft) 
+                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
                         state = BoyState.Idle;
                 }
             }
@@ -127,11 +129,14 @@ namespace paranothing
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
             checkInput(control);
+            drawLayer = DrawLayer.Player;
             switch (state)
             {
                 case BoyState.Idle:
-                    if (Animation == "pushstill")
+                    if (Animation == "pushstill" || Animation == "startpush" || Animation == "push")
+                    {
                         Animation = "endpush";
+                    }
                     if (Animation == "endpush" && frame == 2 || Animation == "walk")
                         Animation = "stand";
                     moveSpeedX = 0;
@@ -146,18 +151,20 @@ namespace paranothing
                     Animation = "walk";
                     moveSpeedX = 3;
                     moveSpeedY = 2;
+                    drawLayer = DrawLayer.PlayerBehindStairs;
                     break;
                 case BoyState.StairsRight:
                     Animation = "walk";
                     moveSpeedX = 3;
-                    moveSpeedY = 2;
+                    moveSpeedY = -2;
+                    drawLayer = DrawLayer.PlayerBehindStairs;
                     break;
                 case BoyState.PushingStill:
                     moveSpeedX = 0;
                     moveSpeedY = 0;
-                    if (Animation == "walk")
+                    if (Animation == "walk" || Animation == "stand")
                         Animation = "startpush";
-                    if (Animation == "startpush" && frame == 3)
+                    if (Animation == "startpush" && frame == 3 || Animation == "push")
                         Animation = "pushstill";
                     break;
                 case BoyState.PushWalk:
@@ -181,9 +188,13 @@ namespace paranothing
                     if (Animation == "walk" || Animation == "stand")
                     {
                         Animation = "enterwardrobe";
-                        Rectangle target = ((Wardrobe)interactor).getLinkedWR().getBounds();
-                        teleportTo = new Vector2(target.X + 16, target.Y+24);
-                        interactor = null;
+                        Wardrobe targetWR = ((Wardrobe)interactor).getLinkedWR();
+                        if (targetWR != null)
+                        {
+                            Rectangle target = targetWR.getBounds();
+                            teleportTo = new Vector2(target.X + 16, target.Y + 24);
+                            interactor = null;
+                        }
                     }
                     if (Animation == "enterwardrobe" && frame == 6)
                     {
@@ -229,8 +240,8 @@ namespace paranothing
                     ((Wardrobe)interactor).X += (int)(moveSpeedX * flip);
                 if (moveSpeedY == 0)
                 {
-                    moveSpeedY = 1;
-                    flip = 1;
+                    //moveSpeedY = 1;
+                    //flip = 1;
                 }
                 Y += moveSpeedY * flip;
                 frameTime = 0;
