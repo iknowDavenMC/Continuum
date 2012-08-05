@@ -13,6 +13,7 @@ namespace paranothing
         # region Attributes
 
         private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 position;
         private Rectangle bounds;
@@ -33,9 +34,9 @@ namespace paranothing
 
         # region Constructor
 
-        public Doors(int x, int y, int width, int height, SpriteSheet sheet, int frameLength, bool startLocked)
+        public Doors(int x, int y, int width, int height, int frameLength, bool startLocked)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("door");
             position = new Vector2(x, y);
             bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
             locked = startLocked;

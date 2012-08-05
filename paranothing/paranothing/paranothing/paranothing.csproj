@@ -110,6 +110,7 @@
     <Compile Include="ActionBubble.cs" />
     <Compile Include="Audible.cs" />
     <Compile Include="Boy.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="Chairs.cs" />
     <Compile Include="Collideable.cs" />
     <Compile Include="Dialogues.cs" />
@@ -123,14 +124,17 @@
     <Compile Include="GameTitle.cs" />
     <Compile Include="HappyEnd.cs" />
     <Compile Include="Interactive.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Lockable.cs" />
     <Compile Include="Painting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Rubble.cs" />
+    <Compile Include="Saveable.cs" />
     <Compile Include="Shadows.cs" />
     <Compile Include="SpriteSheet.cs" />
+    <Compile Include="SpriteSheetManager.cs" />
     <Compile Include="Stairs.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="Updatable.cs" />
@@ -176,7 +180,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="levels\level1.lvl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

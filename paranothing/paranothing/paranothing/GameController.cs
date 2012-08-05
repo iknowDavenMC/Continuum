@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -17,6 +17,8 @@ namespace paranothing
         public Boy player;
         public GameState state;
         public TimePeriod timePeriod;
+        public Level level;
+        public Camera camera;
 
         private static GameController instance;
 
@@ -34,7 +36,7 @@ namespace paranothing
             updatableObjs = new List<Updatable>();
             drawableObjs = new List<Drawable>();
             collideableObjs = new List<Collideable>();
-            state = GameState.Title;
+            state = GameState.Game;
             timePeriod = TimePeriod.Present;
         }
 
@@ -42,6 +44,32 @@ namespace paranothing
         {
             this.player = player;
             addObject(player);
+            addObject(player.actionBubble);
+        }
+
+        public void setCamera(Camera camera)
+        {
+            this.camera = camera;
+            addObject(camera);
+        }
+
+        public void initLevel(bool preserveTime = true)
+        {
+            updatableObjs = new List<Updatable>();
+            drawableObjs = new List<Drawable>();
+            collideableObjs = new List<Collideable>();
+            player.X = level.playerX;
+            player.Y = level.playerY;
+            addObject(player);
+            addObject(player.actionBubble);
+            addObject(camera);
+            foreach (Saveable obj in level.getObjs())
+            {
+                addObject(obj);
+            }
+            if (!preserveTime)
+                timePeriod = TimePeriod.Present;
+            Console.WriteLine(level.getSaveString());
         }
 
         public void updateObjs(GameTime time)
@@ -58,29 +86,51 @@ namespace paranothing
                 bool colliding = collides(((Collideable)obj).getBounds(), player.getBounds());
                 if (obj is Stairs)
                 {
-                    Stairs stair = (Stairs) obj;
+                    Stairs stair = (Stairs)obj;
                     if (stair.isSolid())
                     {
-                        if (stair.direction == Direction.Left)
+                        if (colliding)
                         {
-                            if (colliding && player.X > stair.X - 14 && player.Y + 58 >= (player.X - stair.X) * 2 / 3 + stair.Y)
+                            if (player.X + 30 >= stair.X && player.X + 8 <= stair.X)
                             {
-                                player.state = Boy.BoyState.StairsLeft;
+                                if (((stair.direction == Direction.Left && player.Y + 58 == stair.getSmallBounds().Y)
+                                    || (stair.direction == Direction.Right && player.Y + 58 == stair.Y + stair.getBounds().Height))
+                                    && (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk))
+                                {
+                                    player.actionBubble.setAction(ActionBubble.BubbleAction.Stair, false);
+                                    player.interactor = (Interactive)obj;
+                                    player.actionBubble.show();
+                                }
                             }
-                            else if (player.state == Boy.BoyState.StairsLeft)
+                            else if (player.X + 30 >= stair.X + stair.getBounds().Width && player.X + 8 <= stair.X + stair.getBounds().Width)
                             {
-                                player.state = Boy.BoyState.Walk;
+                                if (((stair.direction == Direction.Right && player.Y + 58 == stair.getSmallBounds().Y)
+                                    || (stair.direction == Direction.Left && player.Y + 58 == stair.Y + stair.getBounds().Height))
+                                    && (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk))
+                                {
+                                    player.actionBubble.setAction(ActionBubble.BubbleAction.Stair, false);
+                                    player.interactor = (Interactive)obj;
+                                    player.actionBubble.show();
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (colliding && player.X <= stair.X + stair.getBounds().Width)
+                            if (player.state == Boy.BoyState.StairsLeft || player.state == Boy.BoyState.StairsRight)
                             {
-                                player.state = Boy.BoyState.StairsLeft;
-                            }
-                            else if (player.state == Boy.BoyState.StairsRight)
-                            {
-                                player.state = Boy.BoyState.Walk;
+                                if (stair.direction == Direction.Left)
+                                {
+                                    if ((player.direction == Direction.Left && (int)player.Y + 58 == stair.getSmallBounds().Y)
+                                        || (player.direction == Direction.Right && (int)player.Y + 58 == stair.Y + stair.getBounds().Height))
+                                    {
+                                        player.state = Boy.BoyState.Walk;
+                                    }
+                                }
+                                if (stair.direction == Direction.Right)
+                                {
+                                    if ((player.direction == Direction.Right && (int)player.Y + 58 == stair.getSmallBounds().Y)
+                                        || (player.direction == Direction.Left && (int)player.Y + 58 == stair.Y + stair.getBounds().Height))
+                                    {
+                                        player.state = Boy.BoyState.Walk;
+                                    }
+                                }
                             }
                         }
                     }
@@ -93,7 +143,9 @@ namespace paranothing
                         bool negated = false;
                         if (collides(wardrobe.enterBox, player.getBounds()))
                         {
-                            if (wardrobe.isLocked() || wardrobe.getLinkedWR() == null || wardrobe.getLinkedWR().isLocked())
+                            Wardrobe linkedWR = wardrobe.getLinkedWR();
+                            if (wardrobe.isLocked() || linkedWR == null 
+                                || linkedWR.isLocked() || collidingWithSolid(linkedWR.enterBox))
                                 negated = true;
                             if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
                             {
@@ -138,6 +190,8 @@ namespace paranothing
                 }
                 else
                 {
+                    if (!player.actionBubble.isVisible() && !(player.interactor is Wardrobe))
+                        player.interactor = null;
                     Collideable collider = (Collideable)obj;
                     if (colliding && player.state == Boy.BoyState.Walk && collider.isSolid())
                     {

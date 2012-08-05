@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Rubble : Collideable, Drawable
+    class Rubble : Collideable, Drawable, Saveable
     {
         # region Attributes
-
+        private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collideable
         private Vector2 position;
-        private Rectangle bounds;
         //Drawable
         private SpriteSheet sheet;
 
@@ -21,13 +21,11 @@ namespace paranothing
 
         # region Constructor
 
-        public Rubble(int X, int Y, int Width, int Height, SpriteSheet sheet)
+        public Rubble(int X, int Y)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("rubble");
             position = new Vector2(X, Y);
-            bounds = new Rectangle(X, Y, Width, Height);
         }
-
         # endregion
 
         # region Methods
@@ -35,6 +33,7 @@ namespace paranothing
         //Accessors & Mutators
         public int X { get { return (int)position.X; } set { position.X = value; } }
         public int Y { get { return (int)position.Y; } set { position.Y = value; } }
+        private Rectangle bounds { get { return new Rectangle(X, Y, 37, 28); }}
 
         //Collideable
         public Rectangle getBounds()
@@ -44,7 +43,9 @@ namespace paranothing
 
         public bool isSolid()
         {
-            return true;
+            if (control.timePeriod == TimePeriod.Present)
+                return true;
+            return false;
         }
 
         //Drawable
@@ -55,7 +56,13 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, position, SpriteEffects.None, 0.3f);
+            if (control.timePeriod == TimePeriod.Present)
+                renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Rubble);
+        }
+
+        public string saveData()
+        {
+            return "StartRubble\nx:" + X + "\ny:" + Y + "\nEndRubble";
         }
 
         #endregion

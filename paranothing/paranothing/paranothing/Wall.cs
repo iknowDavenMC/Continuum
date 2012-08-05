@@ -6,9 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Wall : Drawable, Collideable, Updatable
+    class Wall : Drawable, Collideable, Updatable, Saveable
     {
         private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         private Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
         public int Y { get { return (int)position.Y; } set { position.Y = value; } }
@@ -21,13 +22,13 @@ namespace paranothing
         private bool intact;
         private bool startIntact;
 
-        public Wall(int X, int Y, int Width, int Height, SpriteSheet sheet, bool startIntact = true)
+        public Wall(int X, int Y, int Width, int Height, bool startIntact = true)
         {
             this.X = X;
             this.Y = Y;
             this.Width = Width;
             this.Height = Height;
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("wall");
             this.startIntact = startIntact;
         }
 
@@ -56,7 +57,12 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             if (intact)
-                renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, 0.31f);
+                renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
+        }
+
+        public string saveData()
+        {
+            return "StartWall\nx:" + X + "\ny:" + Y + "\nwidth:" + Width + "\nheight:" + Height + "\nintact:" + (startIntact? "true" : "false") + "\nEndWall";
         }
     }
 }

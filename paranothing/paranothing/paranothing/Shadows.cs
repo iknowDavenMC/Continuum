@@ -12,6 +12,7 @@ namespace paranothing
     {
         # region Attributes
 
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Drawable
         private SpriteSheet sheet;
         private int frame;
@@ -50,9 +51,9 @@ namespace paranothing
 
         # region Constructor
 
-        public Shadows(float X, float Y, float distance, SpriteSheet sheet)
+        public Shadows(float X, float Y, float distance)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("shadow");
             frame = 0;
             frameTime = 0;
             frameLength = 70;

@@ -13,6 +13,7 @@ namespace paranothing
         # region Attributes
 
         private GameController control = GameController.getInstance();
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 position;
         private Rectangle bounds;
@@ -32,9 +33,9 @@ namespace paranothing
 
         # region Constructor
 
-        public Chairs(int x, int y, int width, int height, int frameLength, SpriteSheet sheet, bool startLocked)
+        public Chairs(int x, int y, int width, int height, int frameLength, bool startLocked)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("chair");
             position = new Vector2(x, y);
             bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
             this.frameLength = frameLength;

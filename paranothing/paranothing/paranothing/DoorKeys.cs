@@ -11,6 +11,7 @@ namespace paranothing
     {
         # region Attributes
 
+        private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collideable
         private Vector2 position;
         private Rectangle bounds;
@@ -22,9 +23,9 @@ namespace paranothing
 
         # region Constructor
 
-        public DoorKeys(int X, int Y, int Width, int Height, SpriteSheet sheet)
+        public DoorKeys(int X, int Y, int Width, int Height)
         {
-            this.sheet = sheet;
+            this.sheet = sheetMan.getSheet("key");
             position = new Vector2(X, Y);
             bounds = new Rectangle(X, Y, Width, Height);
         }

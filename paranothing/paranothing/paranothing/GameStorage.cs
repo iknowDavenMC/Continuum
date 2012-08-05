@@ -32,7 +32,11 @@ namespace paranothing
         //Saving
         public void saveGame(Game1 game)
         {
+#if WINDOWS_PHONE
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
+#else
+            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForDomain())
+#endif
             {
                 using (IsolatedStorageFileStream rawStream = isf.CreateFile(filename))
                 {
@@ -161,7 +165,11 @@ namespace paranothing
         //Loading
         public void loadGame(Game1 game)
         {
+#if WINDOWS_PHONE
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
+#else
+            using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForDomain())
+#endif
             {
                 if (isf.FileExists(filename))
                 {
@@ -170,9 +178,10 @@ namespace paranothing
                         using (IsolatedStorageFileStream rawStream = isf.OpenFile(filename, System.IO.FileMode.Open))
                         {
                             StreamReader reader = new StreamReader(rawStream);
+                            string file = reader.ReadToEnd();
                             //restore game state
-                            int stateInt = int.Parse(reader.ReadLine());
-                            game.GameState = (GameState)stateInt;
+                            //int stateInt = int.Parse(reader.ReadLine());
+                            //game.GameState = (GameState)stateInt;
                             //close
                             reader.Close();
                         }
