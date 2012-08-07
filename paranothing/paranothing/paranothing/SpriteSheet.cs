@@ -52,10 +52,32 @@ namespace paranothing
         /// </summary>
         /// <param name="rows">The number of rows in the sprite sheet</param>
         /// <param name="columns">The number of columns in the sprite sheet</param>
+        public void splitSheet(int rows, int columns)
+        {
+            splitSheet(rows, columns, 0, 0, 0);
+        }
+
+        /// <summary>
+        /// Divides the sprite sheet into a grid with cells of equal size. Good for uniform sheets.
+        /// </summary>
+        /// <param name="rows">The number of rows in the sprite sheet</param>
+        /// <param name="columns">The number of columns in the sprite sheet</param>
+        /// <param name="padX">Amount of horizontal padding between sprites</param>
+        /// <param name="padY">Amount of vertical padding between sprites</param>
+        public void splitSheet(int rows, int columns, int padX, int padY)
+        {
+            splitSheet(rows, columns, padX, padY, 0); 
+        }
+
+        /// <summary>
+        /// Divides the sprite sheet into a grid with cells of equal size. Good for uniform sheets.
+        /// </summary>
+        /// <param name="rows">The number of rows in the sprite sheet</param>
+        /// <param name="columns">The number of columns in the sprite sheet</param>
         /// <param name="padX">Amount of horizontal padding between sprites</param>
         /// <param name="padY">Amount of vertical padding between sprites</param>
         /// <param name="limit">The maximum number of sprites in the sheet. 0 for no maximum.</param>
-        public void splitSheet(int rows, int columns, int padX = 0, int padY = 0, int limit = 0)
+        public void splitSheet(int rows, int columns, int padX, int padY, int limit)
         {
             if (rows <= 0 || columns <= 0)
                 return;

@@ -22,7 +22,17 @@ namespace paranothing
         private bool intact;
         private bool startIntact;
 
-        public Wall(int X, int Y, int Width, int Height, bool startIntact = true)
+        public Wall(int X, int Y, int Width, int Height)
+        {
+            this.X = X;
+            this.Y = Y;
+            this.Width = Width;
+            this.Height = Height;
+            this.sheet = sheetMan.getSheet("wall");
+            this.startIntact = true;
+        }
+
+        public Wall(int X, int Y, int Width, int Height, bool startIntact)
         {
             this.X = X;
             this.Y = Y;

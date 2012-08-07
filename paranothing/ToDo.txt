@@ -15,19 +15,9 @@ Levels
   Level editor
   //Saving/Loading files
 Dialogue
-Rubble
-
-Art:
-Doors
-Keys
-Shadow
-Furniture
-Walls
-Floors
+// Rubble
 
 Sound: 
-Everything...
-Music
 Footsteps
 Using a wardrobe
 Using a portrait

@@ -39,6 +39,9 @@ namespace paranothing
         bool reloadpressed = false;
         Effect greyScale;
 
+        SoundBank soundBank;
+        WaveBank waveBank;
+
         Texture2D boyTex;
         SpriteSheet boySheet;
 
@@ -153,8 +156,8 @@ namespace paranothing
         }
         private void drawTitleText()
         {
-            title.setTopTextRectangle(titleFont.MeasureString("Welcome to Continuum"));
-            drawText("Welcome to Paranothing", titleFont, Color.WhiteSmoke, title.TopTextRectangle.X, title.TopTextRectangle.Y);
+            title.setTopTextRectangle(titleFont.MeasureString("Continuum"));
+            drawText("Continuum", titleFont, Color.WhiteSmoke, title.TopTextRectangle.X, title.TopTextRectangle.Y);
             spriteBatch.DrawString(gameFont, "Press 'Enter' to start", startPosition, Color.DarkMagenta);
         }
 
@@ -296,7 +299,7 @@ namespace paranothing
             control.level = l;
             control.setPlayer(player);
             control.setCamera(camera);
-            control.initLevel();
+            control.initLevel(false);
             /*
             control.addObject(actionBubble);
             control.addObject(lowerPortrait);
