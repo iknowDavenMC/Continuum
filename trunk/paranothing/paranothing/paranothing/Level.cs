@@ -95,6 +95,7 @@ namespace paranothing
             }
             while (!line.StartsWith("EndLevel") && lineNum < saveLines.Length)
             {
+                string objData = "";
                 line = saveLines[lineNum];
                 // Level attributes
                 if (line.StartsWith("playerX:"))
@@ -110,29 +111,83 @@ namespace paranothing
                 // Shadow
                 // Stairs
                 if (line.StartsWith("StartStair"))
-                    addObj((Saveable)createStair(saveLines, ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndStair") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Stairs(objData));
+                }
                 // Rubble
                 if (line.StartsWith("StartRubble"))
-                    addObj((Saveable)createRubble(saveLines, ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndRubble") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Rubble(objData));
+                }
                 // Chair
                 // Door
                 // Wardrobe
                 if (line.StartsWith("StartWardrobe"))
-                    addObj((Saveable)createWardrobe(saveLines, ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndWardrobe") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Wardrobe(objData));
+                }
                 // Key
                 // Portrait
                 if (line.StartsWith("StartPortrait"))
-                    addObj((Saveable)createPortrait(saveLines, ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndPortrait") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Portrait(objData));
+                }
                 // Older Painting
                 // Moved Painting
                 // Bookcase
                 // Button
                 // Wall
                 if (line.StartsWith("StartWall"))
-                    addObj((Saveable)createWall(saveLines,ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndWall") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Wall(objData)); 
+                }
                 // Floor
                 if (line.StartsWith("StartFloor"))
-                    addObj((Saveable)createFloor(saveLines, ref lineNum));
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndFloor") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Floor(objData));
+                }
                 lineNum++;
             }
         }
@@ -145,209 +200,6 @@ namespace paranothing
             int b = int.Parse(rgb[2]);
 
             return new Color(r, g, b);
-        }
-
-        private Wall createWall(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0, Width = 0, Height = 0;
-            bool intact = true;
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndWall") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("width:"))
-                {
-                    try { Width = int.Parse(line.Substring(6)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("height:"))
-                {
-                    try { Height = int.Parse(line.Substring(7)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("intact:"))
-                {
-                    try { intact = bool.Parse(line.Substring(7)); }
-                    catch (FormatException) { }
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            return new Wall(X, Y, Width, Height, intact);
-        }
-
-        private Floor createFloor(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0, Width = 0, Height = 0;
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndFloor") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("width:"))
-                {
-                    try { Width = int.Parse(line.Substring(6)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("height:"))
-                {
-                    try { Height = int.Parse(line.Substring(7)); }
-                    catch (FormatException) { }
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            return new Floor(X, Y, Width, Height);
-        }
-
-        private Stairs createStair(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0;
-            Direction direction = Direction.Left;
-            bool intact = true;
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndStair") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("direction:"))
-                {
-                    string dir = line.Substring(10).Trim();
-                    if (dir == "Right")
-                        direction = Direction.Right;
-                    else
-                        direction = Direction.Left;
-                }
-                if (line.StartsWith("intact:"))
-                {
-                    try { intact = bool.Parse(line.Substring(7)); }
-                    catch (FormatException) { }
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            return new Stairs(X, Y, direction, intact);
-        }
-
-        private Wardrobe createWardrobe(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0;
-            bool locked = false;
-            string name = "WR";
-            string link = "WR";
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndWardrobe") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("name:"))
-                {
-                    name = line.Substring(5).Trim();
-                }
-                if (line.StartsWith("locked:"))
-                {
-                    try { locked = bool.Parse(line.Substring(7)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("link:"))
-                {
-                    link = line.Substring(5).Trim();
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            Wardrobe w = new Wardrobe(X, Y, name, locked);
-            w.setLinkedWR(link);
-            return w;
-        }
-
-        private Portrait createPortrait(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0;
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndPortrait") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            return new Portrait(X, Y);
-        }
-
-        private Rubble createRubble(string[] lines, ref int startLine)
-        {
-            int X = 0, Y = 0;
-            int lineNum = startLine;
-            string line = "";
-            while (!line.StartsWith("EndRubble") && lineNum < lines.Length)
-            {
-                line = lines[lineNum];
-                if (line.StartsWith("x:"))
-                {
-                    try { X = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                if (line.StartsWith("y:"))
-                {
-                    try { Y = int.Parse(line.Substring(2)); }
-                    catch (FormatException) { }
-                }
-                lineNum++;
-            }
-            startLine = --lineNum;
-            return new Rubble(X, Y);
         }
     }
 }

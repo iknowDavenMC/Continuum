@@ -42,6 +42,49 @@ namespace paranothing
             this.startIntact = startIntact;
         }
 
+        public Wall(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("wall");
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineNum = 0;
+            X = 0;
+            Y = 0;
+            Width = 0;
+            Height = 0;
+            startIntact = true;
+            string line = "";
+            while (!line.StartsWith("EndWall") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("width:"))
+                {
+                    try { Width = int.Parse(line.Substring(6)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("height:"))
+                {
+                    try { Height = int.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("intact:"))
+                {
+                    try { startIntact = bool.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
+        }
+
         public Rectangle getBounds()
         {
             return Box;
