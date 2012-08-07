@@ -189,7 +189,7 @@ namespace paranothing
                     catch
                     {
                         //redirect to description screen
-                        game.GameState = GameState.Description;
+                        game.GameState = GameState.MainMenu;
                     }
 
                     //remove file
@@ -198,7 +198,7 @@ namespace paranothing
                 else
                 {
                     //redirect to description screen
-                    game.GameState = GameState.Description;
+                    game.GameState = GameState.MainMenu;
                 }
             }
         }

@@ -34,6 +34,9 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
+            if (control.timePeriod == TimePeriod.Present)
+            renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);  
+            else
             renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);       
         }
 

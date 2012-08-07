@@ -55,7 +55,7 @@ namespace paranothing
             this.sheet = sheetMan.getSheet("boy");
             frame = 0;
             frameTime = 0;
-            frameLength = 70;
+            frameLength = 60;
             position = new Vector2(X, Y);
             Width = 38;
             Height = 58;

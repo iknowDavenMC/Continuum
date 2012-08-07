@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace paranothing
 {
-    public enum GameState { Title, Description, Game }
+    public enum GameState { MainMenu, Controls, Game, Pause, EndGame, LevelEditor, Credits }
     public enum Direction { Left, Right, Up, Down }
     public enum TimePeriod { FarPast, Past, Present };
     public struct DrawLayer {
@@ -45,6 +45,9 @@ namespace paranothing
         Texture2D boyTex;
         SpriteSheet boySheet;
 
+        Texture2D shadowTex;
+        SpriteSheet shadowSheet;
+
         Texture2D actionTex;
         SpriteSheet actionSheet;
 
@@ -68,6 +71,24 @@ namespace paranothing
 
         Texture2D stairTex;
         SpriteSheet stairSheet;
+
+        Texture2D doorTex;
+        SpriteSheet doorSheet;
+
+        Texture2D oldPortraitTex;
+        SpriteSheet oldPortraitSheet;
+
+        Texture2D keyTex;
+        SpriteSheet keySheet;
+
+        Texture2D chairTex;
+        SpriteSheet chairSheet;
+
+        Texture2D finalDoorTex;
+        SpriteSheet finalDoorSheet;
+
+        Texture2D buttonTex;
+        SpriteSheet buttonSheet;
 
         GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
@@ -196,7 +217,7 @@ namespace paranothing
         /// </summary>
         protected override void LoadContent()
         {
-            control.state = paranothing.GameState.Title;
+            control.state = paranothing.GameState.MainMenu;
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -205,8 +226,7 @@ namespace paranothing
 
             wallpaperTex = Content.Load<Texture2D>("Sprites/Wallpaper");
             wallpaperSheet = new SpriteSheet(wallpaperTex);
-            wallpaperSheet.addSprite(0, 0, wallpaperTex.Width / 2, wallpaperTex.Height);
-            wallpaperSheet.addSprite(wallpaperTex.Width / 2, 0, wallpaperTex.Width / 2, wallpaperTex.Height);
+            wallpaperSheet.splitSheet(1, 2);
 
             wardrobeTex = Content.Load<Texture2D>("Sprites/wardrobe");
             wardrobeSheet = new SpriteSheet(wardrobeTex);
@@ -217,7 +237,7 @@ namespace paranothing
 
             portraitTex = Content.Load<Texture2D>("Sprites/portrait");
             portraitSheet = new SpriteSheet(portraitTex);
-            portraitSheet.addSprite(0, 0, 35, 30);
+            portraitSheet.splitSheet(2, 1);
 
             rubbleTex = Content.Load<Texture2D>("Sprites/rubble");
             rubbleSheet = new SpriteSheet(rubbleTex);
@@ -248,18 +268,57 @@ namespace paranothing
             boySheet.addAnimation("pushstill", new int[] { 49 });
             boySheet.addAnimation("disappear", new int[] { 50, 51, 52, 53, 54, 55, 56, 57 });
 
+            shadowTex = Content.Load<Texture2D>("Sprites/Shadow");
+            shadowSheet = new SpriteSheet(shadowTex);
+            shadowSheet.splitSheet(1, 4);
+            shadowSheet.addAnimation("walk", new int[] { 0, 1, 2 });
+            shadowSheet.addAnimation("stopwalk", new int[] { 2, 1, 0 });
+            shadowSheet.addAnimation("stand", new int[] { 2, 1, 0 });
+
             floorTex = Content.Load<Texture2D>("Sprites/floor");
             floorSheet = new SpriteSheet(floorTex);
-            floorSheet.addSprite(0, 0, floorTex.Width, floorTex.Height);
+            floorSheet.splitSheet(2, 1);
 
             wallTex = Content.Load<Texture2D>("Sprites/wall");
             wallSheet = new SpriteSheet(wallTex);
-            wallSheet.addSprite(0, 0, 16, 32);
+            wallSheet.splitSheet(1, 2);
 
             stairTex = Content.Load<Texture2D>("Sprites/Staircase");
             stairSheet = new SpriteSheet(stairTex);
-            stairSheet.addSprite(0, 0, 146, 112);
-            stairSheet.addSprite(146, 0, 146, 112);
+            stairSheet.splitSheet(1, 2);
+
+            doorTex = Content.Load<Texture2D>("Sprites/door");
+            doorSheet = new SpriteSheet(doorTex);
+            doorSheet.splitSheet(2, 3);
+            doorSheet.addAnimation("doorclosedpast", new int[] { 0 });
+            doorSheet.addAnimation("dooropeningpast", new int[] { 1 });
+            doorSheet.addAnimation("dooropenpast", new int[] { 2 });
+            doorSheet.addAnimation("doorclosedpresent", new int[] { 3 });
+            doorSheet.addAnimation("dooropeningpresent", new int[] { 4 });
+            doorSheet.addAnimation("dooropenpresent", new int[] { 5 });
+
+            oldPortraitTex = Content.Load<Texture2D>("Sprites/PortraitWoman");
+            oldPortraitSheet = new SpriteSheet(oldPortraitTex);
+            oldPortraitSheet.splitSheet(2, 1);
+
+            keyTex = Content.Load<Texture2D>("Sprites/Key");
+            keySheet = new SpriteSheet(keyTex);
+            keySheet.splitSheet(2, 1);
+
+            chairTex = Content.Load<Texture2D>("Sprites/chair");
+            chairSheet = new SpriteSheet(chairTex);
+            chairSheet.splitSheet(1, 2);
+
+            finalDoorTex = Content.Load<Texture2D>("Sprites/door_final");
+            finalDoorSheet = new SpriteSheet(finalDoorTex);
+            finalDoorSheet.splitSheet(1, 7);
+            finalDoorSheet.addAnimation("finaldoorclosed", new int[] { 0 });
+            finalDoorSheet.addAnimation("finaldooropening", new int[] { 1, 2, 3, 4, 5 });
+            finalDoorSheet.addAnimation("finaldooropen", new int[] { 6 });
+
+            buttonTex = Content.Load<Texture2D>("Sprites/button");
+            buttonSheet = new SpriteSheet(buttonTex);
+            buttonSheet.splitSheet(1, 2);
 
             sheetMan.addSheet("wallpaper", wallpaperSheet);
             sheetMan.addSheet("wardrobe", wardrobeSheet);
@@ -270,6 +329,12 @@ namespace paranothing
             sheetMan.addSheet("floor", floorSheet);
             sheetMan.addSheet("wall", wallSheet);
             sheetMan.addSheet("stair", stairSheet);
+            sheetMan.addSheet("door", doorSheet);
+            sheetMan.addSheet("oldportrait", oldportraitSheet);
+            sheetMan.addSheet("key", keySheet);
+            sheetMan.addSheet("chair", chairSheet);
+            sheetMan.addSheet("finaldoor", finalDoorSheet);
+            sheetMan.addSheet("button", buttonSheet);
 
             //leftWR = new Wardrobe(12, 126, "left");
             //rightWR = new Wardrobe(210, 126, "right");
@@ -347,11 +412,8 @@ namespace paranothing
             // TODO: Add your update logic here
             switch (control.state)
             {
-                case GameState.Title:
+                case GameState.MainMenu:
                     title.Update(this, Keyboard.GetState());
-                    break;
-                case GameState.Description:
-                    description.Update(this, Keyboard.GetState());
                     break;
                 case GameState.Game:
                     if (Keyboard.GetState().IsKeyDown(Keys.R) && !reloadpressed)
@@ -380,18 +442,18 @@ namespace paranothing
 
             switch (control.state)
             {
-                case GameState.Title:
+                case GameState.MainMenu:
                     spriteBatch.Begin();
                     title.Draw(spriteBatch);
                     drawTitleText();
                     spriteBatch.End();
                     break;
-                case GameState.Description:
-                    spriteBatch.Begin();
-                    description.Draw(spriteBatch);
-                    drawDescriptionText();
-                    spriteBatch.End();
-                    break;
+                //case GameState.Description:
+                //    spriteBatch.Begin();
+                //    description.Draw(spriteBatch);
+                //    drawDescriptionText();
+                //    spriteBatch.End();
+                //    break;
                 case GameState.Game:
                     Effect pastEffect = null;
                     if (control.timePeriod == TimePeriod.Past)
@@ -399,7 +461,7 @@ namespace paranothing
                     Matrix transform = Matrix.Identity;
                     transform *= Matrix.CreateTranslation(-control.camera.X, -control.camera.Y, 0);
                     transform *= Matrix.CreateScale(control.camera.scale);
-                    spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, pastEffect, transform);
+                    spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointWrap, null, null, pastEffect, transform);
                     drawWallpaper(spriteBatch, wallpaperSheet);
                     control.drawObjs(spriteBatch);
                     spriteBatch.End();

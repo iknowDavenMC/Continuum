@@ -10,5 +10,6 @@ namespace paranothing
         void lockObj(); // Can't use "lock" as the name of the method.
         void unlockObj();
         bool isLocked();
+        //bool keyFound();
     }
 }
