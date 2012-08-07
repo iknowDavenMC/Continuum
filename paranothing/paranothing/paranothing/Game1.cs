@@ -330,7 +330,7 @@ namespace paranothing
             sheetMan.addSheet("wall", wallSheet);
             sheetMan.addSheet("stair", stairSheet);
             sheetMan.addSheet("door", doorSheet);
-            sheetMan.addSheet("oldportrait", oldportraitSheet);
+            sheetMan.addSheet("oldportrait", oldPortraitSheet);
             sheetMan.addSheet("key", keySheet);
             sheetMan.addSheet("chair", chairSheet);
             sheetMan.addSheet("finaldoor", finalDoorSheet);

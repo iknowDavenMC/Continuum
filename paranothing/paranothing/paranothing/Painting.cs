@@ -27,6 +27,31 @@ namespace paranothing
             this.sheet = sheetMan.getSheet("portrait");
         }
 
+        public Portrait(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("portrait");
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            X = 0;
+            Y = 0;
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndPortrait") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
+        }
+
         public Texture2D getImage()
         {
             return sheet.image;

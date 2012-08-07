@@ -157,9 +157,69 @@ namespace paranothing
                 state = WardrobeState.Open;
             }
             frameLength = 80;
+            this.name = name;
             if (wardrobeDict.ContainsKey(name))
                 wardrobeDict.Remove(name);
             wardrobeDict.Add(name, this);
+        }
+
+        public Wardrobe(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("wardrobe");
+            int x = 0;
+            int y = 0;
+            startLocked = false;
+            name = "WR";
+            string link = "WR";
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndWardrobe") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { x = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("name:"))
+                {
+                    name = line.Substring(5).Trim();
+                }
+                if (line.StartsWith("locked:"))
+                {
+                    try { startLocked = bool.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("link:"))
+                {
+                    link = line.Substring(5).Trim();
+                }
+                lineNum++;
+            }
+            locked = startLocked;
+            if (startLocked)
+            {
+                Animation = "wardrobeclosed";
+                state = WardrobeState.Closed;
+            }
+            else
+            {
+                Animation = "wardrobeopening";
+                state = WardrobeState.Open;
+            }
+            positionPres = new Vector2(x, y);
+            positionPast1 = new Vector2(x, y);
+            positionPast2 = new Vector2(x, y);
+            if (wardrobeDict.ContainsKey(name))
+                wardrobeDict.Remove(name);
+            wardrobeDict.Add(name, this);
+            setLinkedWR(link);
         }
 
         # endregion

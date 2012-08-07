@@ -31,7 +31,6 @@ namespace paranothing
             intact = true;
             this.direction = direction;
             this.startIntact = true;
-            drawLayer = DrawLayer.Stairs;
         }
 
         public Stairs(float X, float Y, Direction direction, bool startIntact)
@@ -41,7 +40,47 @@ namespace paranothing
             intact = true;
             this.direction = direction;
             this.startIntact = startIntact;
-            drawLayer = DrawLayer.Stairs;
+        }
+
+        public Stairs(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("stair");
+            X = 0;
+            Y = 0;
+            direction = Direction.Left;
+            intact = true;
+            startIntact = true;
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndStair") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("direction:"))
+                {
+                    string dir = line.Substring(10).Trim();
+                    if (dir == "Right")
+                        direction = Direction.Right;
+                    else
+                        direction = Direction.Left;
+                }
+                if (line.StartsWith("intact:"))
+                {
+                    try { startIntact = bool.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
         }
 
         public void update(GameTime time)
@@ -63,7 +102,7 @@ namespace paranothing
                 sprite = sheet.getSprite(0);
             else
                 sprite = sheet.getSprite(1);
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, drawLayer);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, flip, DrawLayer.Stairs);
         }
 
         public bool isSolid()

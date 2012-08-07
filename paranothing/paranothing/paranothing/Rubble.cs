@@ -26,6 +26,32 @@ namespace paranothing
             this.sheet = sheetMan.getSheet("rubble");
             position = new Vector2(X, Y);
         }
+
+        public Rubble(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("rubble");
+            X = 0;
+            Y = 0;
+            int lineNum = 0;
+            string line = "";
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            while (!line.StartsWith("EndRubble") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
+        }
+
         # endregion
 
         # region Methods

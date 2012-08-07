@@ -29,6 +29,43 @@ namespace paranothing
             this.sheet = sheetMan.getSheet("floor");
         }
 
+        public Floor(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("floor");
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            X = 0;
+            Y = 0;
+            Width = 0;
+            Height = 0;
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndFloor") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("width:"))
+                {
+                    try { Width = int.Parse(line.Substring(6)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("height:"))
+                {
+                    try { Height = int.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
+        }
+
         public Rectangle getBounds()
         {
             return Box;
