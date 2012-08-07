@@ -24,7 +24,17 @@ namespace paranothing
             return sheet.image;
         }
 
-        public Stairs(float X, float Y, Direction direction, bool startIntact = true)
+        public Stairs(float X, float Y, Direction direction)
+        {
+            this.sheet = sheetMan.getSheet("stair");
+            position = new Vector2(X, Y);
+            intact = true;
+            this.direction = direction;
+            this.startIntact = true;
+            drawLayer = DrawLayer.Stairs;
+        }
+
+        public Stairs(float X, float Y, Direction direction, bool startIntact)
         {
             this.sheet = sheetMan.getSheet("stair");
             position = new Vector2(X, Y);

@@ -53,7 +53,7 @@ namespace paranothing
             addObject(camera);
         }
 
-        public void initLevel(bool preserveTime = true)
+        public void initLevel(bool preserveTime)
         {
             updatableObjs = new List<Updatable>();
             drawableObjs = new List<Drawable>();
@@ -241,7 +241,12 @@ namespace paranothing
 
         }
 
-        public bool collidingWithSolid(Rectangle box, bool includePlayer = true)
+        public bool collidingWithSolid(Rectangle box)
+        {
+            return collidingWithSolid(box, true);
+        }
+
+        public bool collidingWithSolid(Rectangle box, bool includePlayer)
         {
             foreach (Collideable col in collideableObjs)
             {
