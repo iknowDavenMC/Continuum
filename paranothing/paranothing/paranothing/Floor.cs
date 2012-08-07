@@ -8,6 +8,7 @@ namespace paranothing
 {
     class Floor : Drawable, Collideable, Saveable
     {
+        private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         private Vector2 position;
         public int X { get { return (int)position.X; } set { position.X = value; } }
@@ -45,7 +46,10 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Floor);
+            if (control.timePeriod == TimePeriod.Present)
+                renderer.Draw(sheet.image, Box, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Floor);
+            else
+                renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Floor);
         }
 
         public string saveData()

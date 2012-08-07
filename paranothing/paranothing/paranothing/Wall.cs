@@ -66,8 +66,13 @@ namespace paranothing
         }
         public void draw(SpriteBatch renderer, Color tint)
         {
-            if (intact)
-                renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
+            if (control.timePeriod == TimePeriod.Present)
+                if (!intact)
+                    renderer.Draw(sheet.image, Box, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
+                else
+                    renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
+            else if (control.timePeriod == TimePeriod.Past)
+                    renderer.Draw(sheet.image, Box, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
         }
 
         public string saveData()
