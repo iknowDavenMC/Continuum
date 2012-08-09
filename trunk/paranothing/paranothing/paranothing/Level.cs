@@ -135,6 +135,17 @@ namespace paranothing
                 }
                 // Chair
                 // Door
+                if (line.StartsWith("StartDoor"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndDoor") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Doors(objData));
+                }
                 // Wardrobe
                 if (line.StartsWith("StartWardrobe"))
                 {
@@ -148,6 +159,17 @@ namespace paranothing
                     addObj(new Wardrobe(objData));
                 }
                 // Key
+                if (line.StartsWith("StartKey"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndKey") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new DoorKeys(objData));
+                }
                 // Portrait
                 if (line.StartsWith("StartPortrait"))
                 {

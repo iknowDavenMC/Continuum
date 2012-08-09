@@ -98,11 +98,11 @@ namespace paranothing
         {
             if (visible)
             {
-                Vector2 drawPos = new Vector2(player.X + 8, player.Y - 30);
+                Vector2 drawPos = new Vector2(player.X + 11, player.Y - 27);
                 renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble);
-                renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.01f);
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.001f);
                 if (negated)
-                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(negateInd), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.02f);
+                    renderer.Draw(sheet.image, drawPos, sheet.getSprite(negateInd), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.002f);
             }
         }
 
