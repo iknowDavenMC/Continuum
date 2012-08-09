@@ -180,10 +180,48 @@ namespace paranothing
                         objData += "\n" + line;
                         lineNum++;
                     }
-                    addObj(new Portrait(objData));
+                    addObj(new Portrait(objData, "EndPortrait"));
                 }
                 // Older Painting
+                if (line.StartsWith("StartOldPainting"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndOldPainting") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Portrait(objData, "EndOldPainting"));
+                }
                 // Moved Painting
+                if (line.StartsWith("StartMovedPainting"))
+                {
+                    if (line.StartsWith("StartPresentPainting"))
+                    {
+                        objData = line;
+                        while (!line.StartsWith("EndPresentPainting") && lineNum < saveLines.Length)
+                        {
+                            line = saveLines[lineNum];
+                            objData += "\n" + line;
+                            lineNum++;
+                        }
+                        addObj(new Portrait(objData, TimePeriod.Present));
+                    }
+                    if (line.StartsWith("StartPastPainting"))
+                    {
+                        objData = line;
+                        while (!line.StartsWith("EndPastPainting") && lineNum < saveLines.Length)
+                        {
+                            line = saveLines[lineNum];
+                            objData += "\n" + line;
+                            lineNum++;
+                        }
+                        addObj(new Portrait(objData, TimePeriod.FarPast));
+                    }
+                    else
+                        break;
+                }
                 // Bookcase
                 // Button
                 // Wall
