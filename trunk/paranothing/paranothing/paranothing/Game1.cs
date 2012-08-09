@@ -64,6 +64,7 @@ namespace paranothing
         Texture2D wardrobeTex;
         SpriteSheet wardrobeSheet;
 
+        //Portrait
         Texture2D portraitTex;
         SpriteSheet portraitSheet;
 
@@ -242,6 +243,7 @@ namespace paranothing
             wardrobeSheet.addAnimation("wardrobeopening", new int[] { 1, 2, 3 });
             wardrobeSheet.addAnimation("wardrobeopen", new int[] { 4 });
 
+            //Portrait
             portraitTex = Content.Load<Texture2D>("Sprites/portrait");
             portraitSheet = new SpriteSheet(portraitTex);
             portraitSheet.splitSheet(2, 1);
@@ -305,6 +307,7 @@ namespace paranothing
             doorSheet.addAnimation("dooropeningpresent", new int[] { 4 });
             doorSheet.addAnimation("dooropenpresent", new int[] { 5 });
 
+            //Old Portrait
             oldPortraitTex = Content.Load<Texture2D>("Sprites/PortraitWoman");
             oldPortraitSheet = new SpriteSheet(oldPortraitTex);
             oldPortraitSheet.splitSheet(2, 1);

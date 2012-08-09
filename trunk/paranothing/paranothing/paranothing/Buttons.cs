@@ -131,5 +131,11 @@ namespace paranothing
         {
             return "StartButtons\nx:" + X + "\ny:" + Y + "\nname:" + name + "\nEndButtons"; 
         }
+
+        //reset
+        public void reset()
+        {
+
+        }
     }
 }
