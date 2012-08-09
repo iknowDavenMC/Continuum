@@ -19,6 +19,8 @@ namespace paranothing
         public Level level;
         public Camera camera;
 
+        private Dictionary<string, Level> levels;
+
         private static GameController instance;
 
         public static GameController getInstance()
@@ -35,8 +37,38 @@ namespace paranothing
             updatableObjs = new List<Updatable>();
             drawableObjs = new List<Drawable>();
             collideableObjs = new List<Collideable>();
+            levels = new Dictionary<string, Level>();
             state = GameState.Game;
             timePeriod = TimePeriod.Present;
+        }
+
+        public void addLevel(Level level)
+        {
+            levels.Add(level.name, level);
+        }
+
+        public void goToLevel(string levelName)
+        {
+            if (levels.ContainsKey(levelName))
+            {
+                levels.TryGetValue(levelName, out level);
+            }
+        }
+
+        public bool nextLevel()
+        {
+            string nextLevel = level.nextLevel;
+            if (levels.ContainsKey(nextLevel))
+            {
+                levels.TryGetValue(nextLevel, out level);
+                return true;
+            }
+            return false;
+        }
+
+        public string currLevel()
+        {
+            return level.name;
         }
 
         public void setPlayer(Boy player)
@@ -57,6 +89,7 @@ namespace paranothing
             updatableObjs = new List<Updatable>();
             drawableObjs = new List<Drawable>();
             collideableObjs = new List<Collideable>();
+            player.state = Boy.BoyState.Idle;
             player.X = level.playerX;
             player.Y = level.playerY;
             addObject(player);
@@ -67,8 +100,18 @@ namespace paranothing
                 addObject(obj);
             }
             if (!preserveTime)
-                timePeriod = TimePeriod.Present;
-            Console.WriteLine(level.getSaveString());
+                timePeriod = level.startTime;
+        }
+
+        public void resetLevel()
+        {
+            player.X = level.playerX;
+            player.Y = level.playerY;
+            foreach (Saveable obj in level.getObjs())
+            {
+                obj.reset();
+            }
+            timePeriod = level.startTime;
         }
 
         public void updateObjs(GameTime time)
@@ -83,7 +126,20 @@ namespace paranothing
             {
                 Boy.BoyState currState = player.state;
                 bool colliding = collides(((Collideable)obj).getBounds(), player.getBounds());
-                if (obj is DoorKeys)
+                if (obj is Shadows)
+                {
+                    Shadows shadow = (Shadows)obj;
+                    if (colliding && timePeriod == TimePeriod.Present && player.state != Boy.BoyState.StairsLeft && player.state != Boy.BoyState.StairsRight)
+                    {
+                        if (shadow.X > player.X)
+                            player.direction = Direction.Right;
+                        else
+                            player.direction = Direction.Left;
+                        player.state = Boy.BoyState.Die;
+                        shadow.state = Shadows.ShadowState.Idle;
+                    }
+                }
+                else if (obj is DoorKeys)
                 {
                     if (colliding)
                     {
@@ -221,6 +277,17 @@ namespace paranothing
                     }
                 }
             }
+            if (!collides(player.getBounds(), new Rectangle(0, 0, level.Width, level.Height)))
+            {
+                if (nextLevel())
+                    initLevel(true);
+                else
+                {
+                    goToLevel("Level1");
+                    initLevel(false);
+                    state = GameState.MainMenu;
+                }
+            }
         }
 
         public void drawObjs(SpriteBatch renderer)
@@ -241,7 +308,8 @@ namespace paranothing
 
         public bool collides(Rectangle box1, Rectangle box2)
         {
-            return Rectangle.Intersect(box1, box2).Width != 0;
+            Rectangle i = Rectangle.Intersect(box1, box2);
+                return i.Width != 0;
         }
 
         public void addObject(Object obj)

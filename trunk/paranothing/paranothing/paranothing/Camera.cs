@@ -36,6 +36,8 @@ namespace paranothing
                 X = 0;
             if (Y < 0 || level.Height < Height/scale)
                 Y = 0;
+            if (Height/scale > level.Height)
+                Y = -(int)((Height/scale - level.Height) / 2);
         }
     }
 }

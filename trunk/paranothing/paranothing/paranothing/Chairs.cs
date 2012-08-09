@@ -16,6 +16,8 @@ namespace paranothing
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 position;
+        private int tX = 0, tY = 0;
+        private int speed = 3;
         private Rectangle bounds;
         //Audible
         private Cue crCue;
@@ -131,23 +133,26 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
+            if (control.timePeriod == TimePeriod.Present)
+            renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
+            else
+            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
         }
 
         //Updatable
         public void update(GameTime time)
         {
+            int elapsed = time.ElapsedGameTime.Milliseconds;
             switch (state)
             {
-                case ChairsState.Down:
-                    Animation = "chairdown";
+                case ChairsState.Idle:
                     break;
                 case ChairsState.Up:
                     Animation = "chairup";
                     break;
                 case ChairsState.Moving:
-                    Animation = "chairmoving";
+                    X += tX * speed / elapsed;
+                    Y += tY * speed / elapsed;
                     break;
             }
             if (frameTime >= frameLength)
@@ -155,6 +160,30 @@ namespace paranothing
                 frameTime = 0;
                 frame = (frame + 1) % animFrames.Count;
             }
+        }
+
+        public void move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    tY = -1;
+                    break;
+                case Direction.Down:
+                    tY = 1;
+                    break;
+                case Direction.Left:
+                    tX = -1;
+                    break;
+                case Direction.Right:
+                    tX = 1;
+                    break;
+            }
+        }
+
+        public void drop()
+        {
+            state = ChairsState.Falling;
         }
 
         //Interactive

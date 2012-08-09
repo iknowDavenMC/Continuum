@@ -85,6 +85,8 @@ namespace paranothing
             }
         }
 
+        public void reset() { }
+
         public Rectangle getBounds()
         {
             return Box;

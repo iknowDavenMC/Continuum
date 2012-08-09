@@ -118,6 +118,28 @@ namespace paranothing
 
         # region Methods
 
+        public void reset()
+        {
+            locked = startLocked;
+
+            if (locked)
+            {
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "doorclosedpresent";
+                else
+                    Animation = "doorclosedpast";
+                state = DoorsState.Closed;
+            }
+            else
+            {
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "dooropeningpresent";
+                else
+                    Animation = "dooropeningpast";
+                state = DoorsState.Open;
+            }
+        }
+
         //Accessors & Mutators
         public int X
         {

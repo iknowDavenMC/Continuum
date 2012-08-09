@@ -73,6 +73,11 @@ namespace paranothing
             keyDict.Add(name, this);
         }
 
+        public void reset()
+        {
+            pickedUp = false;
+        }
+
         # endregion
 
         # region Methods

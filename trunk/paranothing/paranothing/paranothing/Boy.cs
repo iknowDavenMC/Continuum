@@ -41,13 +41,13 @@ namespace paranothing
         public float X { get { return position.X; } set { position.X = value; } }
         public float Y { get { return position.Y; } set { position.Y = value; } }
 
-        public enum BoyState { Idle, Walk, StairsLeft, StairsRight, PushWalk, PushingStill, Teleport, TimeTravel }
+        public enum BoyState { Idle, Walk, StairsLeft, StairsRight, PushWalk, PushingStill, Teleport, TimeTravel, ControllingChair, Die }
         public BoyState state;
         public Direction direction;
         public ActionBubble actionBubble;
         private Vector2 teleportTo;
         private Cue soundCue;
-
+        public Chairs nearestChair;
         public Interactive interactor;
 
         public Boy(float X, float Y, ActionBubble actionBubble)
@@ -69,6 +69,22 @@ namespace paranothing
             drawLayer = DrawLayer.Player;
         }
 
+        public void reset()
+        {
+            frame = 0;
+            frameTime = 0;
+            frameLength = 60;
+            position = new Vector2(X, Y);
+            Width = 38;
+            Height = 58;
+            state = BoyState.Idle;
+            Animation = "stand";
+            direction = Direction.Right;
+            actionBubble.Player = this;
+            actionBubble.show();
+            teleportTo = new Vector2();
+        }
+
         public Texture2D getImage()
         {
             return sheet.image;
@@ -85,43 +101,68 @@ namespace paranothing
 
         private void checkInput(GameController control)
         {
-            if (control.keyState.IsKeyDown(Keys.Space))
+            if (state != BoyState.Die)
             {
-                if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
+                if (control.keyState.IsKeyDown(Keys.Space))
                 {
-                    interactor.Interact();
+                    if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
+                    {
+                        interactor.Interact();
+                    }
                 }
-            }
-            else if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right)
-                && state != BoyState.Teleport && state != BoyState.TimeTravel)
-            {
-                if (direction == Direction.Right)
+                if (control.keyState.IsKeyDown(Keys.LeftControl))
                 {
-                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
-                        state = BoyState.Idle;
+                    if (nearestChair != null)
+                    {
+                        state = BoyState.ControllingChair;
+                    }
                 }
                 else
                 {
-                    if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
-                        state = BoyState.Idle;
+                    if (nearestChair != null && nearestChair.state == Chairs.ChairsState.Moving)
+                    {
+                        nearestChair.state = Chairs.ChairsState.Falling;
+                    }
+                }
+                if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right)
+                    && state != BoyState.Teleport && state != BoyState.TimeTravel)
+                {
+                    if (state != BoyState.ControllingChair)
+                    {
+                        if (direction == Direction.Right)
+                        {
+                            if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
+                                state = BoyState.Idle;
+                        }
+                        else
+                        {
+                            if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
+                                state = BoyState.Idle;
+                        }
+                    }
+                }
+                else
+                {
+                    if (state != BoyState.ControllingChair)
+                    {
+                        if (control.keyState.IsKeyDown(Keys.Right))
+                        {
+                            direction = Direction.Right;
+                            if (state == BoyState.Idle)
+                                state = BoyState.Walk;
+                        }
+                        else if (control.keyState.IsKeyDown(Keys.Left))
+                        {
+                            direction = Direction.Left;
+                            if (state == BoyState.Idle)
+                                state = BoyState.Walk;
+                        }
+                    }
+                    else
+                    {
+                    }
                 }
             }
-            else
-            {
-                if (control.keyState.IsKeyDown(Keys.Right))
-                {
-                    direction = Direction.Right;
-                    if (state == BoyState.Idle)
-                        state = BoyState.Walk;
-                }
-                else if (control.keyState.IsKeyDown(Keys.Left))
-                {
-                    direction = Direction.Left;
-                    if (state == BoyState.Idle)
-                        state = BoyState.Walk;
-                }
-            }
-
         }
 
         public void update(GameTime time)
@@ -227,6 +268,16 @@ namespace paranothing
                     {
                         Animation = "stand";
                         state = BoyState.Idle;
+                    }
+                    break;
+                case BoyState.Die:
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
+                    Animation = "disappear";
+                    if (frame == 7)
+                    {
+                        reset();
+                        control.resetLevel();
                     }
                     break;
             }

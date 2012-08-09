@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
-      <Time>2012-08-07T09:29:09.2067588-04:00</Time>
+      <Time>2012-08-09T09:29:15.5710096-04:00</Time>
     </Item>
     <Item>
       <Source>GameThumbnail.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
-      <Time>2012-08-07T09:29:09.3783489-04:00</Time>
+      <Time>2012-08-09T09:29:15.8050021-04:00</Time>
     </Item>
     <Item>
       <Source>screenshot.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
-      <Time>2012-08-07T09:29:09.3783489-04:00</Time>
+      <Time>2012-08-09T09:29:15.8050021-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stairs_intact.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
-      <Time>2012-08-07T09:29:09.2067588-04:00</Time>
+      <Time>2012-08-09T09:29:15.5710096-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\actions.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb</Output>
-      <Time>2012-08-07T09:29:09.1911597-04:00</Time>
+      <Time>2012-08-09T09:29:15.5554101-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Bruce.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb</Output>
-      <Time>2012-08-07T09:29:09.1911597-04:00</Time>
+      <Time>2012-08-09T09:29:15.5086116-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Portrait.png</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb</Output>
-      <Time>2012-08-07T09:29:09.1911597-04:00</Time>
+      <Time>2012-08-09T09:29:15.5554101-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Rubble.png</Source>
@@ -71,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb</Output>
-      <Time>2012-08-07T09:29:09.2067588-04:00</Time>
+      <Time>2012-08-09T09:29:15.5242111-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\StaircasePast.png</Source>
@@ -80,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb</Output>
-      <Time>2012-08-07T09:29:09.2067588-04:00</Time>
+      <Time>2012-08-09T09:29:15.5710096-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\StaircasePresent.png</Source>
@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb</Output>
-      <Time>2012-08-07T09:29:09.2223579-04:00</Time>
+      <Time>2012-08-09T09:29:15.5398106-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Wallpaper.png</Source>
@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb</Output>
-      <Time>2012-08-07T09:29:09.2223579-04:00</Time>
+      <Time>2012-08-09T09:29:15.6022086-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Wardrobe.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb</Output>
-      <Time>2012-08-07T09:29:09.2067588-04:00</Time>
+      <Time>2012-08-09T09:29:15.5242111-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\floor.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb</Output>
-      <Time>2012-08-07T09:29:09.2223579-04:00</Time>
+      <Time>2012-08-09T09:29:15.5866091-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Staircase.png</Source>
@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb</Output>
-      <Time>2012-08-07T09:29:09.2223579-04:00</Time>
+      <Time>2012-08-09T11:18:08.4327431-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\BruceSheet.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb</Output>
-      <Time>2012-08-07T09:29:09.237957-04:00</Time>
+      <Time>2012-08-09T09:29:15.6178081-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\wall.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb</Output>
-      <Time>2012-08-07T09:29:09.1755606-04:00</Time>
+      <Time>2012-08-09T09:29:15.5086116-04:00</Time>
     </Item>
     <Item>
       <Source>GameFont.spritefont</Source>
@@ -152,7 +152,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2012-08-07T09:29:09.3783489-04:00</Time>
+      <Time>2012-08-09T09:29:15.8050021-04:00</Time>
     </Item>
     <Item>
       <Source>TitleFont.spritefont</Source>
@@ -161,7 +161,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
-      <Time>2012-08-07T10:05:39.3522596-04:00</Time>
+      <Time>2012-08-09T09:29:15.8050021-04:00</Time>
     </Item>
     <Item>
       <Source>Greyscale.fx</Source>
@@ -170,7 +170,80 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb</Output>
-      <Time>2012-08-07T09:29:09.3783489-04:00</Time>
+      <Time>2012-08-09T09:29:15.8050021-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Button.png</Source>
+      <Name>Sprites\Button</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb</Output>
+      <Time>2012-08-09T09:29:15.5242111-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Chair.png</Source>
+      <Name>Sprites\Chair</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb</Output>
+      <Time>2012-08-09T09:29:15.6022086-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\door.png</Source>
+      <Name>Sprites\door</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb</Output>
+      <Time>2012-08-09T11:30:45.5977431-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Door_Final.png</Source>
+      <Name>Sprites\Door_Final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb</Output>
+      <Time>2012-08-09T09:29:15.5242111-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Key.png</Source>
+      <Name>Sprites\Key</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb</Output>
+      <Time>2012-08-09T09:29:15.6022086-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\PortraitWoman.png</Source>
+      <Name>Sprites\PortraitWoman</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb</Output>
+      <Time>2012-08-09T09:29:15.5242111-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Shadow.png</Source>
+      <Name>Sprites\Shadow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb</Output>
+      <Time>2012-08-09T09:29:15.6022086-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Soundtrack.mp3</Source>
+      <Name>Sounds\Soundtrack</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb</Output>
+      <Extra>C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma</Extra>
+      <Time>2012-08-09T09:35:18.8347431-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

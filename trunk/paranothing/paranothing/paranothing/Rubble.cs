@@ -52,6 +52,8 @@ namespace paranothing
             }
         }
 
+        public void reset() { }
+
         # endregion
 
         # region Methods
