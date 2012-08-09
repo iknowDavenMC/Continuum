@@ -193,7 +193,7 @@ namespace paranothing
 
         public string saveData()
         {
-            return "StartPortrait\nx:" + X + "\ny:" + Y + "\nEndPortrait";
+            return "StartChairs\nx:" + X + "\ny:" + Y + "\nEndChairs";
         }
 
         # endregion

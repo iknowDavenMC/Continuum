@@ -26,8 +26,8 @@ Shadows
 // Rubble
   // - position
 
-Chairs
-  - position
+//Chairs
+  //- position
 
 Doors
   - position
@@ -46,17 +46,17 @@ Keys
 // Paintings
   // - position
 
-Older Paintings
-  - position
+//Older Paintings
+  //- position
 
-Moved paintings
-  - position Present
-  - position Past
+//Moved paintings
+  //- position Present
+  //- position Past
 
-Bookcases
-  - position
-  - button A
-  - button B
+//Bookcases
+  //- position
+  //- button A
+  //- button B
 
-Buttons
-  - position
+//Buttons
+  //- position
