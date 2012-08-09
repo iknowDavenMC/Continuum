@@ -319,6 +319,12 @@ namespace paranothing
             this.keyName = keyName;
         }
 
+        //reset
+        public void reset()
+        {
+
+        }
+
         # endregion
     }
 }

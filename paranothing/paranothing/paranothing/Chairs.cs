@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Chairs : Collideable, Audible, Updatable, Drawable, Interactive, Saveable
+    public class Chairs : Collideable, Audible, Updatable, Drawable, Interactive, Saveable
     {
         # region Attributes
 
@@ -28,8 +28,8 @@ namespace paranothing
         private int frame;
         private string animName;
         private List<int> animFrames;
-        private enum ChairsState { Down, Up, Moving }
-        private ChairsState state;
+        public enum ChairsState { Down, Up, Idle, Falling, Moving }
+        public ChairsState state;
 
         # endregion
 
@@ -194,6 +194,12 @@ namespace paranothing
         public string saveData()
         {
             return "StartChairs\nx:" + X + "\ny:" + Y + "\nEndChairs";
+        }
+
+        //reset
+        public void reset()
+        {
+
         }
 
         # endregion
