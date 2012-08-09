@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Chairs : Collideable, Audible, Updatable, Drawable, Interactive
+    class Chairs : Collideable, Audible, Updatable, Drawable, Interactive, Saveable
     {
         # region Attributes
 
@@ -26,7 +26,7 @@ namespace paranothing
         private int frame;
         private string animName;
         private List<int> animFrames;
-        private enum ChairsState { Down, Lifting, Up, Moving, Falling }
+        private enum ChairsState { Down, Up, Moving }
         private ChairsState state;
 
         # endregion
@@ -39,6 +39,31 @@ namespace paranothing
             position = new Vector2(x, y);
             bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
             this.frameLength = frameLength;
+        }
+
+        public Chairs(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("chair");
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            X = 0;
+            Y = 0;
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndChairs") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
         }
 
         # endregion
@@ -118,29 +143,11 @@ namespace paranothing
                 case ChairsState.Down:
                     Animation = "chairdown";
                     break;
-                case ChairsState.Lifting:
-                    if (frame == 2)
-                    {
-                        Animation = "chairup";
-                        state = ChairsState.Up;
-                    }
-                    else
-                        Animation = "chairlifting";
-                    break;
                 case ChairsState.Up:
                     Animation = "chairup";
                     break;
                 case ChairsState.Moving:
                     Animation = "chairmoving";
-                    break;
-                case ChairsState.Falling:
-                    if (frame == 4)
-                    {
-                        Animation = "chairdown";
-                        state = ChairsState.Down;
-                    }
-                    else
-                        Animation = "chairmoving";
                     break;
             }
             if (frameTime >= frameLength)
@@ -153,6 +160,11 @@ namespace paranothing
         //Interactive
         public void Interact()
         {
+        }
+
+        public string saveData()
+        {
+            return "StartPortrait\nx:" + X + "\ny:" + Y + "\nEndPortrait";
         }
 
         # endregion
