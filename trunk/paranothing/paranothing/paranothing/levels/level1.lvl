@@ -120,6 +120,22 @@ x:60
 y:110
 EndPortrait
 
+StartOldPainting
+x:60
+y:110
+EndOldPainting
+
+StartMovedPainting
+StartPresentPainting
+x:60
+y:110
+EndPresentPainting
+StartPastPainting
+x:90
+y:110
+EndPastPainting
+EndMovedPainting
+
 StartRubble
 x:350
 y:144

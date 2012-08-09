@@ -27,15 +27,33 @@ namespace paranothing
             this.sheet = sheetMan.getSheet("portrait");
         }
 
-        public Portrait(string saveString)
+        public Portrait(string saveString, string str)
         {
             this.sheet = sheetMan.getSheet("portrait");
+            parseString(saveString, str);
+        }
+
+        //present past constructor
+        public Portrait(string saveString, TimePeriod period)
+        {
+            this.sheet = sheetMan.getSheet("portrait");
+            if (control.timePeriod == TimePeriod.Present)
+            {
+                parseString(saveString, "EndPresentPortrait");
+            }
+            if (control.timePeriod == TimePeriod.FarPast)
+            {
+                parseString(saveString, "EndPastPortrait");
+            }
+        }
+        private void parseString(string saveString, string str)
+        {
             string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             X = 0;
             Y = 0;
             int lineNum = 0;
             string line = "";
-            while (!line.StartsWith("EndPortrait") && lineNum < lines.Length)
+            while (!line.StartsWith(str) && lineNum < lines.Length)
             {
                 line = lines[lineNum];
                 if (line.StartsWith("x:"))
