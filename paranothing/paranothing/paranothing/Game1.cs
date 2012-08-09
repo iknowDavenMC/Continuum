@@ -18,6 +18,7 @@ namespace paranothing
         public static float ActionBubble = 0.01f;
         public static float Player = 0.02f;
         public static float Rubble = 0.03f;
+        public static float Key = 0.035f;
         public static float Wardrobe = 0.04f;
         public static float Floor = 0.05f;
         public static float Stairs = 0.06f;
@@ -39,8 +40,10 @@ namespace paranothing
         bool reloadpressed = false;
         Effect greyScale;
 
+        AudioEngine audioEngine;
         SoundBank soundBank;
         WaveBank waveBank;
+        Song bgMusic;
 
         Texture2D boyTex;
         SpriteSheet boySheet;
@@ -221,6 +224,13 @@ namespace paranothing
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            audioEngine = new AudioEngine(@"Content/Sounds/sounds.xgs");
+            waveBank = new WaveBank(audioEngine, @"Content/Sounds/Wave Bank.xwb");
+            soundBank = new SoundBank(audioEngine, @"Content/Sounds/Sound Bank.xsb");
+
+            bgMusic = Content.Load<Song>("Sounds/Soundtrack");
+            MediaPlayer.Play(bgMusic);
 
             greyScale = Content.Load<Effect>("Greyscale");
 

@@ -19,6 +19,7 @@ namespace paranothing
         private Vector2 positionPast1;
         private Vector2 positionPast2;
         private string name;
+        private string keyName = "";
         public int X
         {
             get
@@ -156,7 +157,7 @@ namespace paranothing
                 Animation = "wardrobeopening";
                 state = WardrobeState.Open;
             }
-            frameLength = 80;
+            frameLength = 160;
             this.name = name;
             if (wardrobeDict.ContainsKey(name))
                 wardrobeDict.Remove(name);
@@ -199,6 +200,10 @@ namespace paranothing
                 if (line.StartsWith("link:"))
                 {
                     link = line.Substring(5).Trim();
+                }
+                if (line.StartsWith("keyName:"))
+                {
+                    keyName = line.Substring(8).Trim();
                 }
                 lineNum++;
             }
@@ -269,16 +274,31 @@ namespace paranothing
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
+
+            if (keyName != "")
+            {
+                DoorKeys k = DoorKeys.getKey(keyName);
+                if (k != null)
+                {
+                    if (k.pickedUp && state == WardrobeState.Closed)
+                    {
+                        state = WardrobeState.Opening;
+                    }
+                }
+            }
+
             switch (state)
             {
                 case WardrobeState.Open:
                     Animation = "wardrobeopen";
                     break;
                 case WardrobeState.Opening:
+                    frameLength = 100;
                     if (frame == 2)
                     {
                         Animation = "wardrobeopen";
                         state = WardrobeState.Open;
+                        unlockObj();
                     }
                     else
                         Animation = "wardrobeopening";
@@ -317,7 +337,6 @@ namespace paranothing
         public void unlockObj()
         {
             locked = false;
-            state = WardrobeState.Opening;
         }
 
         public bool isLocked()
@@ -358,9 +377,15 @@ namespace paranothing
 
         public string saveData()
         {
-            return "StartWardrobe\nx:" + X + "\ny:" + Y + "\nname:" + name + "\nlocked:" + startLocked + "\nlink:" + linkedName + "\nEndWardrobe";
+            return "StartWardrobe\nx:" + X + "\ny:" + Y + "\nname:" + name + "\nlocked:" + startLocked + "\nlink:" + linkedName + "\nkeyName:" + keyName + "\nEndWardrobe";
         }
 
         # endregion
+
+
+        public void setKeyName(string keyName)
+        {
+            this.keyName = keyName;
+        }
     }
 }

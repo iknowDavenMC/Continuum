@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Doors : Collideable, Audible, Updatable, Drawable, Interactive, Lockable
+    class Doors : Collideable, Audible, Updatable, Drawable, Interactive, Lockable, Saveable
     {
         # region Attributes
 
@@ -16,11 +16,12 @@ namespace paranothing
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 position;
-        private Rectangle bounds;
+        private Rectangle bounds { get { return new Rectangle(X + 25, Y, 8, 75); } }
         //Audible
         private Cue drCue;
         //Drawable
         private SpriteSheet sheet;
+        private bool startLocked;
         private bool locked;
         private int frameTime;
         private int frameLength;
@@ -29,6 +30,7 @@ namespace paranothing
         private List<int> animFrames;
         private enum DoorsState { Closed, Opening, Open }
         private DoorsState state;
+        private string keyName;
 
         # endregion
 
@@ -38,19 +40,78 @@ namespace paranothing
         {
             this.sheet = sheetMan.getSheet("door");
             position = new Vector2(x, y);
-            bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
             locked = startLocked;
             this.frameLength = frameLength;
             if (locked)
             {
-                Animation = "doorsclosed";
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "doorclosedpresent";
+                else
+                    Animation = "doorclosed";
                 state = DoorsState.Closed;
             }
             else
             {
-                Animation = "doorsopening";
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "dooropeningpresent";
+                else
+                    Animation = "dooropeningpast";
                 state = DoorsState.Open;
             }
+        }
+
+        public Doors(string saveString)
+        {
+            this.sheet = sheetMan.getSheet("door");
+            X = 0;
+            Y = 0;
+            startLocked = false;
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndDoor") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("locked:"))
+                {
+                    try { startLocked = bool.Parse(line.Substring(7)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("keyName:"))
+                {
+                    keyName = line.Substring(8).Trim();
+                }
+                lineNum++;
+            }
+            locked = startLocked;
+            
+            if (locked)
+            {
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "doorclosedpresent";
+                else
+                    Animation = "doorclosedpast";
+                state = DoorsState.Closed;
+            }
+            else
+            {
+                if (control.timePeriod == TimePeriod.Present)
+                    Animation = "dooropeningpresent";
+                else
+                    Animation = "dooropeningpast";
+                state = DoorsState.Open;
+            }
+
         }
 
         # endregion
@@ -135,28 +196,47 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             Rectangle sprite = sheet.getSprite(animFrames.ElementAt(frame));
-            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
+            renderer.Draw(sheet.image, position, sprite, tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);
         }
 
         //Updatable
         public void update(GameTime time)
         {
+            int elapsed = time.ElapsedGameTime.Milliseconds;
+            frameTime += elapsed;
+            if (keyName != "")
+            {
+                DoorKeys k = DoorKeys.getKey(keyName);
+                if (k != null)
+                {
+                    if (k.pickedUp && state == DoorsState.Closed)
+                    {
+                        state = DoorsState.Opening;
+                        frameLength = 100;
+                        unlockObj();
+                    }
+                }
+            }
+
+            string timeP = "past";
+            if (control.timePeriod == TimePeriod.Present)
+                timeP = "present";
             switch (state)
             {
                 case DoorsState.Open:
-                    Animation = "doorsopen";
+                    Animation = "dooropen" + timeP;
                     break;
                 case DoorsState.Opening:
-                    if (frame == 2)
+                    if (frameTime >= frameLength)
                     {
-                        Animation = "doorsopen";
+                        Animation = "dooropen" + timeP;
                         state = DoorsState.Open;
                     }
                     else
-                        Animation = "doorsopening";
+                        Animation = "dooropening" + timeP;
                     break;
                 case DoorsState.Closed:
-                    Animation = "doorsclosed";
+                    Animation = "doorclosed" + timeP;
                     break;
             }
             if (frameTime >= frameLength)
@@ -166,11 +246,21 @@ namespace paranothing
             }
         }
 
+        public void setKeyName(string keyName)
+        {
+            this.keyName = keyName;
+        }
+
         //Interactive
         public void Interact()
         {
         }
 
         # endregion
+
+        public string saveData()
+        {
+            return "StartDoor\nx:" + X + "\ny:" + Y + "\nlocked:" + startLocked + "\nkeyName:" + keyName + "\nEndDoor";
+        }
     }
 }

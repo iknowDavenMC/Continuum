@@ -10,7 +10,6 @@ namespace paranothing
     class GameController
     {
         public KeyboardState keyState;
-
         private List<Updatable> updatableObjs;
         private List<Drawable> drawableObjs;
         private List<Collideable> collideableObjs;
@@ -84,7 +83,15 @@ namespace paranothing
             {
                 Boy.BoyState currState = player.state;
                 bool colliding = collides(((Collideable)obj).getBounds(), player.getBounds());
-                if (obj is Stairs)
+                if (obj is DoorKeys)
+                {
+                    if (colliding)
+                    {
+                        DoorKeys key = (DoorKeys)obj;
+                        key.pickedUp = true;
+                    }
+                }
+                else if (obj is Stairs)
                 {
                     Stairs stair = (Stairs)obj;
                     if (stair.isSolid())
@@ -137,14 +144,14 @@ namespace paranothing
                 }
                 else if (obj is Wardrobe)
                 {
-                    Wardrobe wardrobe = (Wardrobe) obj;
+                    Wardrobe wardrobe = (Wardrobe)obj;
                     if (colliding && player.X + (player.direction == Direction.Left ? 8 : 32) > wardrobe.X)
                     {
                         bool negated = false;
                         if (collides(wardrobe.enterBox, player.getBounds()))
                         {
                             Wardrobe linkedWR = wardrobe.getLinkedWR();
-                            if (wardrobe.isLocked() || linkedWR == null 
+                            if (wardrobe.isLocked() || linkedWR == null
                                 || linkedWR.isLocked() || collidingWithSolid(linkedWR.enterBox))
                                 negated = true;
                             if (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk)
@@ -188,6 +195,19 @@ namespace paranothing
                         }
                     }
                 }
+                else if (obj is Doors)
+                {
+                    Doors door = (Doors)obj;
+                    if (door.isLocked())
+                    {
+                        if (colliding && player.state == Boy.BoyState.Walk)
+                        {
+                            if ((player.direction == Direction.Left && player.X > door.getBounds().X)
+                                || (player.direction == Direction.Right && player.X < door.getBounds().X))
+                                player.state = Boy.BoyState.PushingStill;
+                        }
+                    }
+                }
                 else
                 {
                     if (!player.actionBubble.isVisible() && !(player.interactor is Wardrobe))
@@ -197,7 +217,7 @@ namespace paranothing
                     {
                         if ((player.direction == Direction.Left && player.X > collider.getBounds().X)
                             || (player.direction == Direction.Right && player.X < collider.getBounds().X))
-                        player.state = Boy.BoyState.PushingStill;
+                            player.state = Boy.BoyState.PushingStill;
                     }
                 }
             }
