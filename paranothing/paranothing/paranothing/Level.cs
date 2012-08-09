@@ -134,6 +134,17 @@ namespace paranothing
                     addObj(new Rubble(objData));
                 }
                 // Chair
+                if (line.StartsWith("StartChairs"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndChairs") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Chairs(objData));
+                }
                 // Door
                 if (line.StartsWith("StartDoor"))
                 {
