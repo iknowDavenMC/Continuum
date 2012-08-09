@@ -1,6 +1,6 @@
 StartLevel
-levelName:Level1
-nextLevel:Level2
+levelName:Level2
+nextLevel:Level3
 startTime:present
 playerX:20
 playerY:130
@@ -78,7 +78,7 @@ EndFloor
 StartDoor
 x:135
 y:7
-locked:false
+locked:true
 keyName:EndDoorKey
 EndDoor
 
@@ -106,16 +106,16 @@ EndStair
 StartWardrobe
 x:190
 y:0
-name:Wardrobe1
-link:Wardrobe2
+name:Wardrobe3
+link:Wardrobe4
 locked:false
 EndWardrobe
 
 StartWardrobe
 x:260
 y:90
-name:Wardrobe2
-link:Wardrobe1
+name:Wardrobe4
+link:Wardrobe3
 locked:false
 EndWardrobe
 
@@ -130,29 +130,14 @@ x:60
 y:110
 EndPortrait
 
-StartOldPainting
-x:60
-y:110
-EndOldPainting
-
-StartMovedPainting
-StartPresentPainting
-x:60
-y:110
-EndPresentPainting
-StartPastPainting
-x:90
-y:110
-EndPastPainting
-EndMovedPainting
-
 StartRubble
 x:350
 y:144
 EndRubble
-
-StartChairs
-x:80
-y:26
-EndChairs
 EndLevel
+
+StartShadow
+x:150
+y:91
+patrolDist:50
+EndShadow

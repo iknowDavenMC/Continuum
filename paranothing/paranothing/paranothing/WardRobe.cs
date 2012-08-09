@@ -15,6 +15,7 @@ namespace paranothing
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
+        private Vector2 startPos;
         private Vector2 positionPres;
         private Vector2 positionPast1;
         private Vector2 positionPast2;
@@ -142,6 +143,7 @@ namespace paranothing
         public Wardrobe(int x, int y, string name, bool startLocked = false)
         {
             this.sheet = sheetMan.getSheet("wardrobe");
+            startPos = new Vector2(x, y);
             positionPres = new Vector2(x, y);
             positionPast1 = new Vector2(x, y);
             positionPast2 = new Vector2(x, y);
@@ -218,6 +220,7 @@ namespace paranothing
                 Animation = "wardrobeopening";
                 state = WardrobeState.Open;
             }
+            startPos = new Vector2(x, y);
             positionPres = new Vector2(x, y);
             positionPast1 = new Vector2(x, y);
             positionPast2 = new Vector2(x, y);
@@ -225,6 +228,25 @@ namespace paranothing
                 wardrobeDict.Remove(name);
             wardrobeDict.Add(name, this);
             setLinkedWR(link);
+        }
+
+        public void reset()
+        {
+            positionPres = new Vector2(startPos.X, startPos.Y);
+            positionPast1 = new Vector2(startPos.X, startPos.Y);
+            positionPast2 = new Vector2(startPos.X, startPos.Y);
+            locked = startLocked;
+
+            if (startLocked)
+            {
+                Animation = "wardrobeclosed";
+                state = WardrobeState.Closed;
+            }
+            else
+            {
+                Animation = "wardrobeopening";
+                state = WardrobeState.Open;
+            }
         }
 
         # endregion

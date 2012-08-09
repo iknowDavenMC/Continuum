@@ -69,4 +69,17 @@ C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level1.lvl
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level1.lvl
-C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe.config
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\sounds.xgs
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Wave Bank.xwb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Sound Bank.xsb
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level2.lvl
+C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\tutorial.lvl

@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -37,7 +36,6 @@ namespace paranothing
         SpriteBatch spriteBatch;
 
         # region Attributes
-        bool reloadpressed = false;
         Effect greyScale;
 
         AudioEngine audioEngine;
@@ -126,7 +124,6 @@ namespace paranothing
         private Vector2 startPosition;
         //Description
         private GameBackground description;
-
 
         # endregion
 
@@ -276,6 +273,7 @@ namespace paranothing
             boySheet.addAnimation("endpush", new int[] { 39, 38, 37, 36 });
             boySheet.addAnimation("push", new int[] { 41, 42, 43, 44, 45, 46, 47, 48 });
             boySheet.addAnimation("pushstill", new int[] { 49 });
+            boySheet.addAnimation("control", new int[] { 50, 51, 52, 53 });
             boySheet.addAnimation("disappear", new int[] { 50, 51, 52, 53, 54, 55, 56, 57 });
 
             shadowTex = Content.Load<Texture2D>("Sprites/Shadow");
@@ -283,7 +281,7 @@ namespace paranothing
             shadowSheet.splitSheet(1, 4);
             shadowSheet.addAnimation("walk", new int[] { 0, 1, 2 });
             shadowSheet.addAnimation("stopwalk", new int[] { 2, 1, 0 });
-            shadowSheet.addAnimation("stand", new int[] { 2, 1, 0 });
+            shadowSheet.addAnimation("stand", new int[] { 3 });
 
             floorTex = Content.Load<Texture2D>("Sprites/floor");
             floorSheet = new SpriteSheet(floorTex);
@@ -345,51 +343,19 @@ namespace paranothing
             sheetMan.addSheet("chair", chairSheet);
             sheetMan.addSheet("finaldoor", finalDoorSheet);
             sheetMan.addSheet("button", buttonSheet);
-
-            //leftWR = new Wardrobe(12, 126, "left");
-            //rightWR = new Wardrobe(210, 126, "right");
-            //leftWR.setLinkedWR("right");
-            //rightWR.setLinkedWR("left");
-
-            //f1 = new Floor(0, 208, 400, 8);
-            //f2 = new Floor(0, 298, 400, 8);
-
-            //leftWall = new Wall(-8, 0, 16, 300);
-            //rightWallTop = new Wall(392, 0, 16, 126);
-            //rightWallBottom = new Wall(392, 216, 16, 84);
-            //exitWall = new Wall(392, 126, 16, 84, false);
-            //obstacleWall = new Wall(170, 0, 16, 208);
-
-            //lowerPortrait = new Portrait(256, 233);
-            //upperPortrait = new Portrait(310, 143);
-
-            //stairs = new Stairs(100, 186, Direction.Left, false);
+            sheetMan.addSheet("shadow", shadowSheet);
 
             actionBubble = new ActionBubble();
             player = new Boy(254, 240, actionBubble);
-            Level l = new Level();
-            l.loadFromFile("levels/level1.lvl");
-            Camera camera = new Camera(0, 360, 1280, 720, 4.0f);
-
-            control.level = l;
+            Camera camera = new Camera(0, 360, 1280, 720, 2.0f);
+            control.addLevel(new Level("levels/tutorial.lvl"));
+            control.addLevel(new Level("levels/level1.lvl"));
+            control.addLevel(new Level("levels/level2.lvl"));
+            control.goToLevel("Level1");
             control.setPlayer(player);
             control.setCamera(camera);
             control.initLevel(false);
-            /*
-            control.addObject(actionBubble);
-            control.addObject(lowerPortrait);
-            control.addObject(upperPortrait);
-            control.addObject(leftWR);
-            control.addObject(rightWR);
-            control.addObject(f1);
-            control.addObject(f2);
-            control.addObject(leftWall);
-            control.addObject(rightWallTop);
-            control.addObject(exitWall);
-            control.addObject(rightWallBottom);
-            control.addObject(obstacleWall);
-            control.addObject(stairs);
-            */
+
             // TODO: use this.Content to load your game content here
             loadTitleContents();
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
@@ -415,26 +381,14 @@ namespace paranothing
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            //graphics.PreferredBackBufferWidth = (int)(ScreenWidth * scale);
-            //graphics.PreferredBackBufferHeight = (int)(ScreenHeight * scale);
-            //graphics.ApplyChanges();
-
             // TODO: Add your update logic here
+            
             switch (control.state)
             {
                 case GameState.MainMenu:
                     title.Update(this, Keyboard.GetState());
                     break;
                 case GameState.Game:
-                    if (Keyboard.GetState().IsKeyDown(Keys.R) && !reloadpressed)
-                    {
-                        reloadpressed = true;
-                        control.level = new Level();
-                        control.level.loadFromFile("levels/level1.lvl");
-                        control.initLevel(false);
-                    }
-                    else if (Keyboard.GetState().IsKeyUp(Keys.R))
-                        reloadpressed = false;
                     control.updateObjs(gameTime);
                     break;
             }
@@ -448,7 +402,7 @@ namespace paranothing
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(new Color(20,20,20));
 
             switch (control.state)
             {
@@ -494,16 +448,23 @@ namespace paranothing
             Color paperColor = control.level.wallpaperColor;
             if (control.timePeriod == TimePeriod.Past)
                 paperColor.A = 16;
-            int startX = (int)(Math.Floor((float)control.camera.X / paperBounds.Width) - 1) * paperBounds.Width;
-            int xCount = ScreenWidth / paperBounds.Height + 2;
-            int startY = (int)(Math.Floor((float)control.camera.Y / paperBounds.Height) - 1) * paperBounds.Height;
-            int yCount = ScreenHeight / paperBounds.Height + 2;
+            int startX = (int)(Math.Floor((float)-control.camera.X / paperBounds.Width)) * paperBounds.Width;
+            int xCount = control.level.Width / paperBounds.Height + 2;
+            int startY = (int)(Math.Floor((float)-control.camera.Y / paperBounds.Height)) * paperBounds.Height;
+            int yCount = control.level.Height / paperBounds.Height + 1;
                // float minZ = (float)Math.Floor(ball.Z / 10) * 10.0f - 10;
             for (int drawX = 0; drawX < xCount; drawX++)
             {
                 for (int drawY = 0; drawY < yCount; drawY++)
                 {
-                    spriteBatch.Draw(wallpaper.image, new Vector2(drawX * paperBounds.Width + startX, drawY * paperBounds.Height + startY), paperBounds, paperColor, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Wallpaper);
+                    Rectangle drawRect = new Rectangle(drawX * paperBounds.Width + startX, drawY * paperBounds.Height + startY, paperBounds.Width, paperBounds.Height);
+                    Rectangle srcRect = new Rectangle(paperBounds.X, paperBounds.Y, paperBounds.Width, paperBounds.Height);
+                    if ((drawY + 1) * paperBounds.Height + startY > control.level.Height)
+                    {
+                        drawRect.Height = control.level.Height - (drawY * paperBounds.Height + startY);
+                        srcRect.Height = drawRect.Height;
+                    }
+                    spriteBatch.Draw(wallpaper.image, drawRect, srcRect, paperColor, 0f, new Vector2(),SpriteEffects.None, DrawLayer.Wallpaper);
                 }
             }
             if (control.timePeriod == TimePeriod.Present)
@@ -514,7 +475,14 @@ namespace paranothing
                 {
                     for (int drawY = 0; drawY < yCount; drawY++)
                     {
-                        spriteBatch.Draw(wallpaper.image, new Vector2(drawX * paperBounds.Width + startX, drawY * paperBounds.Height + startY), paperBounds, Color.White, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.WallpaperTears);
+                        Rectangle drawRect = new Rectangle(drawX * paperBounds.Width + startX, drawY * paperBounds.Height + startY, paperBounds.Width, paperBounds.Height);
+                        Rectangle srcRect = new Rectangle(paperBounds.X, paperBounds.Y, paperBounds.Width, paperBounds.Height);
+                        if ((drawY + 1) * paperBounds.Height + startY > control.level.Height)
+                        {
+                            drawRect.Height = control.level.Height - (drawY * paperBounds.Height + startY);
+                            srcRect.Height = drawRect.Height;
+                        }
+                        spriteBatch.Draw(wallpaper.image, drawRect, srcRect, Color.White, 0f, new Vector2(), SpriteEffects.None, DrawLayer.WallpaperTears);
                     }
                 }
             }

@@ -12,6 +12,9 @@ namespace paranothing
         public int Width, Height; // Complete width and height of the level
         public int playerX, playerY; // Player's starting position
         public Color wallpaperColor;
+        public string name { get; private set; }
+        public string nextLevel { get; private set; }
+        public TimePeriod startTime;
         private List<Saveable> savedObjs;
         public Level()
         {
@@ -20,17 +23,25 @@ namespace paranothing
             playerX = 38;
             playerY = 58;
             savedObjs = new List<Saveable>();
+            startTime = TimePeriod.Present;
             wallpaperColor = Color.White;
         }
 
-        public Level(int Width, int Height, int playerX, int playerY, Color wallpaperColor)
+        public Level(int Width, int Height, int playerX, int playerY, Color wallpaperColor, TimePeriod startTime)
         {
             this.Width = Width;
             this.Height = Height;
             this.playerX = playerX;
             this.playerY = playerY;
+            this.startTime = startTime;
             this.wallpaperColor = wallpaperColor;
             savedObjs = new List<Saveable>();
+        }
+
+        public Level(string filename)
+        {
+            savedObjs = new List<Saveable>();
+            loadFromFile(filename);
         }
 
         public void addObj(Saveable obj)
@@ -51,10 +62,12 @@ namespace paranothing
         public string getSaveString()
         {
             string saveString = "StartLevel";
+            saveString += "\nlevelName:" + name;
             saveString += "\nplayerX:" + playerX;
             saveString += "\nplayerY:" + playerY;
             saveString += "\nwidth:" + Width;
             saveString += "\nheight:" + Height;
+            saveString += "\nstartTime:" + startTime;
             saveString += "\ncolor:" + wallpaperColor.R+","+wallpaperColor.G+","+wallpaperColor.B;
             foreach (Saveable obj in savedObjs)
             {
@@ -98,6 +111,10 @@ namespace paranothing
                 string objData = "";
                 line = saveLines[lineNum];
                 // Level attributes
+                if (line.StartsWith("levelName:"))
+                    name = line.Substring(10).Trim();
+                if (line.StartsWith("nextLevel:"))
+                    nextLevel = line.Substring(10).Trim();
                 if (line.StartsWith("playerX:"))
                     playerX = int.Parse(line.Substring(8));
                 if (line.StartsWith("playerY:"))
@@ -106,9 +123,37 @@ namespace paranothing
                     Width = int.Parse(line.Substring(6));
                 if (line.StartsWith("height:"))
                     Height = int.Parse(line.Substring(7));
+                if (line.StartsWith("startTime:"))
+                {
+                    startTime = TimePeriod.Present;
+                    string time = line.Substring(10).Trim();
+                    if (time == "present")
+                    {
+                        startTime = TimePeriod.Present;
+                    }
+                    if (time == "past")
+                    {
+                        startTime = TimePeriod.Past;
+                    }
+                    if (time == "farpast")
+                    {
+                        startTime = TimePeriod.FarPast;
+                    }
+                }
                 if (line.StartsWith("color:"))
                     wallpaperColor = parseColor(line.Substring(6));
                 // Shadow
+                if (line.StartsWith("StartShadow"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndShadow") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Shadows(objData));
+                }
                 // Stairs
                 if (line.StartsWith("StartStair"))
                 {

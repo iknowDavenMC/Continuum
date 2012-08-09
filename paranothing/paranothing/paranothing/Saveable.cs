@@ -8,5 +8,6 @@ namespace paranothing
     interface Saveable
     {
         string saveData();
+        void reset();
     }
 }

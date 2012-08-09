@@ -70,6 +70,8 @@ namespace paranothing
             }
         }
 
+        public void reset(){}
+
         public Texture2D getImage()
         {
             return sheet.image;

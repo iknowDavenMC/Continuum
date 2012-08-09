@@ -83,6 +83,8 @@ namespace paranothing
             }
         }
 
+        public void reset() { }
+
         public void update(GameTime time)
         {
             if (control.timePeriod == TimePeriod.Past)
