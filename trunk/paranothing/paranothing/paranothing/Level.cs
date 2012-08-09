@@ -279,7 +279,29 @@ namespace paranothing
                         break;
                 }
                 // Bookcase
+                if (line.StartsWith("StartBookases"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndBookases") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Bookcases(objData));
+                }
                 // Button
+                if (line.StartsWith("StartButtons"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndButtons") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Buttons(objData));
+                }
                 // Wall
                 if (line.StartsWith("StartWall"))
                 {
