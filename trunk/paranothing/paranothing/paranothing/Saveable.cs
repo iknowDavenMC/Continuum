@@ -5,7 +5,7 @@ using System.Text;
 
 namespace paranothing
 {
-    interface Saveable
+    public interface Saveable
     {
         string saveData();
         void reset();

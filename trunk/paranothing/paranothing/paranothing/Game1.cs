@@ -101,6 +101,8 @@ namespace paranothing
         Boy player;
         ActionBubble actionBubble;
 
+        public static GameStorage gameStorage;
+
         //Wardrobe leftWR;
         //Wardrobe rightWR;
 
@@ -126,6 +128,8 @@ namespace paranothing
         private Vector2 startPosition;
         //Description
         private GameBackground description;
+
+        private Level tutorial, level1, level2;
 
         public bool gameInProgress = false;
 
@@ -362,10 +366,16 @@ namespace paranothing
             actionBubble = new ActionBubble();
             player = new Boy(254, 240, actionBubble);
             Camera camera = new Camera(0, 360, 1280, 720, 2.0f);
-            control.addLevel(new Level("levels/tutorial.lvl"));
-            control.addLevel(new Level("levels/level1.lvl"));
-            control.addLevel(new Level("levels/level2.lvl"));
-            control.goToLevel("Level1");
+            tutorial = new Level("levels/tutorial.lvl");
+            level1 = new Level("levels/level1.lvl");
+            level2 = new Level("levels/level2.lvl");
+            control.addLevel(tutorial);
+            control.addLevel(level1);
+            control.addLevel(level2);
+            control.goToLevel("Tutorial");
+
+            GameTitle.levelName = "Tutorial";
+
             control.setPlayer(player);
             control.setCamera(camera);
             control.initLevel(false);
@@ -381,16 +391,18 @@ namespace paranothing
             
             actionBubble = new ActionBubble();
             player = new Boy(254, 240, actionBubble);
-            Level l = new Level();
-            l.loadFromFile("levels/level1.lvl");
+            //control.goToLevel("Tutorial");
+
+            //GameTitle.levelName = "Tutorial";
+
             Camera camera = new Camera(0, 360, 1280, 720, 2.0f);
 
-            control.level = l;
+            //control.level = l;
             control.setPlayer(player);
             control.setCamera(camera);
             control.initLevel(false);
 
-            loadTitleContents();
+            //loadTitleContents();
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
 
         }
@@ -430,6 +442,7 @@ namespace paranothing
                 case GameState.Game:
 
                     gameInProgress = true;
+                    title.gameSaved = true;
 
                     control.updateObjs(gameTime);
                     break;

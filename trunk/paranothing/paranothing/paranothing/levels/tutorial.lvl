@@ -8,13 +8,6 @@ width:662
 height:180
 color:255,255,192
 
-StartWall
-x:0
-y:0
-width:8
-height:180
-intact:true
-EndWall
 
 StartWall
 x:160

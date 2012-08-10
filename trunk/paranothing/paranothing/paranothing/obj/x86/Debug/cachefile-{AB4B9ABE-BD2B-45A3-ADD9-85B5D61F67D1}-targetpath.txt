@@ -14,9 +14,6 @@ Content\Sprites\floor.xnb
 Content\Sprites\Staircase.xnb
 Content\Sprites\BruceSheet.xnb
 Content\Sprites\wall.xnb
-Content\GameFont.xnb
-Content\TitleFont.xnb
-Content\Greyscale.xnb
 Content\Sprites\Button.xnb
 Content\Sprites\Chair.xnb
 Content\Sprites\door.xnb
@@ -24,7 +21,10 @@ Content\Sprites\Door_Final.xnb
 Content\Sprites\Key.xnb
 Content\Sprites\PortraitWoman.xnb
 Content\Sprites\Shadow.xnb
+Content\GameFont.xnb
+Content\TitleFont.xnb
 Content\MenuFont.xnb
+Content\Greyscale.xnb
 Content\Sounds\Soundtrack.xnb
 Content\Sounds\Soundtrack.wma
 Content\Sounds\sounds.xgs
