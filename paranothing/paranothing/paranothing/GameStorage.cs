@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -154,10 +155,10 @@ namespace paranothing
                     int buttonsPosY = buttons.getY();
                     writer.WriteLine(buttonsPosY.ToString());
                     
-                     * */
+                     * 
                     //close
                     writer.Close();
-                }
+  /              }
             }
 
         }
@@ -206,3 +207,4 @@ namespace paranothing
         # endregion
     }
 }
+*/
