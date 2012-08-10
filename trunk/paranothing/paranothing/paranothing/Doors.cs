@@ -226,7 +226,7 @@ namespace paranothing
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
-            if (keyName != "")
+            if (keyName != null && keyName != "")
             {
                 DoorKeys k = DoorKeys.getKey(keyName);
                 if (k != null)

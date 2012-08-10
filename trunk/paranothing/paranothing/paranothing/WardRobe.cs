@@ -118,8 +118,8 @@ namespace paranothing
         private int frame;
         private string animName;
         private List<int> animFrames;
-        private enum WardrobeState { Closed, Opening, Open }
-        private WardrobeState state;
+        public enum WardrobeState { Closed, Opening, Open }
+        public WardrobeState state;
         public string Animation
         {
             get { return animName; }

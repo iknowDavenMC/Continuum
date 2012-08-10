@@ -113,7 +113,7 @@ namespace paranothing
 
         public bool isSolid()
         {
-            return true;
+            return false;
         }
 
         //Drawable
