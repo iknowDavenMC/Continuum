@@ -422,15 +422,6 @@ namespace paranothing
 
                     gameInProgress = true;
 
-                    if (Keyboard.GetState().IsKeyDown(Keys.R) && !reloadpressed)
-                    {
-                        reloadpressed = true;
-                        control.level = new Level();
-                        control.level.loadFromFile("levels/level1.lvl");
-                        control.initLevel(false);
-                    }
-                    else if (Keyboard.GetState().IsKeyUp(Keys.R))
-                        reloadpressed = false;
                     control.updateObjs(gameTime);
                     break;
             }
