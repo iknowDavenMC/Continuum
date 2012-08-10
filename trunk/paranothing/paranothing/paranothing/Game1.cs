@@ -184,7 +184,8 @@ namespace paranothing
         {
             title.setTopTextRectangle(titleFont.MeasureString("Continuum"));
             drawText("Continuum", titleFont, Color.WhiteSmoke, title.TopTextRectangle.X, title.TopTextRectangle.Y);
-            spriteBatch.DrawString(gameFont, "Press 'Enter' to start", startPosition, Color.DarkMagenta);
+            if (title.titleState == GameTitle.TitleState.Title)
+                spriteBatch.DrawString(gameFont, "Press 'Enter' to start", startPosition, Color.DarkMagenta);
         }
 
         //Description
@@ -382,7 +383,7 @@ namespace paranothing
             player = new Boy(254, 240, actionBubble);
             Level l = new Level();
             l.loadFromFile("levels/level1.lvl");
-            Camera camera = new Camera(0, 360, 1280, 720, 4.0f);
+            Camera camera = new Camera(0, 360, 1280, 720, 2.0f);
 
             control.level = l;
             control.setPlayer(player);
@@ -414,6 +415,11 @@ namespace paranothing
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
+            if ((Keyboard.GetState().IsKeyDown(Keys.Pause) || GamePad.GetState(PlayerIndex.One).IsButtonDown(Buttons.Start)) && control.state == GameState.Game)
+            {       
+                control.state = GameState.MainMenu;
+                title.titleState = GameTitle.TitleState.Pause;
+            }
             // TODO: Add your update logic here
             
             switch (control.state)

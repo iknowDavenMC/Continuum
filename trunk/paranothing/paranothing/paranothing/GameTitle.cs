@@ -24,11 +24,16 @@ namespace paranothing
         private bool toggleMusic = true;
         private String soundText = "ON";
         private String musicText = "ON";
-        private bool pause = false;
 
         private Color[] colors = new Color[5]{Color.Yellow, Color.White, Color.White, Color.White, Color.White};
 
-        private enum TitleState
+        private Vector2 choice1 = new Vector2(750, 360);
+        private Vector2 choice2 = new Vector2(750, 420);
+        private Vector2 choice3 = new Vector2(750, 480);
+        private Vector2 choice4 = new Vector2(750, 540);
+        private Vector2 choice5 = new Vector2(750, 600);
+
+        public enum TitleState
         {
             Title,
             Menu,
@@ -38,7 +43,7 @@ namespace paranothing
             Pause
         }
 
-        private TitleState titleState = TitleState.Title;
+        public TitleState titleState = TitleState.Title;
 
         # endregion
 
@@ -91,7 +96,7 @@ namespace paranothing
 
             GamePadState padState = GamePad.GetState(PlayerIndex.One);
 
-            //Presss enter to start
+            //Press enter to start
             if ((keys.IsKeyDown(Keys.Enter) || padState.IsButtonDown(Buttons.Start)) && titleState == TitleState.Title)
             {
                 //game.GameState = GameState.Game;
@@ -100,7 +105,7 @@ namespace paranothing
             }
 
             //Selecting menu options
-            else if ((padState.IsButtonDown(Buttons.LeftThumbstickDown) || keys.IsKeyDown(Keys.Down)) && !(prevPad.IsButtonDown(Buttons.LeftThumbstickDown) || prevKeys.IsKeyDown(Keys.Down)) && menuIndex < menuSize)
+            else if ((padState.IsButtonDown(Buttons.LeftThumbstickDown) || keys.IsKeyDown(Keys.Down)) && !(prevPad.IsButtonDown(Buttons.LeftThumbstickDown) || prevKeys.IsKeyDown(Keys.Down)) && menuIndex < menuSize - 1)
             {
 
                
@@ -128,6 +133,7 @@ namespace paranothing
 
             else if (titleState == TitleState.Menu && (keys.IsKeyDown(Keys.Enter) || padState.IsButtonDown(Buttons.A)) && !(prevKeys.IsKeyDown(Keys.Enter) || prevPad.IsButtonDown(Buttons.A)))
             {
+                
                 if (menuIndex == 0)
                 {
                     colors[menuIndex] = Color.White;
@@ -154,7 +160,7 @@ namespace paranothing
                 {
                     colors[menuIndex] = Color.White;
                     menuIndex = 0;
-                    menuSize = 0;
+                    menuSize = 1;
                     colors[menuIndex] = Color.Yellow;
                     titleState = TitleState.Controls;
                 }
@@ -162,10 +168,51 @@ namespace paranothing
                 {
                     colors[menuIndex] = Color.White;
                     menuIndex = 0;
-                    menuSize = 0;
+                    menuSize = 1;
                     colors[menuIndex] = Color.Yellow;
                     titleState = TitleState.Credits;
                 }
+
+            }
+
+            else if (titleState == TitleState.Pause && (keys.IsKeyDown(Keys.Enter) || padState.IsButtonDown(Buttons.A)) && !(prevKeys.IsKeyDown(Keys.Enter) || prevPad.IsButtonDown(Buttons.A)))
+            {
+
+                if (menuIndex == 0)
+                    game.GameState = GameState.Game;
+
+                else if (menuIndex == 1)
+                {
+                    colors[menuIndex] = Color.White;
+                    menuIndex = 0;
+                    menuSize = 5;
+                    colors[menuIndex] = Color.Yellow;
+                    game.ResetGame();
+                    titleState = TitleState.Menu;
+                }
+
+                else if (menuIndex == 2)
+                {
+
+                    colors[menuIndex] = Color.White;
+                    menuIndex = 0;
+                    menuSize = 3;
+                    colors[menuIndex] = Color.Yellow;
+                    titleState = TitleState.Options;
+
+                }
+
+                else if (menuIndex == 3)
+                {
+
+                    colors[menuIndex] = Color.White;
+                    menuIndex = 0;
+                    menuSize = 1;
+                    colors[menuIndex] = Color.Yellow;
+                    titleState = TitleState.Controls;
+
+                }
+                
 
             }
 
@@ -264,15 +311,26 @@ namespace paranothing
         public void Draw(SpriteBatch spriteBatch)
         {
 
+           
+
             base.Draw(spriteBatch);
 
             if (titleState == TitleState.Menu)
             {
-                spriteBatch.DrawString(Game1.menuFont, "New Game", new Vector2(0, 150), colors[0]);
-                spriteBatch.DrawString(Game1.menuFont, "Continue", new Vector2(0, 190), colors[1]);
-                spriteBatch.DrawString(Game1.menuFont, "Options", new Vector2(0, 230), colors[2]);
-                spriteBatch.DrawString(Game1.menuFont, "Controls", new Vector2(0, 270), colors[3]);
-                spriteBatch.DrawString(Game1.menuFont, "Credits", new Vector2(0, 310), colors[4]);
+                spriteBatch.DrawString(Game1.menuFont, "New Game", choice1, colors[0]);
+                spriteBatch.DrawString(Game1.menuFont, "Continue", choice2, colors[1]);
+                spriteBatch.DrawString(Game1.menuFont, "Options", choice3, colors[2]);
+                spriteBatch.DrawString(Game1.menuFont, "Controls", choice4, colors[3]);
+                spriteBatch.DrawString(Game1.menuFont, "Credits", choice5, colors[4]);
+            }
+
+            if (titleState == TitleState.Pause)
+            {
+                spriteBatch.DrawString(Game1.menuFont, "Resume Game", choice1, colors[0]);
+                spriteBatch.DrawString(Game1.menuFont, "Main Menu", choice2, colors[1]);
+                spriteBatch.DrawString(Game1.menuFont, "Options", choice3, colors[2]);
+                spriteBatch.DrawString(Game1.menuFont, "Controls", choice4, colors[3]);
+
             }
 
             if (titleState == TitleState.Options)
@@ -280,16 +338,16 @@ namespace paranothing
             
                 //TODO: FIX OPTIONS
                 
-                spriteBatch.DrawString(Game1.menuFont, "Toggle Sound: " + soundText, new Vector2(0, 150), colors[0]);
-                spriteBatch.DrawString(Game1.menuFont, "Toggle Music: " + musicText, new Vector2(0, 190), colors[1]);
-                spriteBatch.DrawString(Game1.menuFont, "Back", new Vector2(0, 230), colors[2]);
+                spriteBatch.DrawString(Game1.menuFont, "Toggle Sound: " + soundText, choice1, colors[0]);
+                spriteBatch.DrawString(Game1.menuFont, "Toggle Music: " + musicText, choice2, colors[1]);
+                spriteBatch.DrawString(Game1.menuFont, "Back", choice3, colors[2]);
 
             }
 
             if (titleState == TitleState.Controls)
             {
 
-                spriteBatch.DrawString(Game1.menuFont, "Back", new Vector2(0, 150), colors[0]);
+                spriteBatch.DrawString(Game1.menuFont, "Back", choice4, colors[0]);
                 //TODO: ADD CONTROLS
 
             }
@@ -297,7 +355,7 @@ namespace paranothing
             if (titleState == TitleState.Credits)
             {
 
-                spriteBatch.DrawString(Game1.menuFont, "Back", new Vector2(0, 150), colors[0]);
+                spriteBatch.DrawString(Game1.menuFont, "Back", choice4, colors[0]);
                 //TODO: ADD CREDITS
 
             }
