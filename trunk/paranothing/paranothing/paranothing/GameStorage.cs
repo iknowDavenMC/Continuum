@@ -72,7 +72,8 @@ namespace paranothing
                             string file = reader.ReadToEnd();
 
                             //restore level
-                            level = new Level(file);
+                            level = new Level();
+                            level.createFromString(file);
 
                             //close
                             reader.Close();
