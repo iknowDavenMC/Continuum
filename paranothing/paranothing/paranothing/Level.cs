@@ -7,7 +7,7 @@ using System.IO;
 
 namespace paranothing
 {
-    class Level
+    public class Level
     {
         public int Width, Height; // Complete width and height of the level
         public int playerX, playerY; // Player's starting position

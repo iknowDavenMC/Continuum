@@ -10,7 +10,7 @@ namespace paranothing
     /// <summary>
     /// Class to save and load file : need a valid user's profile to work on xbox
     /// </summary>
-    class GameStorage
+    public class GameStorage
     {
         # region Attributes
 

@@ -33,6 +33,11 @@ namespace paranothing
         private Vector2 choice4 = new Vector2(750, 540);
         private Vector2 choice5 = new Vector2(750, 600);
 
+        public bool gameSaved;
+        private GameController control = GameController.getInstance();
+
+        public static String levelName;
+
         public enum TitleState
         {
             Title,
@@ -106,9 +111,7 @@ namespace paranothing
 
             //Selecting menu options
             else if ((padState.IsButtonDown(Buttons.LeftThumbstickDown) || keys.IsKeyDown(Keys.Down)) && !(prevPad.IsButtonDown(Buttons.LeftThumbstickDown) || prevKeys.IsKeyDown(Keys.Down)) && menuIndex < menuSize - 1)
-            {
-
-               
+            {  
 
                 colors[menuIndex] = Color.White;
 
@@ -116,18 +119,39 @@ namespace paranothing
 
                 colors[menuIndex] = Color.Yellow;
 
+                if (titleState == TitleState.Menu && !gameSaved && menuIndex == 1)
+                {
+                   
+                    colors[menuIndex] = Color.White;
+
+                    menuIndex++;
+
+                    colors[menuIndex] = Color.Yellow;
+
+                }
+
             }
 
             else if ((padState.IsButtonDown(Buttons.LeftThumbstickUp) || keys.IsKeyDown(Keys.Up)) && !(prevPad.IsButtonDown(Buttons.LeftThumbstickUp) || prevKeys.IsKeyDown(Keys.Up)) && menuIndex > 0)
             {
-
-                
 
                 colors[menuIndex] = Color.White;
 
                 menuIndex--;
 
                 colors[menuIndex] = Color.Yellow;
+
+                if (titleState == TitleState.Menu && !gameSaved && menuIndex == 1)
+                {
+
+                    colors[menuIndex] = Color.White;
+
+                    menuIndex--;
+
+                    colors[menuIndex] = Color.Yellow;
+
+                }
+
 
             }
 
@@ -139,6 +163,11 @@ namespace paranothing
                     colors[menuIndex] = Color.White;
                     menuIndex = 0;
                     colors[menuIndex] = Color.Yellow;
+
+                    control.goToLevel("Tutorial");
+                    control.initLevel(false);
+                    levelName = "Tutorial";
+
                     game.GameState = GameState.Game;
                 }
                 else if (menuIndex == 1) //TODO: ADD RESUME GAME
@@ -146,6 +175,9 @@ namespace paranothing
                     colors[menuIndex] = Color.White;
                     menuIndex = 0;
                     colors[menuIndex] = Color.Yellow;
+
+                    control.goToLevel(levelName);
+
                     game.GameState = GameState.Game;
                 }
                 else if (menuIndex == 2) 
@@ -318,7 +350,12 @@ namespace paranothing
             if (titleState == TitleState.Menu)
             {
                 spriteBatch.DrawString(Game1.menuFont, "New Game", choice1, colors[0]);
-                spriteBatch.DrawString(Game1.menuFont, "Continue", choice2, colors[1]);
+
+                if (gameSaved)
+                    spriteBatch.DrawString(Game1.menuFont, "Continue", choice2, colors[1]);
+                else
+                    spriteBatch.DrawString(Game1.menuFont, "Continue", choice2, Color.Gray);
+
                 spriteBatch.DrawString(Game1.menuFont, "Options", choice3, colors[2]);
                 spriteBatch.DrawString(Game1.menuFont, "Controls", choice4, colors[3]);
                 spriteBatch.DrawString(Game1.menuFont, "Credits", choice5, colors[4]);

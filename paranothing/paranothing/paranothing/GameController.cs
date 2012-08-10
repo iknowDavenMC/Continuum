@@ -349,9 +349,15 @@ namespace paranothing
             if (!collides(player.getBounds(), new Rectangle(0, 0, level.Width, level.Height)))
             {
                 if (nextLevel())
+                {
+
+                    GameTitle.levelName = level.name;
+
                     initLevel(true);
+                }
                 else
                 {
+                    //TODO: CHANGE THIS STUFF
                     goToLevel("Level1");
                     initLevel(false);
                     state = GameState.MainMenu;
