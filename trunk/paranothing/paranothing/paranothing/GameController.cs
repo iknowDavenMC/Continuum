@@ -263,7 +263,8 @@ namespace paranothing
                             {
                                 player.actionBubble.setAction(ActionBubble.BubbleAction.Wardrobe, negated);
                                 player.actionBubble.show();
-                                player.interactor = (Interactive)obj;
+                                if (!negated)
+                                    player.interactor = (Interactive)obj;
                             }
                         }
                         else
@@ -273,7 +274,8 @@ namespace paranothing
                             {
                                 player.actionBubble.setAction(ActionBubble.BubbleAction.Push, negated);
                                 player.actionBubble.show();
-                                player.interactor = (Interactive)obj;
+                                if (!negated)
+                                    player.interactor = (Interactive)obj;
                             }
                         }
                     }
@@ -331,7 +333,7 @@ namespace paranothing
                 }
                 else
                 {
-                    if (!player.actionBubble.isVisible() && !(player.interactor is Wardrobe))
+                    if (!player.actionBubble.isVisible() && !(player.interactor is Wardrobe && (player.state == Boy.BoyState.PushingStill || player.state == Boy.BoyState.PushWalk)))
                         player.interactor = null;
                     Collideable collider = (Collideable)obj;
                     if (colliding && player.state == Boy.BoyState.Walk && collider.isSolid())
