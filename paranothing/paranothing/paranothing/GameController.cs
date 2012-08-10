@@ -250,6 +250,8 @@ namespace paranothing
                 else if (obj is Wardrobe)
                 {
                     Wardrobe wardrobe = (Wardrobe)obj;
+                    if (wardrobe.state == Wardrobe.WardrobeState.Opening)
+                        soundPos = new Vector2(wardrobe.X + wardrobe.getBounds().Width / 2, wardrobe.Y + wardrobe.getBounds().Height / 2);
                     if (colliding && player.X + (player.direction == Direction.Left ? 8 : 32) > wardrobe.X)
                     {
                         bool negated = false;
