@@ -10,7 +10,7 @@ namespace paranothing
     class ActionBubble : Drawable//, Updatable
     {
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
-        public enum BubbleAction { None, Wardrobe, Push, Portrait, Stair, Chair };
+        public enum BubbleAction { None, Wardrobe, Push, Portrait, OldPortrait, Stair, Chair, Bookcase };
         private BubbleAction action;
         private bool negated;
         private bool visible;
@@ -78,6 +78,9 @@ namespace paranothing
                 case BubbleAction.Portrait:
                     Animation = "portrait";
                     break;
+                case BubbleAction.OldPortrait:
+                    Animation = "oldportrait";
+                    break;
                 case BubbleAction.Push:
                     Animation = "push";
                     break;
@@ -86,6 +89,9 @@ namespace paranothing
                     break;
                 case BubbleAction.Stair:
                     Animation = "stair";
+                    break;
+                case BubbleAction.Bookcase:
+                    Animation = "bookcase";
                     break;
                 default:
                     Animation = "negate";

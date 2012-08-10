@@ -46,6 +46,7 @@ namespace paranothing
         public Direction direction;
         public ActionBubble actionBubble;
         private Vector2 teleportTo;
+        private TimePeriod timeTravelTo;
         private Cue soundCue;
         public Chairs nearestChair;
         public Interactive interactor;
@@ -83,6 +84,7 @@ namespace paranothing
             actionBubble.Player = this;
             actionBubble.show();
             teleportTo = new Vector2();
+            nearestChair = null;
         }
 
         public Texture2D getImage()
@@ -110,6 +112,10 @@ namespace paranothing
                         interactor.Interact();
                     }
                 }
+                else if ((state == BoyState.PushingStill ||state == BoyState.PushWalk) && interactor != null)
+                {
+                    state = BoyState.Idle;
+                }
                 if (control.keyState.IsKeyDown(Keys.LeftControl))
                 {
                     if (nearestChair != null)
@@ -134,12 +140,22 @@ namespace paranothing
                         if (direction == Direction.Right)
                         {
                             if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
-                                state = BoyState.Idle;
+                            {
+                                if ((state == BoyState.PushWalk || state == BoyState.PushingStill) && interactor != null)
+                                    state = BoyState.PushingStill;
+                                else
+                                    state = BoyState.Idle;
+                            }
                         }
                         else
                         {
                             if (state != BoyState.StairsRight && state != BoyState.StairsLeft)
-                                state = BoyState.Idle;
+                            {
+                                if ((state == BoyState.PushWalk || state == BoyState.PushingStill) && interactor != null)
+                                    state = BoyState.PushingStill;
+                                else
+                                    state = BoyState.Idle;
+                            }
                         }
                     }
                 }
@@ -149,15 +165,21 @@ namespace paranothing
                     {
                         if (control.keyState.IsKeyDown(Keys.Right))
                         {
-                            direction = Direction.Right;
+                            if ((state != BoyState.PushWalk && state != BoyState.PushingStill) || (interactor != null && ((Wardrobe)interactor).X > X))
+                                direction = Direction.Right;
                             if (state == BoyState.Idle)
                                 state = BoyState.Walk;
+                            if (state == BoyState.PushingStill && direction == Direction.Right && interactor != null)
+                                state = BoyState.PushWalk;
                         }
                         else if (control.keyState.IsKeyDown(Keys.Left))
                         {
-                            direction = Direction.Left;
+                            if ((state != BoyState.PushWalk && state != BoyState.PushingStill) || (interactor != null && ((Wardrobe)interactor).X < X))
+                                direction = Direction.Left;
                             if (state == BoyState.Idle)
                                 state = BoyState.Walk;
+                            if (state == BoyState.PushingStill && direction == Direction.Left && interactor != null)
+                                state = BoyState.PushWalk;
                         }
                     }
                 }
@@ -234,7 +256,7 @@ namespace paranothing
                     moveSpeedX = 0;
                     moveSpeedY = 0;
                     if (Animation == "walk" || Animation == "stand")
-                        Animation = "startpush";
+                         Animation = "startpush";
                     if (Animation == "startpush" && frame == 3 || Animation == "push")
                         Animation = "pushstill";
                     break;
@@ -245,7 +267,7 @@ namespace paranothing
                         moveSpeedX = 0;
                         Animation = "startpush";
                     }
-                    if (Animation == "startpush" && frame == 3)
+                    if (Animation == "startpush" && frame == 3 || Animation == "pushstill")
                     {
                         Animation = "push";
                     }
@@ -283,16 +305,28 @@ namespace paranothing
                     moveSpeedY = 0;
                     if (Animation == "walk" || Animation == "stand")
                     {
+                        Portrait p = (Portrait)interactor;
+                        if (p.wasMoved)
+                            teleportTo = p.movedPos;
+                        else
+                            teleportTo = new Vector2();
                         Animation = "enterportrait";
+                        if (control.timePeriod == TimePeriod.Present) 
+                            timeTravelTo = ((Portrait)interactor).sendTime;
                         interactor = null;
                     }
                     if (Animation == "enterportrait" && frame == 7)
                     {
-                        if (control.timePeriod == TimePeriod.Past)
+                        if (control.timePeriod != TimePeriod.Present)
                             control.timePeriod = TimePeriod.Present;
                         else
-                            control.timePeriod = TimePeriod.Past;
+                            control.timePeriod = timeTravelTo;
                         Animation = "leaveportrait";
+                        if (teleportTo.X != 0 && teleportTo.Y != 0)
+                        {
+                            X = teleportTo.X;
+                            Y = teleportTo.Y;
+                        }
                     }
                     if (Animation == "leaveportrait" && frame == 7)
                     {
@@ -327,12 +361,12 @@ namespace paranothing
                 if (direction == Direction.Left)
                     flip = -1;
                 X += moveSpeedX * flip;
-                if (state == BoyState.PushWalk && Animation == "push")
+                if (state == BoyState.PushWalk && Animation == "push" && interactor != null)
                     ((Wardrobe)interactor).X += (int)(moveSpeedX * flip);
                 if (moveSpeedY == 0)
                 {
-                    //moveSpeedY = 1;
-                    //flip = 1;
+                    moveSpeedY = 1;
+                    flip = 1;
                 }
                 Y += moveSpeedY * flip;
                 frameTime = 0;

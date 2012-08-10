@@ -19,8 +19,11 @@ namespace paranothing
         //Drawable
         private SpriteSheet sheet;
         private Lockable lockedObj;
+        public bool restrictTime { get; private set; }
+        public TimePeriod inTime { get; private set; }
         public bool pickedUp;
-        private string name;
+
+        public string name { get; private set; }
 
         # endregion
 
@@ -32,7 +35,8 @@ namespace paranothing
             position = new Vector2(X, Y);
             pickedUp = false;
             this.name = name;
-
+            restrictTime = false;
+            inTime = TimePeriod.Present;
             if (keyDict.ContainsKey(name))
                 keyDict.Remove(name);
             keyDict.Add(name, this);
@@ -42,9 +46,11 @@ namespace paranothing
         {
             this.sheet = sheetMan.getSheet("key");
             pickedUp = false;
+            restrictTime = false;
+            inTime = TimePeriod.Present;
             X = 0;
             Y = 0;
-            name = "WR";
+            name = "Key";
             string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             int lineNum = 0;
             string line = "";
@@ -60,6 +66,19 @@ namespace paranothing
                 {
                     try { Y = int.Parse(line.Substring(2)); }
                     catch (FormatException) { }
+                }
+                if (line.StartsWith("restrictTime:"))
+                {
+                    restrictTime = true;
+                    string t = line.Substring(13).Trim();
+                    if (t == "Present")
+                        inTime = TimePeriod.Present;
+                    else if (t == "Past")
+                        inTime = TimePeriod.Past;
+                    else if (t == "FarPast")
+                        inTime = TimePeriod.FarPast;
+                    else
+                        restrictTime = false;
                 }
                 if (line.StartsWith("name:"))
                 {
@@ -107,10 +126,13 @@ namespace paranothing
         {
             if (!pickedUp)
             {
-                if (control.timePeriod == TimePeriod.Present)
-                    renderer.Draw(sheet.image, bounds, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
-                else
-                    renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
+                if (!restrictTime || control.timePeriod == inTime)
+                {
+                    if (control.timePeriod == TimePeriod.Present)
+                        renderer.Draw(sheet.image, bounds, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
+                    else
+                        renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
+                }
             }
         }
 

@@ -127,15 +127,15 @@ namespace paranothing
                 {
                     startTime = TimePeriod.Present;
                     string time = line.Substring(10).Trim();
-                    if (time == "present")
+                    if (time == "Present")
                     {
                         startTime = TimePeriod.Present;
                     }
-                    if (time == "past")
+                    if (time == "Past")
                     {
                         startTime = TimePeriod.Past;
                     }
-                    if (time == "farpast")
+                    if (time == "FarPast")
                     {
                         startTime = TimePeriod.FarPast;
                     }
@@ -239,50 +239,62 @@ namespace paranothing
                     addObj(new Portrait(objData, "EndPortrait"));
                 }
                 // Older Painting
-                if (line.StartsWith("StartOldPainting"))
+                if (line.StartsWith("StartOldPortrait"))
                 {
                     objData = line;
-                    while (!line.StartsWith("EndOldPainting") && lineNum < saveLines.Length)
+                    while (!line.StartsWith("EndOldPortrait") && lineNum < saveLines.Length)
                     {
                         line = saveLines[lineNum];
                         objData += "\n" + line;
                         lineNum++;
                     }
-                    addObj(new Portrait(objData, "EndOldPainting"));
+                    addObj(new Portrait(objData, TimePeriod.FarPast));
                 }
-                // Moved Painting
-                if (line.StartsWith("StartMovedPainting"))
+                // Moved Portrait
+                if (line.StartsWith("StartMovedPortrait"))
                 {
-                    lineNum++;
-                    line = saveLines[lineNum];
-                    if (line.StartsWith("StartPresentPainting"))
+                    Portrait pPres = null, pPast = null;
+                    while (!line.StartsWith("EndMovedPortrait") && lineNum < saveLines.Length)
                     {
-                        objData = line;
-                        while (!line.StartsWith("EndPresentPainting") && lineNum < saveLines.Length)
+                        line = saveLines[lineNum];
+                        if (line.StartsWith("StartPresentPortrait"))
                         {
-                            line = saveLines[lineNum];
-                            objData += "\n" + line;
-                            lineNum++;
+                            objData = line;
+                            while (!line.StartsWith("EndPresentPortrait") && lineNum < saveLines.Length)
+                            {
+                                line = saveLines[lineNum];
+                                objData += "\n" + line;
+                                lineNum++;
+                            }
+                            pPres = new Portrait(objData, TimePeriod.Present);
+
+                            addObj(pPres);
                         }
-                        addObj(new Portrait(objData, TimePeriod.Present));
+                        if (line.StartsWith("StartPastPortrait"))
+                        {
+                            objData = line;
+                            while (!line.StartsWith("EndPastPortrait") && lineNum < saveLines.Length)
+                            {
+                                line = saveLines[lineNum];
+                                objData += "\n" + line;
+                                lineNum++;
+                            }
+                            pPast = new Portrait(objData, TimePeriod.Past);
+                            addObj(pPast);
+                        }
+                        lineNum++;
                     }
-                    if (line.StartsWith("StartPastPainting"))
+                    if (pPres != null && pPast  != null)
                     {
-                        objData = line;
-                        while (!line.StartsWith("EndPastPainting") && lineNum < saveLines.Length)
-                        {
-                            line = saveLines[lineNum];
-                            objData += "\n" + line;
-                            lineNum++;
-                        }
-                        addObj(new Portrait(objData, TimePeriod.Past));
+                        pPres.movedPos = new Vector2(pPast.X, pPast.Y);
+                        pPast.movedPos = new Vector2(pPres.X, pPres.Y);
                     }
                 }
                 // Bookcase
-                if (line.StartsWith("StartBookases"))
+                if (line.StartsWith("StartBookcase"))
                 {
                     objData = line;
-                    while (!line.StartsWith("EndBookases") && lineNum < saveLines.Length)
+                    while (!line.StartsWith("EndBookcase") && lineNum < saveLines.Length)
                     {
                         line = saveLines[lineNum];
                         objData += "\n" + line;
@@ -291,10 +303,10 @@ namespace paranothing
                     addObj(new Bookcases(objData));
                 }
                 // Button
-                if (line.StartsWith("StartButtons"))
+                if (line.StartsWith("StartButton"))
                 {
                     objData = line;
-                    while (!line.StartsWith("EndButtons") && lineNum < saveLines.Length)
+                    while (!line.StartsWith("EndButton") && lineNum < saveLines.Length)
                     {
                         line = saveLines[lineNum];
                         objData += "\n" + line;

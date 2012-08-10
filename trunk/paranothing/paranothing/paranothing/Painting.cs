@@ -20,6 +20,10 @@ namespace paranothing
             set { position.Y = value; }
         }
         private SpriteSheet sheet;
+        public bool wasMoved { get; private set; }
+        public Vector2 movedPos;
+        public TimePeriod inTime { get; private set; }
+        public TimePeriod sendTime { get; private set; }
 
         public Portrait(int x, int y)
         {
@@ -30,6 +34,8 @@ namespace paranothing
         public Portrait(string saveString, string str)
         {
             this.sheet = sheetMan.getSheet("portrait");
+            sendTime = TimePeriod.Past;
+            wasMoved = false;
             parseString(saveString, str);
         }
 
@@ -37,13 +43,26 @@ namespace paranothing
         public Portrait(string saveString, TimePeriod period)
         {
             this.sheet = sheetMan.getSheet("portrait");
+            wasMoved = false;
             if (period == TimePeriod.Present)
             {
                 parseString(saveString, "EndPresentPortrait");
+                wasMoved = true;
+                inTime = TimePeriod.Present;
+                sendTime = TimePeriod.Past;
             }
-            if (period == TimePeriod.Past)
+            else if (period == TimePeriod.Past)
             {
                 parseString(saveString, "EndPastPortrait");
+                wasMoved = true;
+                inTime = TimePeriod.Past;
+                sendTime = TimePeriod.Past;
+            }
+            else if (period == TimePeriod.FarPast)
+            {
+                parseString(saveString, "EndOldPortrait");
+                sendTime = TimePeriod.FarPast;
+                sheet = sheetMan.getSheet("oldportrait");
             }
         }
         private void parseString(string saveString, string str)
@@ -79,10 +98,13 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            if (control.timePeriod == TimePeriod.Present)
-            renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);  
-            else
-            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);       
+            if (!wasMoved || control.timePeriod == inTime)
+            {
+                if (control.timePeriod == TimePeriod.Present)
+                    renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);
+                else
+                    renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);
+            }
         }
 
         public Rectangle getBounds()

@@ -7,6 +7,7 @@ playerY:130
 width:662
 height:180
 color:192,128,0
+startTime:Past
 
 StartWall
 x:0
@@ -78,7 +79,7 @@ EndFloor
 StartDoor
 x:135
 y:7
-locked:false
+locked:true
 keyName:EndDoorKey
 EndDoor
 
@@ -123,28 +124,31 @@ StartKey
 x:396
 y:64
 name:EndDoorKey
+restrictTime:Past
 EndKey
 
-StartPortrait
+xStartPortrait
 x:60
-y:110
-EndPortrait
+y:112
+xEndPortrait
 
-StartOldPainting
-x:60
+StartOldPortrait
+x:100
 y:110
-EndOldPainting
+EndOldPortrait
 
-StartMovedPainting
-StartPresentPainting
+StartMovedPortrait
+StartPresentPortrait
 x:60
-y:110
-EndPresentPainting
-StartPastPainting
-x:90
-y:110
-EndPastPainting
-EndMovedPainting
+y:112
+EndPresentPortrait
+
+StartPastPortrait
+x:400
+y:30
+EndPastPortrait
+
+EndMovedPortrait
 
 StartRubble
 x:350
@@ -163,14 +167,27 @@ y:91
 patrolDist:30
 EndShadow
 
+StartShadow
+x:350
+y:1
+patrolDist:0
+EndShadow
+
 StartButton
-x:396
-y:64
+x:356
+y:73
+name:buttonA
+EndButton
+
+StartButton
+x:156
+y:163
+name:buttonB
 EndButton
 
 StartBookcase
-x:190
-y:0
-name:button A
-link:button B
+x:450
+y:7
+button1:buttonA
+button2:buttonB
 EndBookcase

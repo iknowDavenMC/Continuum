@@ -29,7 +29,7 @@ namespace paranothing
 
         public Button(int X, int Y, string name)
         {
-            this.sheet = sheetMan.getSheet("key");
+            this.sheet = sheetMan.getSheet("button");
             position = new Vector2(X, Y);
             stepOn = false;
             this.name = name;
@@ -41,7 +41,7 @@ namespace paranothing
 
         public Button(string saveString)
         {
-            this.sheet = sheetMan.getSheet("buttons");
+            this.sheet = sheetMan.getSheet("button");
             stepOn = false;
             X = 0;
             Y = 0;
@@ -49,7 +49,7 @@ namespace paranothing
             string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             int lineNum = 0;
             string line = "";
-            while (!line.StartsWith("EndButtons") && lineNum < lines.Length)
+            while (!line.StartsWith("EndButton") && lineNum < lines.Length)
             {
                 line = lines[lineNum];
                 if (line.StartsWith("x:"))
@@ -90,7 +90,7 @@ namespace paranothing
 
         public bool isSolid()
         {
-            return true;
+            return false;
         }
 
         //Drawable
@@ -101,13 +101,10 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            if (!stepOn)
-            {
-                if (control.timePeriod == TimePeriod.Present)
-                    renderer.Draw(sheet.image, bounds, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
-                else
-                    renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
-            }
+            if (stepOn)
+                renderer.Draw(sheet.image, bounds, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
+            else
+                renderer.Draw(sheet.image, bounds, sheet.getSprite(0), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Key);
         }
 
         //Interactive
