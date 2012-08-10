@@ -300,7 +300,7 @@ namespace paranothing
                         objData += "\n" + line;
                         lineNum++;
                     }
-                    addObj(new Buttons(objData));
+                    addObj(new Button(objData));
                 }
                 // Wall
                 if (line.StartsWith("StartWall"))

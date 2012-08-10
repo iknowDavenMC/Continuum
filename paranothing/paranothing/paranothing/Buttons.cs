@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Buttons : Drawable, Collideable, Saveable, Interactive
+    class Button : Drawable, Collideable, Saveable, Interactive
     {
         # region Attributes
 
-        private static Dictionary<string, Buttons> buttonsDict = new Dictionary<string, Buttons>();
+        private static Dictionary<string, Button> buttonsDict = new Dictionary<string, Button>();
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collideable
@@ -27,7 +27,7 @@ namespace paranothing
 
         # region Constructors
 
-        public Buttons(int X, int Y, string name)
+        public Button(int X, int Y, string name)
         {
             this.sheet = sheetMan.getSheet("key");
             position = new Vector2(X, Y);
@@ -39,7 +39,7 @@ namespace paranothing
             buttonsDict.Add(name, this);
         }
 
-        public Buttons(string saveString)
+        public Button(string saveString)
         {
             this.sheet = sheetMan.getSheet("buttons");
             stepOn = false;
@@ -115,9 +115,9 @@ namespace paranothing
         {
         }
 
-        public static Buttons getKey(string name)
+        public static Button getKey(string name)
         {
-            Buttons k;
+            Button k;
             if (buttonsDict.ContainsKey(name))
                 buttonsDict.TryGetValue(name, out k);
             else
