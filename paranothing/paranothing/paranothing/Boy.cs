@@ -362,7 +362,15 @@ namespace paranothing
                     flip = -1;
                 X += moveSpeedX * flip;
                 if (state == BoyState.PushWalk && Animation == "push" && interactor != null)
-                    ((Wardrobe)interactor).X += (int)(moveSpeedX * flip);
+                {
+                    Wardrobe w = (Wardrobe)interactor;
+                    if (!control.collidingWithSolid(w.pushBox, false))
+                    {
+                        w.X += (int)(moveSpeedX * flip);
+                    }
+                    else
+                        X -= moveSpeedX * flip;
+                }
                 if (moveSpeedY == 0)
                 {
                     moveSpeedY = 1;
