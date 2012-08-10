@@ -258,14 +258,16 @@ namespace paranothing
 
             actionTex = Content.Load<Texture2D>("Sprites/actions");
             actionSheet = new SpriteSheet(actionTex);
-            actionSheet.splitSheet(2, 4);
+            actionSheet.splitSheet(3, 3);
             actionSheet.addAnimation("bubble", new int[] { 0 });
             actionSheet.addAnimation("wardrobe", new int[] { 1 });
             actionSheet.addAnimation("push", new int[] { 2 });
             actionSheet.addAnimation("chair", new int[] { 3 });
             actionSheet.addAnimation("stair", new int[] { 4 });
             actionSheet.addAnimation("portrait", new int[] { 5 });
-            actionSheet.addAnimation("negate", new int[] { 7 });
+            actionSheet.addAnimation("oldportrait", new int[] { 6 });
+            actionSheet.addAnimation("bookcase", new int[] { 7 });
+            actionSheet.addAnimation("negate", new int[] { 8 });
 
             boyTex = Content.Load<Texture2D>("Sprites/BruceSheet");
             boySheet = new SpriteSheet(boyTex);
@@ -330,9 +332,10 @@ namespace paranothing
             finalDoorTex = Content.Load<Texture2D>("Sprites/door_final");
             finalDoorSheet = new SpriteSheet(finalDoorTex);
             finalDoorSheet.splitSheet(1, 7);
-            finalDoorSheet.addAnimation("finaldoorclosed", new int[] { 0 });
-            finalDoorSheet.addAnimation("finaldooropening", new int[] { 1, 2, 3, 4, 5 });
-            finalDoorSheet.addAnimation("finaldooropen", new int[] { 6 });
+            finalDoorSheet.addAnimation("bookcaseclosed", new int[] { 0 });
+            finalDoorSheet.addAnimation("bookcaseopening", new int[] { 1, 2, 3, 4, 5 });
+            finalDoorSheet.addAnimation("bookcaseclosing", new int[] { 5, 4, 3, 2, 1 });
+            finalDoorSheet.addAnimation("bookcaseopen", new int[] { 6 });
 
             buttonTex = Content.Load<Texture2D>("Sprites/button");
             buttonSheet = new SpriteSheet(buttonTex);
@@ -351,7 +354,7 @@ namespace paranothing
             sheetMan.addSheet("oldportrait", oldPortraitSheet);
             sheetMan.addSheet("key", keySheet);
             sheetMan.addSheet("chair", chairSheet);
-            sheetMan.addSheet("finaldoor", finalDoorSheet);
+            sheetMan.addSheet("bookcase", finalDoorSheet);
             sheetMan.addSheet("button", buttonSheet);
             sheetMan.addSheet("shadow", shadowSheet);
 
@@ -453,7 +456,7 @@ namespace paranothing
                 //    break;
                 case GameState.Game:
                     Effect pastEffect = null;
-                    if (control.timePeriod == TimePeriod.Past)
+                    if (control.timePeriod != TimePeriod.Present)
                         pastEffect = greyScale;
                     Matrix transform = Matrix.Identity;
                     transform *= Matrix.CreateTranslation(-control.camera.X, -control.camera.Y, 0);

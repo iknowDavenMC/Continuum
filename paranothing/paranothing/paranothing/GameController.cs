@@ -157,9 +157,24 @@ namespace paranothing
                 {
                     if (colliding)
                     {
-                        DoorKeys key = (DoorKeys)obj;
-                        key.pickedUp = true;
+                        DoorKeys key = DoorKeys.getKey(((DoorKeys)obj).name);
+                        if (!key.restrictTime || timePeriod == key.inTime)
+                            key.pickedUp = true;
                     }
+                }
+                else if (obj is Button)
+                {
+                    Button button = (Button)obj;
+                    bool pressed = false;
+                    foreach (Collideable c in collideableObjs)
+                    {
+                        if ((c is Boy || (timePeriod == TimePeriod.Present && c is Shadows)) && collides(button.getBounds(), c.getBounds()))
+                        {
+                            pressed = true;
+                            break;
+                        }
+                    }
+                    button.stepOn = pressed;
                 }
                 else if (obj is Stairs)
                 {
@@ -214,7 +229,7 @@ namespace paranothing
                 }
                 else if (obj is Chairs)
                 {
-                    Chairs chair = (Chairs) obj;
+                    Chairs chair = (Chairs)obj;
                     if (chair.state == Chairs.ChairsState.Falling)
                     {
                         foreach (Collideable c in collideableObjs)
@@ -263,15 +278,31 @@ namespace paranothing
                         }
                     }
                 }
+                else if (obj is Bookcases)
+                {
+                    Bookcases bookcase = (Bookcases)obj;
+                    if (colliding && bookcase.state == Bookcases.BookcasesState.Open)
+                    {
+                        player.actionBubble.setAction(ActionBubble.BubbleAction.Bookcase, false);
+                        player.actionBubble.show();
+                        player.interactor = (Interactive)obj;
+                    }
+                }
                 else if (obj is Portrait)
                 {
                     Portrait painting = (Portrait)obj;
-                    if (colliding && player.X + player.Width - 10 > painting.X && (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk))
+                    if (!painting.wasMoved || painting.inTime == timePeriod)
                     {
-                        bool negated = false;
-                        player.actionBubble.setAction(ActionBubble.BubbleAction.Portrait, negated);
-                        player.actionBubble.show();
-                        player.interactor = (Interactive)obj;
+                        if (colliding && player.X + player.Width - 10 > painting.X && (player.state == Boy.BoyState.Idle || player.state == Boy.BoyState.Walk))
+                        {
+                            bool negated = false;
+                            if (painting.sendTime == TimePeriod.FarPast)
+                                player.actionBubble.setAction(ActionBubble.BubbleAction.OldPortrait, negated);
+                            else
+                                player.actionBubble.setAction(ActionBubble.BubbleAction.Portrait, negated);
+                            player.actionBubble.show();
+                            player.interactor = (Interactive)obj;
+                        }
                     }
                 }
                 else if (obj is Floor)
@@ -332,7 +363,12 @@ namespace paranothing
             if (timePeriod == TimePeriod.Past)
             {
                 tint = Color.White;
-                tint.A = 16;
+                tint.A = 32;
+            }
+            else if (timePeriod == TimePeriod.FarPast)
+            {
+                tint = Color.White;
+                tint.A = 4;
             }
             foreach (Drawable obj in drawableObjs)
             {

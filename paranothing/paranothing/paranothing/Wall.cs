@@ -111,7 +111,7 @@ namespace paranothing
         }
         public void draw(SpriteBatch renderer, Color tint)
         {
-            if (control.timePeriod == TimePeriod.Present)
+            if (control.timePeriod == TimePeriod.Present || control.timePeriod == TimePeriod.FarPast)
                 if (!intact)
                     renderer.Draw(sheet.image, Box, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Background - 0.01f);
                 else
