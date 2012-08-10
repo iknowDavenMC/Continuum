@@ -18,18 +18,16 @@ namespace paranothing
         private Vector2 position;
         private int tX = 0, tY = 0;
         private int speed = 3;
-        private Rectangle bounds;
+        private int moveTime = 0;
+        private int movelength = 70;
+        private Rectangle bounds { get { return new Rectangle(X, Y, 40, 52); } }
         //Audible
         private Cue crCue;
         //Drawable
         private SpriteSheet sheet;
-        private int frameTime;
-        private int frameLength;
-        private int frame;
-        private string animName;
-        private List<int> animFrames;
-        public enum ChairsState { Down, Up, Idle, Falling, Moving }
+        public enum ChairsState { Idle, Falling, Moving }
         public ChairsState state;
+        private ActionBubble bubble = new ActionBubble();
 
         # endregion
 
@@ -39,8 +37,7 @@ namespace paranothing
         {
             this.sheet = sheetMan.getSheet("chair");
             position = new Vector2(x, y);
-            bounds = new Rectangle((int)position.X, (int)position.Y, width, height);
-            this.frameLength = frameLength;
+            bubble.chair = this;
         }
 
         public Chairs(string saveString)
@@ -66,6 +63,7 @@ namespace paranothing
                 }
                 lineNum++;
             }
+            bubble.chair = this;
         }
 
         # endregion
@@ -83,21 +81,6 @@ namespace paranothing
             get { return (int)position.Y; }
             set { position.Y = value; }
         }
-        public string Animation
-        {
-            get { return animName; }
-            set
-            {
-
-                if (sheet.hasAnimation(value) && animName != value)
-                {
-                    animName = value;
-                    animFrames = sheet.getAnimation(animName);
-                    frame = 0;
-                    frameTime = 0;
-                }
-            }
-        }
 
         //Collideable
         public Rectangle getBounds()
@@ -106,7 +89,7 @@ namespace paranothing
         }
         public bool isSolid()
         {
-            return true;
+            return false;
         }
 
         //Audible
@@ -134,31 +117,66 @@ namespace paranothing
         public void draw(SpriteBatch renderer, Color tint)
         {
             if (control.timePeriod == TimePeriod.Present)
-            renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
+                renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Wardrobe - 0.005f);
             else
-            renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, 0.3f);
+                renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Wardrobe - 0.005f);
+            bubble.draw(renderer, tint);
         }
 
         //Updatable
         public void update(GameTime time)
         {
+            Boy player = control.player;
             int elapsed = time.ElapsedGameTime.Milliseconds;
             switch (state)
             {
                 case ChairsState.Idle:
+                    if (player.nearestChair != null && player.nearestChair != this)
+                    {
+                        if (player.nearestChair.state == ChairsState.Idle)
+                        {
+                            Vector2 oldDist = new Vector2(player.X - player.nearestChair.X, player.Y - player.nearestChair.Y);
+                            Vector2 newDist = new Vector2(player.X - X, player.Y - Y);
+                            if (newDist.LengthSquared() < oldDist.LengthSquared())
+                            {
+                                player.nearestChair = this;
+                                bubble.show();
+                                bubble.setAction(ActionBubble.BubbleAction.Chair, false);
+                            }
+                            else
+                                bubble.hide();
+                        }
+                    }
+                    else
+                    {
+                        player.nearestChair = this;
+                        bubble.show();
+                        bubble.setAction(ActionBubble.BubbleAction.Chair, false);
+                    }
                     break;
-                case ChairsState.Up:
-                    Animation = "chairup";
+                case ChairsState.Falling:
+                    bubble.hide();
+                    Y++;
                     break;
                 case ChairsState.Moving:
-                    X += tX * speed / elapsed;
-                    Y += tY * speed / elapsed;
+                    bubble.hide();
+                    moveTime += elapsed;
+                    if (moveTime >= movelength)
+                    {
+                        X += tX * speed;
+                        Y += tY * speed;
+                        moveTime = 0;
+
+                        Rectangle smallerBound = new Rectangle(X + 2, Y + 2, bounds.Width - 4, bounds.Height - 4);
+                        if (control.collidingWithSolid(smallerBound, false))
+                        {
+                            X -= tX * speed;
+                            Y -= tY * speed;
+                        }
+                        tX = 0;
+                        tY = 0;
+                    }
                     break;
-            }
-            if (frameTime >= frameLength)
-            {
-                frameTime = 0;
-                frame = (frame + 1) % animFrames.Count;
             }
         }
 

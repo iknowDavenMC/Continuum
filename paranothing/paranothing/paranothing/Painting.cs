@@ -37,11 +37,11 @@ namespace paranothing
         public Portrait(string saveString, TimePeriod period)
         {
             this.sheet = sheetMan.getSheet("portrait");
-            if (control.timePeriod == TimePeriod.Present)
+            if (period == TimePeriod.Present)
             {
                 parseString(saveString, "EndPresentPortrait");
             }
-            if (control.timePeriod == TimePeriod.FarPast)
+            if (period == TimePeriod.Past)
             {
                 parseString(saveString, "EndPastPortrait");
             }

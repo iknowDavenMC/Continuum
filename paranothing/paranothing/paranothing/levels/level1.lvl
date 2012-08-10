@@ -6,7 +6,7 @@ playerX:20
 playerY:130
 width:662
 height:180
-color:192,128,255
+color:192,128,0
 
 StartWall
 x:0
@@ -151,20 +151,26 @@ x:350
 y:144
 EndRubble
 
-StartButtons
+StartChairs
+x:280
+y:120
+EndChairs
+EndLevel
+
+StartShadow
+x:181
+y:91
+patrolDist:30
+EndShadow
+
+StartButton
 x:396
 y:64
-EndButtons
+EndButton
 
-StartBookcases
+StartBookcase
 x:190
 y:0
 name:button A
 link:button B
-EndBookcases
-
-StartChairs
-x:80
-y:26
-EndChairs
-EndLevel
+EndBookcase

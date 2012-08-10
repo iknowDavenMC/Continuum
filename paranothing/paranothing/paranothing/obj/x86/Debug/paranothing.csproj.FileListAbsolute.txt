@@ -83,3 +83,17 @@ C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Sound Bank.xsb
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level2.lvl
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\tutorial.lvl
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level2.lvl
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\tutorial.lvl
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\sounds.xgs
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Wave Bank.xwb
+C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Sound Bank.xsb

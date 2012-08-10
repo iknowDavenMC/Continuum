@@ -110,7 +110,9 @@
   <ItemGroup>
     <Compile Include="ActionBubble.cs" />
     <Compile Include="Audible.cs" />
+    <Compile Include="Bookcases.cs" />
     <Compile Include="Boy.cs" />
+    <Compile Include="Buttons.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Chairs.cs" />
     <Compile Include="Collideable.cs" />

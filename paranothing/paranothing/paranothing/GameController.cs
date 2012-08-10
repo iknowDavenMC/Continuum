@@ -19,6 +19,9 @@ namespace paranothing
         public Level level;
         public Camera camera;
 
+        private bool soundTriggered = false;
+        private Vector2 soundPos;
+
         private Dictionary<string, Level> levels;
 
         private static GameController instance;
@@ -122,6 +125,9 @@ namespace paranothing
                 obj.update(time);
             }
             player.actionBubble.hide();
+            if (soundPos != null && soundPos.X != 0 && soundPos.Y != 0)
+                soundTriggered = true;
+            else soundTriggered = false;
             foreach (Collideable obj in collideableObjs)
             {
                 Boy.BoyState currState = player.state;
@@ -129,6 +135,11 @@ namespace paranothing
                 if (obj is Shadows)
                 {
                     Shadows shadow = (Shadows)obj;
+                    if (soundTriggered && timePeriod == TimePeriod.Present)
+                    {
+                        if (soundPos.Y >= shadow.Y && soundPos.Y <= shadow.Y + 81) 
+                            shadow.stalkNoise((int)soundPos.X, (int)soundPos.Y);
+                    }
                     if (colliding && timePeriod == TimePeriod.Present && player.state != Boy.BoyState.StairsLeft && player.state != Boy.BoyState.StairsRight)
                     {
                         if (shadow.X > player.X)
@@ -193,6 +204,26 @@ namespace paranothing
                                     {
                                         player.state = Boy.BoyState.Walk;
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (obj is Chairs)
+                {
+                    Chairs chair = (Chairs) obj;
+                    if (chair.state == Chairs.ChairsState.Falling)
+                    {
+                        foreach (Collideable c in collideableObjs)
+                        {
+                            if (c is Floor)
+                            {
+                                if (collides(c.getBounds(), chair.getBounds()))
+                                {
+                                    while (collides(c.getBounds(), chair.getBounds()))
+                                        chair.Y--;
+                                    chair.state = Chairs.ChairsState.Idle;
+                                    soundPos = new Vector2(chair.X, chair.Y);
                                 }
                             }
                         }
@@ -277,6 +308,8 @@ namespace paranothing
                     }
                 }
             }
+            if (soundTriggered)
+                soundPos = new Vector2();
             if (!collides(player.getBounds(), new Rectangle(0, 0, level.Width, level.Height)))
             {
                 if (nextLevel())

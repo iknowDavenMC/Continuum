@@ -168,23 +168,15 @@ namespace paranothing
                             state = ShadowState.Idle;
                         break;
                     case ShadowState.SeekSound:
-                        if ((Animation == "stopwalk" && frame == 2) || Animation == "stand" || Animation == "walk")
-                        {
-                            frameLength = 80;
-                            Animation = "walk";
-                            moveSpeedX = 3;
-                            moveSpeedY = 0;
-                            if (soundPos.X > X)
-                                direction = Direction.Right;
-                            else if (soundPos.X < X)
-                                direction = Direction.Left;
-                            else
-                                state = ShadowState.Idle;
-                        }
+                        Animation = "walk";
+                        moveSpeedX = 3;
+                        moveSpeedY = 0;
+                        if (soundPos.X > X)
+                            direction = Direction.Right;
                         else
-                        {
-                            moveSpeedX = 2;
-                        }
+                            direction = Direction.Left;
+                        if (Math.Abs(soundPos.X - X) < 3)
+                            state = ShadowState.Idle;
                         break;
                 }
                 if (frameTime >= frameLength)
@@ -196,7 +188,7 @@ namespace paranothing
                     Y += moveSpeedY * flip;
                     frameTime = 0;
                     frame = (frame + 1) % animFrames.Count;
-                    if (patrolDistance != 0)
+                    if (state == ShadowState.Walk && patrolDistance != 0)
                     {
                         distMoved += moveSpeedX;
                         if (distMoved >= patrolDistance * 2)
@@ -213,7 +205,11 @@ namespace paranothing
                     if (control.collidingWithSolid(getBounds(), false))
                     {
                         if (state == ShadowState.SeekSound)
+                        {
                             state = ShadowState.Idle;
+                            X -= moveSpeedX * flip;
+                            Y -= moveSpeedY * flip;
+                        }
                         else if (state == ShadowState.Walk)
                         {
                             distMoved = patrolDistance * 2 - distMoved;

@@ -253,6 +253,8 @@ namespace paranothing
                 // Moved Painting
                 if (line.StartsWith("StartMovedPainting"))
                 {
+                    lineNum++;
+                    line = saveLines[lineNum];
                     if (line.StartsWith("StartPresentPainting"))
                     {
                         objData = line;
@@ -273,10 +275,8 @@ namespace paranothing
                             objData += "\n" + line;
                             lineNum++;
                         }
-                        addObj(new Portrait(objData, TimePeriod.FarPast));
+                        addObj(new Portrait(objData, TimePeriod.Past));
                     }
-                    else
-                        break;
                 }
                 // Bookcase
                 if (line.StartsWith("StartBookases"))
