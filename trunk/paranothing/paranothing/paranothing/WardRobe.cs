@@ -140,10 +140,35 @@ namespace paranothing
 
         # region Constructor
 
-        public Wardrobe(int x, int y, string name, bool startLocked = false)
+        public Wardrobe(int x, int y, string name)
         {
             this.sheet = sheetMan.getSheet("wardrobe");
             startPos = new Vector2(x, y);
+            positionPres = new Vector2(x, y);
+            positionPast1 = new Vector2(x, y);
+            positionPast2 = new Vector2(x, y);
+            this.startLocked = false;
+            locked = startLocked;
+            if (startLocked)
+            {
+                Animation = "wardrobeclosed";
+                state = WardrobeState.Closed;
+            }
+            else
+            {
+                Animation = "wardrobeopening";
+                state = WardrobeState.Open;
+            }
+            frameLength = 80;
+            this.name = name;
+            if (wardrobeDict.ContainsKey(name))
+                wardrobeDict.Remove(name);
+            wardrobeDict.Add(name, this);
+        }
+
+        public Wardrobe(int x, int y, string name, bool startLocked)
+        {
+            this.sheet = sheetMan.getSheet("wardrobe");
             positionPres = new Vector2(x, y);
             positionPast1 = new Vector2(x, y);
             positionPast2 = new Vector2(x, y);

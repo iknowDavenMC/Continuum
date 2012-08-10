@@ -10,6 +10,8 @@ namespace paranothing
     class GameController
     {
         public KeyboardState keyState;
+        public GamePadState padState;
+
         private List<Updatable> updatableObjs;
         private List<Drawable> drawableObjs;
         private List<Collideable> collideableObjs;
@@ -120,6 +122,7 @@ namespace paranothing
         public void updateObjs(GameTime time)
         {
             keyState = Keyboard.GetState();
+            padState = GamePad.GetState(PlayerIndex.One);
             foreach (Updatable obj in updatableObjs)
             {
                 obj.update(time);

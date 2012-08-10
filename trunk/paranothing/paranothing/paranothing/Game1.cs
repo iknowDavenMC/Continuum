@@ -118,13 +118,16 @@ namespace paranothing
         //Wall obstacleWall;
 
         //Fonts
-        private SpriteFont gameFont;
-        private SpriteFont titleFont;
+        public static SpriteFont gameFont;
+        public static SpriteFont titleFont;
+        public static SpriteFont menuFont;
         //Title
         private GameTitle title;
         private Vector2 startPosition;
         //Description
         private GameBackground description;
+
+        public bool gameInProgress = false;
 
         # endregion
 
@@ -172,6 +175,7 @@ namespace paranothing
         {
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
+            menuFont = Content.Load<SpriteFont>("MenuFont");
             title = new GameTitle(Content.Load<Texture2D>("screenshot"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
             title.setBottomTextRectangle(gameFont.MeasureString("Press 'Enter' to start"));
             startPosition = new Vector2(title.BottomTextRectangle.X, title.BottomTextRectangle.Y);
@@ -367,6 +371,26 @@ namespace paranothing
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
         }
 
+        public void ResetGame()
+        {
+            gameInProgress = false;
+            
+            actionBubble = new ActionBubble();
+            player = new Boy(254, 240, actionBubble);
+            Level l = new Level();
+            l.loadFromFile("levels/level1.lvl");
+            Camera camera = new Camera(0, 360, 1280, 720, 4.0f);
+
+            control.level = l;
+            control.setPlayer(player);
+            control.setCamera(camera);
+            control.initLevel(false);
+
+            loadTitleContents();
+            description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
+
+        }
+
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -395,6 +419,18 @@ namespace paranothing
                     title.Update(this, Keyboard.GetState());
                     break;
                 case GameState.Game:
+
+                    gameInProgress = true;
+
+                    if (Keyboard.GetState().IsKeyDown(Keys.R) && !reloadpressed)
+                    {
+                        reloadpressed = true;
+                        control.level = new Level();
+                        control.level.loadFromFile("levels/level1.lvl");
+                        control.initLevel(false);
+                    }
+                    else if (Keyboard.GetState().IsKeyUp(Keys.R))
+                        reloadpressed = false;
                     control.updateObjs(gameTime);
                     break;
             }
