@@ -105,7 +105,7 @@ namespace paranothing
         {
             if (state != BoyState.Die)
             {
-                if (control.keyState.IsKeyDown(Keys.Space))
+                if (control.keyState.IsKeyDown(Keys.Space) || control.padState.IsButtonDown(Buttons.A))
                 {
                     if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
                     {
@@ -116,8 +116,7 @@ namespace paranothing
                 {
                     state = BoyState.Idle;
                 }
-                if (control.keyState.IsKeyDown(Keys.LeftControl))
-                {
+                if (control.keyState.IsKeyDown(Keys.LeftControl) || control.padState.IsButtonDown(Buttons.RightTrigger))                {
                     if (nearestChair != null)
                     {
                         state = BoyState.ControllingChair;
@@ -133,6 +132,7 @@ namespace paranothing
                     }
                 }
                 if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right)
+                    && control.padState.IsButtonUp(Buttons.LeftThumbstickLeft) && control.padState.IsButtonUp(Buttons.LeftThumbstickRight)
                     && state != BoyState.Teleport && state != BoyState.TimeTravel)
                 {
                     if (state != BoyState.ControllingChair)
@@ -163,7 +163,7 @@ namespace paranothing
                 {
                     if (state != BoyState.ControllingChair)
                     {
-                        if (control.keyState.IsKeyDown(Keys.Right))
+                        if (control.keyState.IsKeyDown(Keys.Right) || control.padState.IsButtonDown(Buttons.LeftThumbstickRight))
                         {
                             if ((state != BoyState.PushWalk && state != BoyState.PushingStill) || (interactor != null && ((Wardrobe)interactor).X > X))
                                 direction = Direction.Right;
@@ -172,7 +172,7 @@ namespace paranothing
                             if (state == BoyState.PushingStill && direction == Direction.Right && interactor != null)
                                 state = BoyState.PushWalk;
                         }
-                        else if (control.keyState.IsKeyDown(Keys.Left))
+                        else if (control.keyState.IsKeyDown(Keys.Left) || control.padState.IsButtonDown(Buttons.LeftThumbstickRight))
                         {
                             if ((state != BoyState.PushWalk && state != BoyState.PushingStill) || (interactor != null && ((Wardrobe)interactor).X < X))
                                 direction = Direction.Left;
@@ -188,19 +188,19 @@ namespace paranothing
 
                     if (nearestChair != null && nearestChair.state == Chairs.ChairsState.Moving)
                     {
-                        if (control.keyState.IsKeyDown(Keys.Right))
+                        if (control.keyState.IsKeyDown(Keys.Right) || control.padState.IsButtonDown(Buttons.LeftThumbstickRight))
                         {
                             nearestChair.move(Direction.Right);
                         }
-                        else if (control.keyState.IsKeyDown(Keys.Left))
+                        else if (control.keyState.IsKeyDown(Keys.Left) || control.padState.IsButtonDown(Buttons.LeftThumbstickLeft))
                         {
                             nearestChair.move(Direction.Left);
                         }
-                        if (control.keyState.IsKeyDown(Keys.Up))
+                        if (control.keyState.IsKeyDown(Keys.Up) || control.padState.IsButtonDown(Buttons.LeftThumbstickUp))
                         {
                             nearestChair.move(Direction.Up);
                         }
-                        else if (control.keyState.IsKeyDown(Keys.Down))
+                        else if (control.keyState.IsKeyDown(Keys.Down) || control.padState.IsButtonDown(Buttons.LeftThumbstickDown))
                         {
                             nearestChair.move(Direction.Down);
                         }

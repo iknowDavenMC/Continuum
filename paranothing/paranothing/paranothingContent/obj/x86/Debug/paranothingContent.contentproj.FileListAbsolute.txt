@@ -4,3 +4,4 @@ C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\al_atta\Desktop\proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\Sounds\sounds.xml
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothingContent\obj\x86\Debug\Sounds\sounds.xml
+C:\Users\Samuel\Desktop\New folder\paranothing\paranothing\paranothingContent\obj\x86\Debug\ResolveAssemblyReference.cache
