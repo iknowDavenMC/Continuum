@@ -115,6 +115,7 @@ namespace paranothing
                     if (nearestChair != null)
                     {
                         state = BoyState.ControllingChair;
+                        nearestChair.state = Chairs.ChairsState.Moving;
                     }
                 }
                 else
@@ -122,6 +123,7 @@ namespace paranothing
                     if (nearestChair != null && nearestChair.state == Chairs.ChairsState.Moving)
                     {
                         nearestChair.state = Chairs.ChairsState.Falling;
+                        state = BoyState.Idle;
                     }
                 }
                 if (control.keyState.IsKeyUp(Keys.Left) && control.keyState.IsKeyUp(Keys.Right)
@@ -158,8 +160,32 @@ namespace paranothing
                                 state = BoyState.Walk;
                         }
                     }
+                }
+                if (state == BoyState.ControllingChair)
+                {
+
+                    if (nearestChair != null && nearestChair.state == Chairs.ChairsState.Moving)
+                    {
+                        if (control.keyState.IsKeyDown(Keys.Right))
+                        {
+                            nearestChair.move(Direction.Right);
+                        }
+                        else if (control.keyState.IsKeyDown(Keys.Left))
+                        {
+                            nearestChair.move(Direction.Left);
+                        }
+                        if (control.keyState.IsKeyDown(Keys.Up))
+                        {
+                            nearestChair.move(Direction.Up);
+                        }
+                        else if (control.keyState.IsKeyDown(Keys.Down))
+                        {
+                            nearestChair.move(Direction.Down);
+                        }
+                    }
                     else
                     {
+                        state = BoyState.Idle;
                     }
                 }
             }
@@ -178,7 +204,11 @@ namespace paranothing
                     {
                         Animation = "endpush";
                     }
-                    if (Animation == "endpush" && frame == 2 || Animation == "walk")
+                    if (Animation == "control")
+                    {
+                        Animation = "controlend";
+                    }
+                    if ((Animation == "endpush" || Animation == "controlend") && frame == 2 || Animation == "walk")
                         Animation = "stand";
                     moveSpeedX = 0;
                     moveSpeedY = 0;
@@ -269,6 +299,16 @@ namespace paranothing
                         Animation = "stand";
                         state = BoyState.Idle;
                     }
+                    break;
+                case BoyState.ControllingChair:
+                    moveSpeedX = 0;
+                    moveSpeedY = 0;
+                    if (Animation != "control")
+                    {
+                        Animation = "controlstart";
+                    }
+                    if (Animation == "controlstart" && frame == 2)
+                        Animation = "control";
                     break;
                 case BoyState.Die:
                     moveSpeedX = 0;

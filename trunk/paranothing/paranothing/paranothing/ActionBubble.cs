@@ -10,7 +10,7 @@ namespace paranothing
     class ActionBubble : Drawable//, Updatable
     {
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
-        public enum BubbleAction { None, Wardrobe, Push, Portrait, Stair };
+        public enum BubbleAction { None, Wardrobe, Push, Portrait, Stair, Chair };
         private BubbleAction action;
         private bool negated;
         private bool visible;
@@ -20,6 +20,7 @@ namespace paranothing
         {
             set { player = value; }
         }
+        public Chairs chair { set; private get; }
         
         private string animName;
         private int animIndex;
@@ -80,6 +81,9 @@ namespace paranothing
                 case BubbleAction.Push:
                     Animation = "push";
                     break;
+                case BubbleAction.Chair:
+                    Animation = "chair";
+                    break;
                 case BubbleAction.Stair:
                     Animation = "stair";
                     break;
@@ -98,7 +102,11 @@ namespace paranothing
         {
             if (visible)
             {
-                Vector2 drawPos = new Vector2(player.X + 11, player.Y - 27);
+                Vector2 drawPos = new Vector2();
+                if (action != BubbleAction.Chair && player != null)
+                    drawPos = new Vector2(player.X + 11, player.Y - 27);
+                else if (chair != null)
+                    drawPos = new Vector2(chair.X + 11, chair.Y - 32);
                 renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble);
                 renderer.Draw(sheet.image, drawPos, sheet.getSprite(animIndex), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.ActionBubble - 0.001f);
                 if (negated)

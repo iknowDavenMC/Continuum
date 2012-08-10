@@ -254,13 +254,14 @@ namespace paranothing
 
             actionTex = Content.Load<Texture2D>("Sprites/actions");
             actionSheet = new SpriteSheet(actionTex);
-            actionSheet.splitSheet(2, 3);
+            actionSheet.splitSheet(2, 4);
             actionSheet.addAnimation("bubble", new int[] { 0 });
             actionSheet.addAnimation("wardrobe", new int[] { 1 });
             actionSheet.addAnimation("push", new int[] { 2 });
-            actionSheet.addAnimation("stair", new int[] { 3 });
-            actionSheet.addAnimation("portrait", new int[] { 4 });
-            actionSheet.addAnimation("negate", new int[] { 5 });
+            actionSheet.addAnimation("chair", new int[] { 3 });
+            actionSheet.addAnimation("stair", new int[] { 4 });
+            actionSheet.addAnimation("portrait", new int[] { 5 });
+            actionSheet.addAnimation("negate", new int[] { 7 });
 
             boyTex = Content.Load<Texture2D>("Sprites/BruceSheet");
             boySheet = new SpriteSheet(boyTex);
@@ -275,7 +276,9 @@ namespace paranothing
             boySheet.addAnimation("endpush", new int[] { 39, 38, 37, 36 });
             boySheet.addAnimation("push", new int[] { 41, 42, 43, 44, 45, 46, 47, 48 });
             boySheet.addAnimation("pushstill", new int[] { 49 });
-            boySheet.addAnimation("control", new int[] { 50, 51, 52, 53 });
+            boySheet.addAnimation("controlstart", new int[] { 50, 51, 52 });
+            boySheet.addAnimation("control", new int[] { 53 });
+            boySheet.addAnimation("controlend", new int[] { 52, 51, 50 });
             boySheet.addAnimation("disappear", new int[] { 50, 51, 52, 53, 54, 55, 56, 57 });
 
             shadowTex = Content.Load<Texture2D>("Sprites/Shadow");
