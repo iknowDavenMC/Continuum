@@ -1,0 +1,8 @@
+1. If you push a wardrobe in front of a staircase, you can't use that end of the staircase anymore
+
+2. We are currently able to pull wardrobes (even though the animation remains a push)
+
+3. Button mashing the chair move button makes Bruce loop him animation repeatedly.
+
+4. If a chair is in front of a wardrobe Bruce can still use the wardrobe
+
