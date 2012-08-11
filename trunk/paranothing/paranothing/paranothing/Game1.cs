@@ -15,6 +15,7 @@ namespace paranothing
     public enum TimePeriod { FarPast, Past, Present };
     public struct DrawLayer {
         public static float ActionBubble = 0.01f;
+        public static float Chairs = 0.015f;
         public static float Player = 0.02f;
         public static float Rubble = 0.03f;
         public static float Key = 0.035f;
