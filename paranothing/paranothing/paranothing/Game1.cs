@@ -93,6 +93,8 @@ namespace paranothing
         Texture2D buttonTex;
         SpriteSheet buttonSheet;
 
+        Texture2D controller;
+
         GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         
@@ -385,6 +387,8 @@ namespace paranothing
             control.setCamera(camera);
             control.initLevel(false);
 
+            controller = Content.Load<Texture2D>("controller");
+
             // TODO: use this.Content to load your game content here
             loadTitleContents();
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
@@ -469,6 +473,10 @@ namespace paranothing
                     spriteBatch.Begin();
                     title.Draw(spriteBatch);
                     drawTitleText();
+
+                    if (title.titleState == GameTitle.TitleState.Controls)
+                        spriteBatch.Draw(controller, new Rectangle(200, 180, 500, 500), Color.White);
+
                     spriteBatch.End();
                     break;
                 //case GameState.Description:
