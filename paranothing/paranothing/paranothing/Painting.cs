@@ -98,7 +98,7 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
-            if (!wasMoved || control.timePeriod == inTime)
+            if ((!wasMoved || control.timePeriod == inTime) && !(control.timePeriod == TimePeriod.FarPast && sendTime != TimePeriod.FarPast))
             {
                 if (control.timePeriod == TimePeriod.Present)
                     renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Background);
@@ -119,9 +119,12 @@ namespace paranothing
 
         public void Interact()
         {
-            Boy player = control.player;
-            player.state = Boy.BoyState.TimeTravel;
-            player.X = X;
+            if (!(control.timePeriod == TimePeriod.FarPast && sendTime != TimePeriod.FarPast))
+            {
+                Boy player = control.player;
+                player.state = Boy.BoyState.TimeTravel;
+                player.X = X;
+            }
         }
 
         public string saveData()
