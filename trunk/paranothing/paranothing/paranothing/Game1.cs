@@ -101,7 +101,7 @@ namespace paranothing
         Boy player;
         ActionBubble actionBubble;
 
-        public static GameStorage gameStorage;
+        //public static GameStorage gameStorage;
 
         //Wardrobe leftWR;
         //Wardrobe rightWR;
@@ -446,7 +446,6 @@ namespace paranothing
                 case GameState.Game:
 
                     gameInProgress = true;
-                    title.gameSaved = true;
 
                     control.updateObjs(gameTime);
                     break;
