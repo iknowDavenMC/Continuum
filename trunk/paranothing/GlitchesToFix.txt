@@ -1,12 +1,6 @@
-1. If you push a wardrobe in front of a staircase, you can't use that end of the staircase anymore. If you move
-   a wardrobe near a picture, you can't push the wardrobe anymore. There should be different buttons for different
-   actions.
+Clicking the chair move button (without holding it) makes Bruce enter a continuous animation loop.
 
-2. We are currently able to pull wardrobes (even though the animation remains a push)
+If a chair is in front of a wardrobe Bruce can still use the wardrobe
 
-3. Button mashing the chair move button makes Bruce loop him animation repeatedly.
-
-4. If a chair is in front of a wardrobe Bruce can still use the wardrobe
-
-5. Chairs moved in the present currently affect the past.
+Chairs move through doors.
 
