@@ -1,6 +1,6 @@
 StartLevel
-levelName:Level1
-nextLevel:Level3
+levelName:Level3
+nextLevel:Level4
 startTime:Present
 playerX:34
 playerY:114

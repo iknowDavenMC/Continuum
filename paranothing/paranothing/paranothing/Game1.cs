@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace paranothing
 {
-    public enum GameState { MainMenu, Controls, Game, Pause, EndGame, LevelEditor, Credits }
+    public enum GameState { MainMenu, Controls, Game, Dialogue, Pause, EndGame, LevelEditor, Credits }
     public enum Direction { Left, Right, Up, Down }
     public enum TimePeriod { FarPast, Past, Present };
     public struct DrawLayer {
@@ -129,7 +129,7 @@ namespace paranothing
         //Description
         private GameBackground description;
 
-        private Level tutorial, level1, level2;
+        private Level tutorial, level1, level2, level3, level4;
 
         public bool gameInProgress = false;
 
@@ -237,7 +237,7 @@ namespace paranothing
             soundBank = new SoundBank(audioEngine, @"Content/Sounds/Sound Bank.xsb");
 
             bgMusic = Content.Load<Song>("Sounds/Soundtrack");
-            MediaPlayer.Play(bgMusic);
+            //MediaPlayer.Play(bgMusic);
 
             greyScale = Content.Load<Effect>("Greyscale");
 
@@ -369,9 +369,13 @@ namespace paranothing
             tutorial = new Level("levels/tutorial.lvl");
             level1 = new Level("levels/level1.lvl");
             level2 = new Level("levels/level2.lvl");
+            level3 = new Level("levels/level3.lvl");
+            level4 = new Level("levels/level4.lvl");
             control.addLevel(tutorial);
             control.addLevel(level1);
             control.addLevel(level2);
+            control.addLevel(level3);
+            control.addLevel(level4);
             control.goToLevel("Tutorial");
 
             GameTitle.levelName = "Tutorial";
@@ -503,7 +507,7 @@ namespace paranothing
             Color paperColor = control.level.wallpaperColor;
             if (control.timePeriod == TimePeriod.Past)
                 paperColor.A = 16;
-            int startX = (int)(Math.Floor((float)-control.camera.X / paperBounds.Width)) * paperBounds.Width;
+            int startX = -paperBounds.Width;
             int xCount = control.level.Width / paperBounds.Height + 2;
             int startY = (int)(Math.Floor((float)-control.camera.Y / paperBounds.Height)) * paperBounds.Height;
             int yCount = control.level.Height / paperBounds.Height + 1;

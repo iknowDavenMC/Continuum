@@ -42,7 +42,7 @@ namespace paranothing
         private Vector2 soundPos;
         public int patrolDistance;
         private int distMoved = 0;
-        private Rectangle bounds { get { return new Rectangle(X, Y, 32, 81); } }
+        private Rectangle bounds { get { return new Rectangle(X, Y+7, 32, 74); } }
         public int Width, Height;
         public enum ShadowState { Idle, Walk, SeekSound }
         public ShadowState state;
