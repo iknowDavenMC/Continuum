@@ -172,7 +172,7 @@ namespace paranothing
                             if (state == BoyState.PushingStill && direction == Direction.Right && interactor != null)
                                 state = BoyState.PushWalk;
                         }
-                        else if (control.keyState.IsKeyDown(Keys.Left) || control.padState.IsButtonDown(Buttons.LeftThumbstickRight))
+                        else if (control.keyState.IsKeyDown(Keys.Left) || control.padState.IsButtonDown(Buttons.LeftThumbstickLeft))
                         {
                             if ((state != BoyState.PushWalk && state != BoyState.PushingStill) || (interactor != null && ((Wardrobe)interactor).X < X))
                                 direction = Direction.Left;
