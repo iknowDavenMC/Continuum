@@ -16,6 +16,7 @@ namespace paranothing
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
         private Vector2 position;
+        private Vector2 startPos;
         private int tX = 0, tY = 0;
         private int speed = 3;
         private int moveTime = 0;
@@ -37,6 +38,7 @@ namespace paranothing
         {
             this.sheet = sheetMan.getSheet("chair");
             position = new Vector2(x, y);
+            startPos = new Vector2(x, y);
             bubble.chair = this;
         }
 
@@ -63,6 +65,7 @@ namespace paranothing
                 }
                 lineNum++;
             }
+            startPos = new Vector2(X, Y);
             bubble.chair = this;
         }
 
@@ -217,7 +220,7 @@ namespace paranothing
         //reset
         public void reset()
         {
-
+            position = new Vector2(startPos.X, startPos.Y);
         }
 
         # endregion
