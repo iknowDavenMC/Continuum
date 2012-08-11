@@ -75,8 +75,9 @@ namespace paranothing
 
         # region Constructors
 
-        public Bookcases(int x, int y, string button1, string button2, bool startLocked = false)
+        public Bookcases(int x, int y, string button1, string button2)
         {
+            bool startLocked = false;
             this.sheet = sheetMan.getSheet("bookcase");
             position = new Vector2(x, y);
             this.startLocked = startLocked;

@@ -143,3 +143,5 @@ C:\Users\al_atta\Desktop\Proj\paranothing\paranothing\paranothing\bin\x86\Debug\
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level3.lvl
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\Content\MenuFont.xnb
 C:\Documents and Settings\Driver\My Documents\Visual Studio 2010\Projects\376proj\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level4.lvl
+C:\Users\Samuel\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level4.lvl
+C:\Users\Samuel\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level3.lvl
