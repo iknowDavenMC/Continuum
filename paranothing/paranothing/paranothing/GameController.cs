@@ -1,4 +1,4 @@
-﻿using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -105,6 +105,7 @@ namespace paranothing
             addObject(camera);
             foreach (Saveable obj in level.getObjs())
             {
+                obj.reset();
                 addObject(obj);
             }
             if (!preserveTime)
