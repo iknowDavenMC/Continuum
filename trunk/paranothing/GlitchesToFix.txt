@@ -4,3 +4,5 @@ If a chair is in front of a wardrobe Bruce can still use the wardrobe
 
 Chairs move through doors.
 
+The pause menu in level 2 is messed up (it's gets stuck and goes down too far)
+
