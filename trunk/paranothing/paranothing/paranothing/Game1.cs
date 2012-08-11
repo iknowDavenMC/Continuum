@@ -240,7 +240,7 @@ namespace paranothing
             soundBank = new SoundBank(audioEngine, @"Content/Sounds/Sound Bank.xsb");
 
             bgMusic = Content.Load<Song>("Sounds/Soundtrack");
-            //MediaPlayer.Play(bgMusic);
+            MediaPlayer.Play(bgMusic);
 
             greyScale = Content.Load<Effect>("Greyscale");
 
@@ -440,6 +440,7 @@ namespace paranothing
             {       
                 control.state = GameState.MainMenu;
                 title.titleState = GameTitle.TitleState.Pause;
+                title.menuSize = 4;
             }
             // TODO: Add your update logic here
             

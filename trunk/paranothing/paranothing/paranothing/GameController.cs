@@ -130,7 +130,7 @@ namespace paranothing
             padState = GamePad.GetState(PlayerIndex.One);
             if (showingDialogue)
             {
-                if (keyState.IsKeyDown(Keys.Space))
+                if (keyState.IsKeyDown(Keys.Space) || padState.IsButtonDown(Buttons.A))
                     showingDialogue = false;
             }
             else
