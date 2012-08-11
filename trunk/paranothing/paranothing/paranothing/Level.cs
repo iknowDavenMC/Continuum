@@ -142,6 +142,18 @@ namespace paranothing
                 }
                 if (line.StartsWith("color:"))
                     wallpaperColor = parseColor(line.Substring(6));
+                // Dialogue trigger
+                if (line.StartsWith("StartDialogue"))
+                {
+                    objData = line;
+                    while (!line.StartsWith("EndDialogue") && lineNum < saveLines.Length)
+                    {
+                        line = saveLines[lineNum];
+                        objData += "\n" + line;
+                        lineNum++;
+                    }
+                    addObj(new Dialogue(objData));
+                }
                 // Shadow
                 if (line.StartsWith("StartShadow"))
                 {

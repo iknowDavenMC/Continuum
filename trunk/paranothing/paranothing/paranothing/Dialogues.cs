@@ -3,51 +3,86 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework;
 
 namespace paranothing
 {
-    class Dialogues : Audible, Interactive
+    class Dialogue : Collideable, Updatable, Saveable
     {
-        # region Attributes
+        private GameController control = GameController.getInstance();
+        public bool played { get; private set; }
+        public string text;
+        private Vector2 position;
+        public int X { get { return (int)position.X; } set { position.X = value; } }
+        public int Y { get { return (int)position.Y; } set { position.Y = value; } }
+        private Rectangle bounds { get {return new Rectangle(X, Y, 20, 20);}}
 
-        //Audible
-        private Cue dialogCue;
-
-        # endregion
-
-        # region Constructor
-
-        public Dialogues()
+        public Dialogue(string text, int X, int Y)
         {
-
+            position = new Vector2(X, Y);
+            this.text = text;
+            played = false;
         }
 
-        # endregion
-
-        # region Methods
-
-        //Audible
-        public Cue getCue()
+        public Dialogue(string saveString)
         {
-            return dialogCue;
+            X = 0;
+            Y = 0;
+            text = "...";
+            string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineNum = 0;
+            string line = "";
+            while (!line.StartsWith("EndDialogue") && lineNum < lines.Length)
+            {
+                line = lines[lineNum];
+                if (line.StartsWith("x:"))
+                {
+                    try { X = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("y:"))
+                {
+                    try { Y = int.Parse(line.Substring(2)); }
+                    catch (FormatException) { }
+                }
+                if (line.StartsWith("text:"))
+                {
+                    try { text = line.Substring(5).Trim(); }
+                    catch (FormatException) { }
+                }
+                lineNum++;
+            }
         }
 
-        public void setCue(Cue cue)
+        public Rectangle getBounds()
         {
-            dialogCue = cue;
+            return bounds;
+        }
+
+        public bool isSolid()
+        {
+            return false;
         }
 
         public void Play()
         {
-            if (dialogCue.IsPrepared)
-                dialogCue.Play();
+            if (!played)
+            {
+                control.showDialogue(text);
+                played = true;
+            }
         }
 
-        //Interactive
-        public void Interact()
+        public void update(GameTime time) {}
+
+        public string saveData()
         {
+            return "StartDialogue\nx:" + X + "\ny:" + Y + "text:" + text + "EndDialogue";
         }
 
-        # endregion
+        public void reset()
+        {
+            played = false;
+        }
     }
 }

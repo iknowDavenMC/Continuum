@@ -16,7 +16,7 @@ namespace paranothing
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collideable
         private Vector2 position;
-        private Rectangle bounds { get { return new Rectangle(X, Y, 16, 9); } }
+        private Rectangle bounds { get { return new Rectangle(X, Y, 16, 5); } }
         //Drawable
         private SpriteSheet sheet;
         private Lockable lockedObj;
