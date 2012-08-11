@@ -199,7 +199,11 @@ namespace paranothing
                     control.goToLevel("Level1");
                     control.initLevel(false);
                     game.GameState = GameState.Game;
+
+                    colors[menuIndex] = Color.White;
                     menuIndex = 0;
+                    colors[menuIndex] = Color.Yellow;
+
                 }
 
                 else if (menuIndex == 2)
@@ -215,7 +219,9 @@ namespace paranothing
                     control.goToLevel("Level3");
                     control.initLevel(false);
                     game.GameState = GameState.Game;
+                    colors[menuIndex] = Color.White;
                     menuIndex = 0;
+                    colors[menuIndex] = Color.Yellow;
                 }
 
                 else if (menuIndex == 4)
@@ -223,7 +229,9 @@ namespace paranothing
                     control.goToLevel("Level4");
                     control.initLevel(false);
                     game.GameState = GameState.Game;
+                    colors[menuIndex] = Color.White;
                     menuIndex = 0;
+                    colors[menuIndex] = Color.Yellow;
                 }
 
             }
@@ -415,6 +423,11 @@ namespace paranothing
 
             if (titleState == TitleState.Credits)
             {
+
+                spriteBatch.DrawString(Game1.menuFont, "Samuel Assaf", new Vector2(180, 200), Color.White);
+                spriteBatch.DrawString(Game1.menuFont, "Alex Attar", new Vector2(180, 260), Color.White);
+                spriteBatch.DrawString(Game1.menuFont, "David Campbell", new Vector2(180, 320), Color.White);
+                spriteBatch.DrawString(Game1.menuFont, "Ralph D'Almeida", new Vector2(180, 380), Color.White);
 
                 spriteBatch.DrawString(Game1.menuFont, "Back", choice4, colors[0]);
                 //TODO: ADD CREDITS
