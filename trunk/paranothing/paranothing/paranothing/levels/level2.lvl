@@ -8,6 +8,12 @@ width:660
 height:180
 color:255,192,192
 
+StartDialogue
+x:20
+y:130
+text: Goodness, more strangers. Don't get too close.
+EndDialogue
+
 StartWall
 x:0
 y:0

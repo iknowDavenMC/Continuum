@@ -9,9 +9,15 @@ height:180
 color:192,255,255
 
 StartDialogue
-x:17
+x:5
 y:114
-text:Hello there!
+text: Well, well. Strangers in my house.
+EndDialogue
+
+StartDialogue
+x:80
+y:114
+text: You won't be safe here boy so get moving.
 EndDialogue
 
 StartWall
@@ -28,6 +34,18 @@ width:8
 height:90
 intact:false
 EndWall
+
+StartDialogue
+x:400
+y:20
+text: You'll have to distract him with something.
+EndDialogue
+
+StartDialogue
+x:175
+y:20
+text: Be careful. He'll hear the wardrobe opening.
+EndDialogue
 
 StartWall
 x:592
@@ -110,10 +128,22 @@ x:370
 y:110
 EndPortrait
 
+StartDialogue
+x:400
+y:110
+text: That staircase wasn't always broken. Let me show you.
+EndDialogue
+
 StartPortrait
 x:485
 y:20
 EndPortrait
+
+StartDialogue
+x:525
+y:20
+text: Of course, that wall hadn't been broken yet.
+EndDialogue
 
 StartShadow
 x:190

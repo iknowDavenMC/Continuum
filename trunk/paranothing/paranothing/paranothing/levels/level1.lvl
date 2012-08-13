@@ -9,6 +9,18 @@ height:180
 color:192,128,0
 startTime:Present
 
+StartDialogue
+x:20
+y:130
+text: The past doesn't just restore staircases or clear rubble.
+EndDialogue
+
+StartDialogue
+x:150
+y:130
+text: Any changes made in the past will affect the present.
+EndDialogue
+
 StartWall
 x:0
 y:0
