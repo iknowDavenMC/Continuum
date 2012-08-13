@@ -268,6 +268,10 @@ namespace paranothing
         public void Interact()
         {
             Boy player = control.player;
+
+            if (state == BookcasesState.Open)
+                Game1.endGame = true;
+
         }
 
         public string saveData()

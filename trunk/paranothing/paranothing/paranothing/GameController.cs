@@ -388,6 +388,7 @@ namespace paranothing
 
         public void drawObjs(SpriteBatch renderer)
         {
+
             if (showingDialogue)
             {
                 Vector2 textDim = Game1.gameFont.MeasureString(dialogue);
@@ -413,6 +414,7 @@ namespace paranothing
             }
 
             player.draw(renderer, tint);
+
         }
 
         public bool collides(Rectangle box1, Rectangle box2)

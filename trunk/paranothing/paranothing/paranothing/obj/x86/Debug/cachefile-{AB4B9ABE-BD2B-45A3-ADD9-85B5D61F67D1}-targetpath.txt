@@ -28,6 +28,7 @@ Content\Greyscale.xnb
 Content\Sounds\Soundtrack.xnb
 Content\Sounds\Soundtrack.wma
 Content\controller.xnb
+Content\white.xnb
 Content\Sounds\sounds.xgs
 Content\Sounds\Wave Bank.xwb
 Content\Sounds\Sound Bank.xsb
