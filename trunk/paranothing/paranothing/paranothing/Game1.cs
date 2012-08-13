@@ -470,7 +470,6 @@ namespace paranothing
                         break;
                     case GameState.Game:
                         
-                        endGame = true;
                         gameInProgress = true;
 
                         control.updateObjs(gameTime);
