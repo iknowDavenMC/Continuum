@@ -468,6 +468,9 @@ namespace paranothing
                 switch (control.state)
                 {
                     case GameState.MainMenu:
+                        endGame = false;
+                        stopwatch.Reset();
+                    
                         title.Update(this, Keyboard.GetState());
                         break;
                     case GameState.Game:

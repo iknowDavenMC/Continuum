@@ -133,8 +133,6 @@ namespace paranothing
             if (showingDialogue)
             {
                 dialogueTimer += time.ElapsedGameTime.Milliseconds;
-                if (dialogueTimer >= 5000)
-                    showingDialogue = false;
             }
             else
             {
@@ -481,6 +479,12 @@ namespace paranothing
         {
             showingDialogue = true;
             dialogue = text;
+        }
+
+        public void hideDialogue()
+        {
+            if (dialogueTimer >= 3000)
+                showingDialogue = false;
         }
     }
 }
