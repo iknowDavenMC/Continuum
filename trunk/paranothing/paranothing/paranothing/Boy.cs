@@ -224,19 +224,28 @@ namespace paranothing
             frameTime += elapsed;
             checkInput(control);
             drawLayer = DrawLayer.Player;
+
             switch (state)
             {
                 case BoyState.Idle:
                     if (Animation == "pushstill" || Animation == "startpush" || Animation == "push")
                     {
                         Animation = "endpush";
+
+                        if (soundCue != null)
+                        {
+                            soundCue.Stop(AudioStopOptions.Immediate);
+                        }
                     }
                     if (Animation == "control")
                     {
                         Animation = "controlend";
                     }
                     if ((Animation == "endpush" || Animation == "controlend") && frame == 2 || Animation == "walk")
+                    {
                         Animation = "stand";
+                    }
+
                     moveSpeedX = 0;
                     moveSpeedY = 0;
                     break;
@@ -258,6 +267,11 @@ namespace paranothing
                     drawLayer = DrawLayer.PlayerBehindStairs;
                     break;
                 case BoyState.PushingStill:
+                    if (soundCue != null)
+                    {
+                        soundCue.Stop(AudioStopOptions.Immediate);
+                    }
+
                     moveSpeedX = 0;
                     moveSpeedY = 0;
                     if (Animation == "walk" || Animation == "stand")
@@ -376,7 +390,7 @@ namespace paranothing
                         w.X += (int)(moveSpeedX * flip);
                         if (pushSoundTimer > 200)
                         {
-                            soundMan.playSound("Pushing Wardrobe");
+                            soundCue = soundMan.playSound("Pushing Wardrobe", 0);
                             pushSoundTimer = 0;
                         }
                     }
