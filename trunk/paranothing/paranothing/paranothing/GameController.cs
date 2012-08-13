@@ -480,6 +480,7 @@ namespace paranothing
         public void showDialogue(string text)
         {
             showingDialogue = true;
+            dialogue = text;
         }
     }
 }
