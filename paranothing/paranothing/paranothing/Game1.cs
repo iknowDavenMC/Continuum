@@ -99,6 +99,7 @@ namespace paranothing
 
         GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        SoundManager soundMan = SoundManager.getInstance();
         
         int ScreenWidth = 1280;
         int ScreenHeight = 720;
@@ -251,7 +252,7 @@ namespace paranothing
             audioEngine = new AudioEngine(@"Content/Sounds/sounds.xgs");
             waveBank = new WaveBank(audioEngine, @"Content/Sounds/Wave Bank.xwb");
             soundBank = new SoundBank(audioEngine, @"Content/Sounds/Sound Bank.xsb");
-
+            soundMan.setSoundBank(ref soundBank);
             bgMusic = Content.Load<Song>("Sounds/Soundtrack");
             MediaPlayer.Play(bgMusic);
             MediaPlayer.IsRepeating = true;

@@ -8,15 +8,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Bookcases : Collideable, Audible, Updatable, Drawable, Interactive, Saveable
+    class Bookcases : Collideable, Updatable, Drawable, Interactive, Saveable
     {
         # region Attributes
 
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         //Collidable
         private Vector2 position;
         private string button1, button2;
+        private int unlockTimer;
         public int X
         {
             get
@@ -45,7 +47,6 @@ namespace paranothing
         private Cue bcCue;
         //Drawable
         private SpriteSheet sheet;
-        private string linkedName;
         private bool locked;
         private bool startLocked;
         private int frameTime;
@@ -160,22 +161,6 @@ namespace paranothing
             return false;
         }
 
-        //Audible
-        public Cue getCue()
-        {
-            return bcCue;
-        }
-
-        public void setCue(Cue cue)
-        {
-            bcCue = cue;
-        }
-
-        public void Play()
-        {
-
-        }
-
         //Drawable
         public Texture2D getImage()
         {
@@ -193,7 +178,13 @@ namespace paranothing
         {
             int elapsed = time.ElapsedGameTime.Milliseconds;
             frameTime += elapsed;
-
+            if (state == BookcasesState.Opening)
+                unlockTimer += elapsed;
+            if (unlockTimer >= 450)
+            {
+                soundMan.playSound("Final Door Part 2");
+                unlockTimer = 0;
+            }
             bool b1Pushed = false;
             bool b2Pushed = false;
             if (button1 != "")
@@ -221,10 +212,15 @@ namespace paranothing
             if (b1Pushed && b2Pushed)
             {
                 if (state == BookcasesState.Closed)
+                {
                     state = BookcasesState.Opening;
+                    if (unlockTimer == 0)
+                        soundMan.playSound("Final Door Part 1");
+                }
             }
             else
             {
+                unlockTimer = 0;
                 if (state != BookcasesState.Closed)
                     state = BookcasesState.Closing;
                 else
@@ -246,6 +242,7 @@ namespace paranothing
                         Animation = "bookcaseopening";
                     break;
                 case BookcasesState.Closing:
+                    unlockTimer = 0;
                     if (Animation == "bookcaseclosing" && frame == 4)
                     {
                         Animation = "close";
@@ -255,6 +252,7 @@ namespace paranothing
                         Animation = "bookcaseclosing";
                     break;
                 case BookcasesState.Closed:
+                    unlockTimer = 0;
                     Animation = "bookcaseclosed";
                     break;
             }

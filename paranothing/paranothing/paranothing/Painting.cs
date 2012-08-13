@@ -8,6 +8,7 @@ namespace paranothing
     {
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         private Vector2 position;
         public int X
         {
@@ -124,6 +125,7 @@ namespace paranothing
                 Boy player = control.player;
                 player.state = Boy.BoyState.TimeTravel;
                 player.X = X;
+                soundMan.playSound("Portrait Travel");
             }
         }
 

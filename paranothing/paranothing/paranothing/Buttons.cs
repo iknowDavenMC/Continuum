@@ -19,7 +19,6 @@ namespace paranothing
         private Rectangle bounds { get { return new Rectangle(X, Y, 16, 5); } }
         //Drawable
         private SpriteSheet sheet;
-        private Lockable lockedObj;
         public bool stepOn;
         private string name;
 

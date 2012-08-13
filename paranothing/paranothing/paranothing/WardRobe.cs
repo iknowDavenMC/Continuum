@@ -8,12 +8,13 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Wardrobe : Collideable, Audible, Updatable, Drawable, Interactive, Lockable, Saveable
+    class Wardrobe : Collideable, Updatable, Drawable, Interactive, Lockable, Saveable
     {
         # region Attributes
         private static Dictionary<string, Wardrobe> wardrobeDict = new Dictionary<string, Wardrobe>();
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         //Collidable
         private Vector2 startPos;
         private Vector2 positionPres;
@@ -288,22 +289,6 @@ namespace paranothing
             return false;
         }
 
-        //Audible
-        public Cue getCue()
-        {
-            return wrCue;
-        }
-
-        public void setCue(Cue cue)
-        {
-            wrCue = cue;
-        }
-
-        public void Play()
-        {
-
-        }
-
         //Drawable
         public Texture2D getImage()
         {
@@ -384,6 +369,7 @@ namespace paranothing
         public void unlockObj()
         {
             locked = false;
+            soundMan.playSound("Wardrobe Unlock");
         }
 
         public bool isLocked()
@@ -401,6 +387,7 @@ namespace paranothing
                 {
                     player.state = Boy.BoyState.Teleport;
                     player.X = X + 16;
+                    soundMan.playSound("Wardrobe Travel");
                 }
             }
             else
@@ -408,7 +395,9 @@ namespace paranothing
                 if (control.collidingWithSolid(pushBox, false))
                     player.state = Boy.BoyState.PushingStill;
                 else
+                {
                     player.state = Boy.BoyState.PushWalk;
+                }
                 if (player.X > X)
                 {
                     player.X = X + 67;

@@ -109,7 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionBubble.cs" />
-    <Compile Include="Audible.cs" />
     <Compile Include="Bookcases.cs" />
     <Compile Include="Boy.cs" />
     <Compile Include="Buttons.cs" />
@@ -136,6 +135,7 @@
     <Compile Include="Rubble.cs" />
     <Compile Include="Saveable.cs" />
     <Compile Include="Shadows.cs" />
+    <Compile Include="SoundManager.cs" />
     <Compile Include="SpriteSheet.cs" />
     <Compile Include="SpriteSheetManager.cs" />
     <Compile Include="Stairs.cs" />

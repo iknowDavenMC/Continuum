@@ -8,15 +8,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    public class Chairs : Collideable, Audible, Updatable, Drawable, Interactive, Saveable
+    public class Chairs : Collideable, Updatable, Drawable, Interactive, Saveable
     {
         # region Attributes
 
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
         //Collidable
-        private Vector2 position;
         private Vector2 startPos;
+        private Vector2 positionPres;
+        private Vector2 positionPast1;
+        private Vector2 positionPast2;
         private int tX = 0, tY = 0;
         private int speed = 3;
         private int moveTime = 0;
@@ -37,7 +39,9 @@ namespace paranothing
         public Chairs(int x, int y, int width, int height, int frameLength, bool startLocked)
         {
             this.sheet = sheetMan.getSheet("chair");
-            position = new Vector2(x, y);
+            positionPres = new Vector2(x, y);
+            positionPast1 = new Vector2(x, y);
+            positionPast2 = new Vector2(x, y);
             startPos = new Vector2(x, y);
             bubble.chair = this;
         }
@@ -46,8 +50,8 @@ namespace paranothing
         {
             this.sheet = sheetMan.getSheet("chair");
             string[] lines = saveString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            X = 0;
-            Y = 0;
+            int x = 0;
+            int y = 0;
             int lineNum = 0;
             string line = "";
             while (!line.StartsWith("EndChairs") && lineNum < lines.Length)
@@ -55,17 +59,20 @@ namespace paranothing
                 line = lines[lineNum];
                 if (line.StartsWith("x:"))
                 {
-                    try { X = int.Parse(line.Substring(2)); }
+                    try { x = int.Parse(line.Substring(2)); }
                     catch (FormatException) { }
                 }
                 if (line.StartsWith("y:"))
                 {
-                    try { Y = int.Parse(line.Substring(2)); }
+                    try { y = int.Parse(line.Substring(2)); }
                     catch (FormatException) { }
                 }
                 lineNum++;
             }
-            startPos = new Vector2(X, Y);
+            startPos = new Vector2(x, y);
+            positionPres = new Vector2(x, y);
+            positionPast1 = new Vector2(x, y);
+            positionPast2 = new Vector2(x, y);
             bubble.chair = this;
         }
 
@@ -76,13 +83,77 @@ namespace paranothing
         //Accessors & Mutators
         public int X
         {
-            get { return (int)position.X; }
-            set { position.X = value; }
+            get
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        return (int)positionPast2.X;
+                    case TimePeriod.Past:
+                        return (int)positionPast1.X;
+                    case TimePeriod.Present:
+                        return (int)positionPres.X;
+                    default:
+                        return 0;
+                }
+            }
+            set
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        positionPast2.X = value;
+                        positionPast1.X = value;
+                        positionPres.X = value;
+                        break;
+                    case TimePeriod.Past:
+                        positionPast1.X = value;
+                        positionPres.X = value;
+                        break;
+                    case TimePeriod.Present:
+                        positionPres.X = value;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         public int Y
         {
-            get { return (int)position.Y; }
-            set { position.Y = value; }
+            get
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        return (int)positionPast2.Y;
+                    case TimePeriod.Past:
+                        return (int)positionPast1.Y;
+                    case TimePeriod.Present:
+                        return (int)positionPres.Y;
+                    default:
+                        return 0;
+                }
+            }
+            set
+            {
+                switch (control.timePeriod)
+                {
+                    case TimePeriod.FarPast:
+                        positionPast2.Y = value;
+                        positionPast1.Y = value;
+                        positionPres.Y = value;
+                        break;
+                    case TimePeriod.Past:
+                        positionPast1.Y = value;
+                        positionPres.Y = value;
+                        break;
+                    case TimePeriod.Present:
+                        positionPres.Y = value;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         //Collideable
@@ -95,22 +166,6 @@ namespace paranothing
             return false;
         }
 
-        //Audible
-        public Cue getCue()
-        {
-            return crCue;
-        }
-
-        public void setCue(Cue cue)
-        {
-            crCue = cue;
-        }
-
-        public void Play()
-        {
-
-        }
-
         //Drawable
         public Texture2D getImage()
         {
@@ -119,10 +174,11 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
+            Vector2 drawPos = new Vector2(X, Y);
             if (control.timePeriod == TimePeriod.Present)
-                renderer.Draw(sheet.image, position, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Chairs);
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(1), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Chairs);
             else
-                renderer.Draw(sheet.image, position, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Chairs);
+                renderer.Draw(sheet.image, drawPos, sheet.getSprite(0), tint, 0f, new Vector2(), 1f, SpriteEffects.None, DrawLayer.Chairs);
             bubble.draw(renderer, tint);
         }
 
@@ -220,7 +276,9 @@ namespace paranothing
         //reset
         public void reset()
         {
-            position = new Vector2(startPos.X, startPos.Y);
+            positionPres = new Vector2(startPos.X, startPos.Y);
+            positionPast1 = new Vector2(startPos.X, startPos.Y);
+            positionPast2 = new Vector2(startPos.X, startPos.Y);
         }
 
         # endregion
