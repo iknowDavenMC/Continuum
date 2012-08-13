@@ -20,7 +20,7 @@ namespace paranothing
         public int menuSize = 5;
         private GamePadState prevPad;
         private KeyboardState prevKeys;
-        private bool toggleSound = true;
+        public static bool toggleSound = true;
         private bool toggleMusic = true;
         private String soundText = "ON";
         private String musicText = "ON";
