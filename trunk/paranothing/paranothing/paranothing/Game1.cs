@@ -183,8 +183,8 @@ namespace paranothing
             titleFont = Content.Load<SpriteFont>("TitleFont");
             gameFont = Content.Load<SpriteFont>("GameFont");
             menuFont = Content.Load<SpriteFont>("MenuFont");
-            title = new GameTitle(Content.Load<Texture2D>("screenshot"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
-            title.setBottomTextRectangle(gameFont.MeasureString("Press 'Enter' to start"));
+            title = new GameTitle(Content.Load<Texture2D>("screenshot_for_menu"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
+            title.setBottomTextRectangle(gameFont.MeasureString("Press Start"));
             startPosition = new Vector2(title.BottomTextRectangle.X, title.BottomTextRectangle.Y);
         }
         private void drawTitleText()
@@ -192,7 +192,7 @@ namespace paranothing
             title.setTopTextRectangle(titleFont.MeasureString("Continuum"));
             drawText("Continuum", titleFont, Color.WhiteSmoke, title.TopTextRectangle.X, title.TopTextRectangle.Y);
             if (title.titleState == GameTitle.TitleState.Title)
-                spriteBatch.DrawString(gameFont, "Press 'Enter' to start", startPosition, Color.DarkMagenta);
+                spriteBatch.DrawString(gameFont, "Press Start", startPosition, Color.White);
         }
 
         //Description
@@ -241,6 +241,7 @@ namespace paranothing
 
             bgMusic = Content.Load<Song>("Sounds/Soundtrack");
             MediaPlayer.Play(bgMusic);
+            MediaPlayer.IsRepeating = true;
 
             greyScale = Content.Load<Effect>("Greyscale");
 
