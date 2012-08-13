@@ -8,11 +8,13 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace paranothing
 {
-    class Boy : Drawable, Updatable, Collideable, Audible
+    class Boy : Drawable, Updatable, Collideable
     {
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         private SpriteSheet sheet;
+        private int pushSoundTimer = 0;
         private int frame;
         private int frameLength;
         private int frameTime;
@@ -273,6 +275,7 @@ namespace paranothing
                     if (Animation == "startpush" && frame == 3 || Animation == "pushstill")
                     {
                         Animation = "push";
+                        pushSoundTimer = 201;
                     }
                     if (Animation == "push")
                         moveSpeedX = 3;
@@ -366,10 +369,16 @@ namespace paranothing
                 X += moveSpeedX * flip;
                 if (state == BoyState.PushWalk && Animation == "push" && interactor != null)
                 {
+                    pushSoundTimer += elapsed;
                     Wardrobe w = (Wardrobe)interactor;
                     if (!control.collidingWithSolid(w.pushBox, false))
                     {
                         w.X += (int)(moveSpeedX * flip);
+                        if (pushSoundTimer > 200)
+                        {
+                            soundMan.playSound("Pushing Wardrobe");
+                            pushSoundTimer = 0;
+                        }
                     }
                     else
                         X -= moveSpeedX * flip;
@@ -393,22 +402,6 @@ namespace paranothing
         public bool isSolid()
         {
             return true;
-        }
-
-        public void Play()
-        {
-            if (soundCue.IsPrepared)
-                soundCue.Play();
-        }
-
-        public void setCue(Cue cue)
-        {
-            soundCue = cue;
-        }
-
-        public Cue getCue()
-        {
-            return soundCue;
         }
     }
 }

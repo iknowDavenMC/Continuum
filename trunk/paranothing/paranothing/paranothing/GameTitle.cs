@@ -384,9 +384,6 @@ namespace paranothing
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-           
-
             base.Draw(spriteBatch);
 
             if (titleState == TitleState.Menu)

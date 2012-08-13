@@ -9,6 +9,7 @@ namespace paranothing
 {
     class GameController
     {
+        private SoundManager soundMan = SoundManager.getInstance();
         public KeyboardState keyState;
         public GamePadState padState;
 
@@ -162,6 +163,7 @@ namespace paranothing
                             else
                                 player.direction = Direction.Left;
                             player.state = Boy.BoyState.Die;
+                            soundMan.playSound("Death");
                             shadow.state = Shadows.ShadowState.Idle;
                         }
                     }
@@ -194,6 +196,8 @@ namespace paranothing
                                 break;
                             }
                         }
+                        if (!button.stepOn && pressed)
+                            soundMan.playSound("Button Press");
                         button.stepOn = pressed;
                     }
                     else if (obj is Stairs)
@@ -262,6 +266,7 @@ namespace paranothing
                                             chair.Y--;
                                         chair.state = Chairs.ChairsState.Idle;
                                         soundPos = new Vector2(chair.X, chair.Y);
+                                        soundMan.playSound("Chair Drop");
                                     }
                                 }
                             }

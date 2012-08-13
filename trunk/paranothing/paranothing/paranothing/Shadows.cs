@@ -8,11 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Shadows : Collideable, Updatable, Drawable, Audible, Saveable
+    class Shadows : Collideable, Updatable, Drawable, Saveable
     {
         # region Attributes
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         //Drawable
         private SpriteSheet sheet;
         private int frame;
@@ -237,6 +238,7 @@ namespace paranothing
             state = ShadowState.SeekSound;
             if (Animation == "walk")
                 Animation = "stopwalk";
+            soundMan.playSound("Shadow");
         }
 
         //Drawable
@@ -266,23 +268,6 @@ namespace paranothing
         public bool isSolid()
         {
             return false;
-        }
-
-        //Audible
-        public void setCue(Cue cue)
-        {
-            soundCue = cue;
-        }
-
-        public Cue getCue()
-        {
-            return soundCue;
-        }
-
-        public void Play()
-        {
-            if (soundCue.IsPrepared)
-                soundCue.Play();
         }
 
         public string saveData()

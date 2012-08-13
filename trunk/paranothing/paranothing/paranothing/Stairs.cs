@@ -18,7 +18,6 @@ namespace paranothing
         private bool startIntact;
         private bool intact;
         public Direction direction;
-        public float drawLayer;
         public Texture2D getImage()
         {
             return sheet.image;

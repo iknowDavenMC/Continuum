@@ -8,12 +8,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace paranothing
 {
-    class Doors : Collideable, Audible, Updatable, Drawable, Interactive, Lockable, Saveable
+    class Doors : Collideable, Updatable, Drawable, Interactive, Lockable, Saveable
     {
         # region Attributes
 
         private GameController control = GameController.getInstance();
         private SpriteSheetManager sheetMan = SpriteSheetManager.getInstance();
+        private SoundManager soundMan = SoundManager.getInstance();
         //Collidable
         private Vector2 position;
         private Rectangle bounds { get { return new Rectangle(X + 25, Y, 8, 75); } }
@@ -176,6 +177,7 @@ namespace paranothing
         public void unlockObj()
         {
             locked = false;
+            soundMan.playSound("Door Unlock");
         }
 
         public bool isLocked()
@@ -191,22 +193,6 @@ namespace paranothing
         public bool isSolid()
         {
             return locked;
-        }
-
-        //Audible
-        public Cue getCue()
-        {
-            return drCue;
-        }
-
-        public void setCue(Cue cue)
-        {
-            drCue = cue;
-        }
-
-        public void Play()
-        {
-
         }
 
         //Drawable

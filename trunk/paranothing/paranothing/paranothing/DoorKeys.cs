@@ -18,7 +18,6 @@ namespace paranothing
         private Rectangle bounds { get { return new Rectangle(X, Y, 16, 9); } }
         //Drawable
         private SpriteSheet sheet;
-        private Lockable lockedObj;
         public bool restrictTime { get; private set; }
         public TimePeriod inTime { get; private set; }
         public bool pickedUp;
