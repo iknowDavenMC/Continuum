@@ -191,3 +191,4 @@ C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\para
 C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\paranothing\paranothing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
 C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
+C:\Users\Samuel\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\white.xnb

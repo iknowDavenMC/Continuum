@@ -470,7 +470,7 @@ namespace paranothing
                         title.Update(this, Keyboard.GetState());
                         break;
                     case GameState.Game:
-                        
+
                         gameInProgress = true;
 
                         control.updateObjs(gameTime);
@@ -495,6 +495,7 @@ namespace paranothing
                     control.state = GameState.MainMenu;
                     title.titleState = GameTitle.TitleState.Menu;
                     title.menuSize = 5;
+                    gameInProgress = false;
                 }
 
             }
