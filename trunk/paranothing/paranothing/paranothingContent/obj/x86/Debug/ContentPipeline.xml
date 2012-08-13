@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
-      <Time>2012-08-13T11:22:28.8292778-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb</Output>
+      <Time>2012-08-13T08:11:09.1159514-04:00</Time>
     </Item>
     <Item>
       <Source>GameThumbnail.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
-      <Time>2012-08-13T11:23:11.2117608-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb</Output>
+      <Time>2012-08-13T08:11:18.0649514-04:00</Time>
     </Item>
     <Item>
       <Source>screenshot.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
-      <Time>2012-08-13T11:23:11.2273598-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb</Output>
+      <Time>2012-08-13T08:11:18.0689514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\stairs_intact.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
-      <Time>2012-08-13T11:22:28.8448768-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb</Output>
+      <Time>2012-08-13T08:11:09.1219514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\actions.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb</Output>
-      <Time>2012-08-13T11:22:28.7980798-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb</Output>
+      <Time>2012-08-13T08:11:09.0959514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Bruce.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb</Output>
-      <Time>2012-08-13T11:22:28.7356838-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb</Output>
+      <Time>2012-08-13T08:11:09.0469514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Portrait.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb</Output>
-      <Time>2012-08-13T11:22:28.8136788-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb</Output>
+      <Time>2012-08-13T08:11:09.1059514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Rubble.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb</Output>
-      <Time>2012-08-13T11:22:28.7668818-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb</Output>
+      <Time>2012-08-13T08:11:09.0699514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\StaircasePast.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb</Output>
-      <Time>2012-08-13T11:22:28.8136788-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb</Output>
+      <Time>2012-08-13T08:11:09.1119514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\StaircasePresent.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb</Output>
-      <Time>2012-08-13T11:22:28.7668818-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb</Output>
+      <Time>2012-08-13T08:11:09.0769514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Wallpaper.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb</Output>
-      <Time>2012-08-13T11:22:28.8916738-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb</Output>
+      <Time>2012-08-13T08:11:09.1479514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Wardrobe.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb</Output>
-      <Time>2012-08-13T11:22:28.7356838-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb</Output>
+      <Time>2012-08-13T08:11:09.0559514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\floor.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb</Output>
-      <Time>2012-08-13T11:22:28.8760748-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb</Output>
+      <Time>2012-08-13T08:11:09.1389514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Staircase.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb</Output>
-      <Time>2012-08-13T11:22:28.8448768-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb</Output>
+      <Time>2012-08-13T08:11:09.1279514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\BruceSheet.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb</Output>
-      <Time>2012-08-13T11:22:28.8916738-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb</Output>
+      <Time>2012-08-13T08:11:09.1599514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\wall.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb</Output>
-      <Time>2012-08-13T11:22:28.7200848-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb</Output>
+      <Time>2012-08-13T08:11:09.0439514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Button.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb</Output>
-      <Time>2012-08-13T11:22:28.7512828-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb</Output>
+      <Time>2012-08-13T08:11:09.0649514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Chair.png</Source>
@@ -160,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb</Output>
-      <Time>2012-08-13T11:22:28.8760748-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb</Output>
+      <Time>2012-08-13T08:11:09.1439514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\door.png</Source>
@@ -169,8 +169,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb</Output>
-      <Time>2012-08-13T11:22:28.7356838-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb</Output>
+      <Time>2012-08-13T08:11:09.0519514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Door_Final.png</Source>
@@ -178,8 +178,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb</Output>
-      <Time>2012-08-13T11:22:28.7668818-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb</Output>
+      <Time>2012-08-13T08:11:09.0739514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Key.png</Source>
@@ -187,8 +187,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb</Output>
-      <Time>2012-08-13T11:22:28.8916738-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb</Output>
+      <Time>2012-08-13T08:11:09.1539514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\PortraitWoman.png</Source>
@@ -196,8 +196,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb</Output>
-      <Time>2012-08-13T11:22:28.7512828-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb</Output>
+      <Time>2012-08-13T08:11:09.0589514-04:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Shadow.png</Source>
@@ -205,8 +205,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb</Output>
-      <Time>2012-08-13T11:22:28.8760748-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb</Output>
+      <Time>2012-08-13T08:11:09.1409514-04:00</Time>
     </Item>
     <Item>
       <Source>controller.png</Source>
@@ -214,8 +214,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\controller.xnb</Output>
-      <Time>2012-08-13T11:23:11.2585578-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\controller.xnb</Output>
+      <Time>2012-08-13T08:11:18.0779514-04:00</Time>
     </Item>
     <Item>
       <Source>screenshot_for_menu.png</Source>
@@ -223,8 +223,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot_for_menu.xnb</Output>
-      <Time>2012-08-13T11:23:11.2585578-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot_for_menu.xnb</Output>
+      <Time>2012-08-13T08:11:18.0869514-04:00</Time>
     </Item>
     <Item>
       <Source>white.PNG</Source>
@@ -232,8 +232,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\white.xnb</Output>
-      <Time>2012-08-13T11:23:11.2273598-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\white.xnb</Output>
+      <Time>2012-08-13T08:11:18.0719514-04:00</Time>
     </Item>
     <Item>
       <Source>GameFont.spritefont</Source>
@@ -241,8 +241,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
-      <Time>2012-08-13T11:23:11.2585578-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb</Output>
+      <Time>2012-08-13T08:11:18.0909514-04:00</Time>
     </Item>
     <Item>
       <Source>TitleFont.spritefont</Source>
@@ -250,8 +250,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
-      <Time>2012-08-13T11:23:11.2429588-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb</Output>
+      <Time>2012-08-13T08:11:18.0749514-04:00</Time>
     </Item>
     <Item>
       <Source>MenuFont.spritefont</Source>
@@ -259,8 +259,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\MenuFont.xnb</Output>
-      <Time>2012-08-13T11:23:11.2585578-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\MenuFont.xnb</Output>
+      <Time>2012-08-13T08:11:18.0809514-04:00</Time>
     </Item>
     <Item>
       <Source>Greyscale.fx</Source>
@@ -268,8 +268,8 @@
       <Importer>EffectImporter</Importer>
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb</Output>
-      <Time>2012-08-13T11:23:11.2585578-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb</Output>
+      <Time>2012-08-13T08:11:18.0889514-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Soundtrack.mp3</Source>
@@ -277,9 +277,9 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb</Output>
-      <Extra>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma</Extra>
-      <Time>2012-08-13T11:23:11.1805628-04:00</Time>
+      <Output>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb</Output>
+      <Extra>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma</Extra>
+      <Time>2012-08-13T08:11:18.0309514-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -287,10 +287,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothingContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothingContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothingContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\dav_cam\Desktop\Tortoise\paranothing\paranothing\paranothing\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

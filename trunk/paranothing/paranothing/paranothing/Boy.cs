@@ -253,6 +253,7 @@ namespace paranothing
                     Animation = "walk";
                     moveSpeedX = 3;
                     moveSpeedY = 0;
+                    control.hideDialogue();
                     break;
                 case BoyState.StairsLeft:
                     Animation = "walk";
