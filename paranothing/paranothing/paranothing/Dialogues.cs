@@ -16,7 +16,6 @@ namespace paranothing
         public int X { get { return (int)position.X; } set { position.X = value; } }
         public int Y { get { return (int)position.Y; } set { position.Y = value; } }
         private Rectangle bounds { get {return new Rectangle(X, Y, 20, 20);}}
-
         public Dialogue(string text, int X, int Y)
         {
             position = new Vector2(X, Y);

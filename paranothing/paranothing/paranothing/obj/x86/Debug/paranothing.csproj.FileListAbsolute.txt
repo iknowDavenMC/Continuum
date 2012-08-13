@@ -192,3 +192,49 @@ C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\para
 C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
 C:\Users\Alex\Documents\Visual Studio 2010\Projects\comp376proj\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
 C:\Users\Samuel\Desktop\New folder\paranothing\paranothing\paranothing\bin\x86\Debug\Content\white.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level4.lvl
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level3.lvl
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level2.lvl
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\levels\level1.lvl
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\levels\tutorial.lvl
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\sprite.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameThumbnail.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\stairs_intact.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\actions.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Bruce.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Portrait.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Rubble.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePast.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\StaircasePresent.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wallpaper.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Wardrobe.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\floor.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Staircase.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\BruceSheet.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\wall.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Button.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Chair.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\door.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Door_Final.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Key.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\PortraitWoman.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sprites\Shadow.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\controller.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\screenshot_for_menu.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\white.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\GameFont.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\TitleFont.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\MenuFont.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Greyscale.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.xnb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Soundtrack.wma
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\sounds.xgs
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Wave Bank.xwb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\Content\Sounds\Sound Bank.xsb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\bin\x86\Debug\paranothing.pdb
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.exe
+C:\Users\al_atta\Desktop\comp376-paranothing\paranothing\paranothing\paranothing\obj\x86\Debug\paranothing.pdb
