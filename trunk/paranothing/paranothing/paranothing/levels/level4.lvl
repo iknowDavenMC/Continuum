@@ -1,7 +1,7 @@
 ﻿StartLevel
 levelName:Level4
 nextLevel:EndGame
-startTime:Present
+startTime:Past
 playerX:17
 playerY:114
 width:1000
