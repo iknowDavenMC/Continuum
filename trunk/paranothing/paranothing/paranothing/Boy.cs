@@ -105,7 +105,9 @@ namespace paranothing
         {
             if (state != BoyState.Die)
             {
-                if (control.keyState.IsKeyDown(Keys.Space) || control.padState.IsButtonDown(Buttons.A))
+                if ((control.keyState.IsKeyDown(Keys.Space) || control.padState.IsButtonDown(Buttons.A)) 
+                    && control.keyState.IsKeyUp(Keys.Right) && control.keyState.IsKeyUp(Keys.Left) 
+                    && control.padState.IsButtonUp(Buttons.LeftThumbstickRight) && control.padState.IsButtonUp(Buttons.LeftThumbstickLeft))
                 {
                     if ((state == BoyState.Walk || state == BoyState.Idle || state == BoyState.PushWalk) && null != interactor)
                     {
