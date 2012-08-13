@@ -182,7 +182,10 @@ namespace paranothing
                 unlockTimer += elapsed;
             if (unlockTimer >= 450)
             {
-                soundMan.playSound("Final Door Part 2");
+                if (GameTitle.toggleSound)
+                {
+                    soundMan.playSound("Final Door Part 2");
+                }
                 unlockTimer = 0;
             }
             bool b1Pushed = false;
@@ -214,8 +217,10 @@ namespace paranothing
                 if (state == BookcasesState.Closed)
                 {
                     state = BookcasesState.Opening;
-                    if (unlockTimer == 0)
+                    if (unlockTimer == 0 && GameTitle.toggleSound)
+                    {
                         soundMan.playSound("Final Door Part 1");
+                    }
                 }
             }
             else

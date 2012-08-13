@@ -125,7 +125,11 @@ namespace paranothing
                 Boy player = control.player;
                 player.state = Boy.BoyState.TimeTravel;
                 player.X = X;
-                soundMan.playSound("Portrait Travel");
+
+                if (GameTitle.toggleSound)
+                {
+                    soundMan.playSound("Portrait Travel");
+                }
             }
         }
 

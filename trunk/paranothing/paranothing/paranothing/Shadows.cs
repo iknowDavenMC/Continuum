@@ -238,7 +238,11 @@ namespace paranothing
             state = ShadowState.SeekSound;
             if (Animation == "walk")
                 Animation = "stopwalk";
-            soundMan.playSound("Shadow");
+
+            if (GameTitle.toggleSound)
+            {
+                soundMan.playSound("Shadow");
+            }
         }
 
         //Drawable
