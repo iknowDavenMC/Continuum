@@ -369,7 +369,11 @@ namespace paranothing
         public void unlockObj()
         {
             locked = false;
-            soundMan.playSound("Wardrobe Unlock");
+
+            if (GameTitle.toggleSound)
+            {
+                soundMan.playSound("Wardrobe Unlock");
+            }
         }
 
         public bool isLocked()
@@ -387,7 +391,11 @@ namespace paranothing
                 {
                     player.state = Boy.BoyState.Teleport;
                     player.X = X + 16;
-                    soundMan.playSound("Wardrobe Travel");
+
+                    if (GameTitle.toggleSound)
+                    {
+                        soundMan.playSound("Wardrobe Travel");
+                    }
                 }
             }
             else

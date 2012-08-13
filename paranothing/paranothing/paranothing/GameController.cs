@@ -163,7 +163,11 @@ namespace paranothing
                             else
                                 player.direction = Direction.Left;
                             player.state = Boy.BoyState.Die;
-                            soundMan.playSound("Death");
+
+                            if (GameTitle.toggleSound)
+                            {
+                                soundMan.playSound("Death");
+                            }
                             shadow.state = Shadows.ShadowState.Idle;
                         }
                     }
@@ -196,7 +200,7 @@ namespace paranothing
                                 break;
                             }
                         }
-                        if (!button.stepOn && pressed)
+                        if (!button.stepOn && pressed && GameTitle.toggleSound)
                             soundMan.playSound("Button Press");
                         button.stepOn = pressed;
                     }
@@ -266,7 +270,11 @@ namespace paranothing
                                             chair.Y--;
                                         chair.state = Chairs.ChairsState.Idle;
                                         soundPos = new Vector2(chair.X, chair.Y);
-                                        soundMan.playSound("Chair Drop");
+
+                                        if (GameTitle.toggleSound)
+                                        {
+                                            soundMan.playSound("Chair Drop");
+                                        }
                                     }
                                 }
                             }

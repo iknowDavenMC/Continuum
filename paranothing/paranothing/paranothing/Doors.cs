@@ -177,7 +177,11 @@ namespace paranothing
         public void unlockObj()
         {
             locked = false;
-            soundMan.playSound("Door Unlock");
+
+            if (GameTitle.toggleSound)
+            {
+                soundMan.playSound("Door Unlock");
+            }
         }
 
         public bool isLocked()

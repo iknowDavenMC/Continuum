@@ -388,7 +388,7 @@ namespace paranothing
                     if (!control.collidingWithSolid(w.pushBox, false))
                     {
                         w.X += (int)(moveSpeedX * flip);
-                        if (pushSoundTimer > 200)
+                        if (pushSoundTimer > 200 && GameTitle.toggleSound)
                         {
                             soundCue = soundMan.playSound("Pushing Wardrobe", 0);
                             pushSoundTimer = 0;
