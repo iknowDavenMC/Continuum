@@ -256,7 +256,7 @@ namespace paranothing
             bgMusic = Content.Load<Song>("Sounds/Soundtrack");
             MediaPlayer.Play(bgMusic);
             MediaPlayer.IsRepeating = true;
-            MediaPlayer.Volume = 0.2f;
+            MediaPlayer.Volume = 0.1f;
 
             greyScale = Content.Load<Effect>("Greyscale");
 
