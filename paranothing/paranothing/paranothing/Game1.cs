@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Diagnostics;
 
 namespace paranothing
 {
@@ -35,6 +36,7 @@ namespace paranothing
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        SpriteBatch spriteBatch2;
 
         # region Attributes
         Effect greyScale;
@@ -135,6 +137,11 @@ namespace paranothing
         private Level tutorial, level1, level2, level3, level4;
 
         public bool gameInProgress = false;
+        public static bool endGame = false;
+        private float fadeOpacity;
+        private float opacityPerSecond = 0.02f;
+        private Stopwatch stopwatch;
+        private Texture2D white;
 
         # endregion
 
@@ -234,6 +241,12 @@ namespace paranothing
 
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            spriteBatch2 = new SpriteBatch(GraphicsDevice);
+
+            //Stuff for fade
+            stopwatch = new Stopwatch();
+            white = Content.Load<Texture2D>("white");
 
             audioEngine = new AudioEngine(@"Content/Sounds/sounds.xgs");
             waveBank = new WaveBank(audioEngine, @"Content/Sounds/Wave Bank.xwb");
@@ -415,6 +428,8 @@ namespace paranothing
             //loadTitleContents();
             description = new GameBackground(Content.Load<Texture2D>("GameThumbnail"), new Rectangle(0, 0, (int)(ScreenWidth), (int)(ScreenHeight)));
 
+            fadeOpacity = 0;
+
         }
 
         /// <summary>
@@ -444,18 +459,44 @@ namespace paranothing
                 title.menuSize = 4;
             }
             // TODO: Add your update logic here
-            
-            switch (control.state)
+
+            if (!endGame)
             {
-                case GameState.MainMenu:
-                    title.Update(this, Keyboard.GetState());
-                    break;
-                case GameState.Game:
 
-                    gameInProgress = true;
+                switch (control.state)
+                {
+                    case GameState.MainMenu:
+                        title.Update(this, Keyboard.GetState());
+                        break;
+                    case GameState.Game:
+                        
+                        endGame = true;
+                        gameInProgress = true;
 
-                    control.updateObjs(gameTime);
-                    break;
+                        control.updateObjs(gameTime);
+                        break;
+                }
+            }
+
+            //FADE OUT UPDATE
+            else
+            {
+
+                if (!(stopwatch.IsRunning))
+                    stopwatch.Start();
+
+                if (fadeOpacity < 1)
+                    fadeOpacity = (stopwatch.ElapsedMilliseconds/100) * opacityPerSecond;
+
+                if (fadeOpacity == 1 && stopwatch.ElapsedMilliseconds >= 15000)
+                {
+                    endGame = false;
+                    stopwatch.Reset();
+                    control.state = GameState.MainMenu;
+                    title.titleState = GameTitle.TitleState.Menu;
+                    title.menuSize = 5;
+                }
+
             }
 
             base.Update(gameTime);
@@ -479,7 +520,7 @@ namespace paranothing
                     if (title.titleState == GameTitle.TitleState.Controls)
                         spriteBatch.Draw(controller, new Rectangle(200, 180, 500, 500), Color.White);
 
-                    spriteBatch.End();
+                    //spriteBatch.End();
                     break;
                 //case GameState.Description:
                 //    spriteBatch.Begin();
@@ -497,9 +538,27 @@ namespace paranothing
                     spriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointWrap, null, null, pastEffect, transform);
                     drawWallpaper(spriteBatch, wallpaperSheet);
                     control.drawObjs(spriteBatch);
-                    spriteBatch.End();
+
+                    //spriteBatch.End();
                     break;
             }
+
+            spriteBatch.End();
+
+            spriteBatch2.Begin();
+
+
+            if (endGame)
+            {
+                spriteBatch2.Draw(white, new Vector2(0, 0), null, Color.White * fadeOpacity, 0f, Vector2.Zero, new Vector2(ScreenWidth, ScreenHeight), SpriteEffects.None, 0f);
+
+                if (fadeOpacity >= 1)
+                    spriteBatch2.DrawString(Game1.menuFont, "Bruce... you're safe now.", new Vector2(280, 300), Color.Black, 0f, new Vector2(0, 0), 1f, SpriteEffects.None, 1f);
+
+            }
+
+            spriteBatch2.End();
+
 
             base.Draw(gameTime);
         }

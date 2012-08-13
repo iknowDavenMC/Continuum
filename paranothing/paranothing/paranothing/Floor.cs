@@ -85,6 +85,7 @@ namespace paranothing
 
         public void draw(SpriteBatch renderer, Color tint)
         {
+
             if (control.timePeriod == TimePeriod.Present)
                 renderer.Draw(sheet.image, Box, sheet.getSprite(1), tint, 0f, new Vector2(), SpriteEffects.None, DrawLayer.Floor);
             else
