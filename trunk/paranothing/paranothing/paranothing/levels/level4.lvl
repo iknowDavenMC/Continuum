@@ -11,7 +11,7 @@ color:255,232,255
 StartDialogue
 x:17
 y:114
-text: There's a safe room on the top floor.
+text: It's time to move on. There's a safe room in the study.
 EndDialogue
 
 StartDialogue
@@ -29,19 +29,19 @@ EndDialogue
 StartDialogue
 x:25
 y:20
-text: Not that I ever was...
+text: Not that I ever was... I'm sorry Bruce.
 EndDialogue
 
 StartDialogue
 x:525
 y:114
-text: I can take you back to when the house was being built.
+text: He was absent when the house was built. I can show you.
 EndDialogue
 
 StartDialogue
 x:250
 y:77
-text: Bruce ... Bruce I'm so sorry.
+text: Bruce ... Bruce we're so sorry.
 EndDialogue
 
 StartDialogue
