@@ -40,5 +40,20 @@ namespace paranothing
             return false;
         }
 
+        public Cue playSound(string soundName, byte changeSignature)
+        {
+            if (soundBank != null)
+            {
+                try
+                {
+                    Cue cue = soundBank.GetCue(soundName);
+                    cue.Play();
+                    return cue;
+                }
+                catch (ArgumentException) { return null; }
+            }
+
+            return null;
+        }
     }
 }
